@@ -1,0 +1,100 @@
+  /*====================TODAS LAS PANTALLAS====================*/
+  *{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  body{
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 10vh;
+    background-repeat: no-repeat;
+    background: #1488CC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2B32B2, #1488CC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2B32B2, #1488CC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  footer{
+    height: 10vh;
+    padding-right: 50px;
+    padding-top: 10px;
+    color: white;
+    text-align: end;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  /*====================PANTALLA DE INICIO====================*/
+  #hero{
+    display: flex;
+    padding-top: 150px;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    color: white;
+    font-weight: bold;
+    height: 74vh;
+  }
+  /*====================PANTALLA DE LOGIN====================*/
+  #log{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .form-box{
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .inputbox{
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid #fff;
+  }
+  .inputbox label{
+    position: absolute;
+    top: -4px;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1em;
+    pointer-events: none;
+  }
+  .inputbox input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding:0 35px 0 5px;
+    color: #fff;
+  }
+  .inputbox img{
+    position: absolute;
+    right: 8px;
+    height: 20px;
+    width: 20px;
+    color: #fff;
+    font-size: 1.2em;
+    top: 20px;
+  }
+  /*====================PANTALLAS DE ADMIN====================*/
+  /*Menu del administrador*/
+
+  /*Editar usuarios*/
+  .dataTables_length label,
+  .dataTables_filter label,
+  .dataTables_info label{
+    color: #ffffff; 
+  }
+  /*====================PANTALLA DE SUPERVISOR====================*/
+  /*====================PANTALLA DE USUARIO====================*/
