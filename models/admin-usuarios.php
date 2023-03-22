@@ -1,3 +1,5 @@
+<?php include('conexion.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +87,7 @@
       </div>
     </div>
   </div>
-  <!--Pantalla modal-->
+  <!--Pantalla modal para agregar un nuevo usuario-->
   <div class="modal fade modal-xl mt-5" id="modal_usuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -128,6 +130,49 @@
       </div>
     </div>
   </div>
+  <!--Pantalla modal para editar a un usuario-->
+  <div class="modal fade modal-xl mt-5" id="modal_editar_usuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo usuario</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="editarUsuarioForm" action="javascript:void();" method="post">
+        <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <label for="" class="fw-semibold">Nombre</label>
+                <input type="text" class="form-control" aria-label="nombre" id="editarNombre" name="editarNombre">
+              </div>
+              <div class="col">
+                <label for="" class="fw-semibold">Primer apellido</label>
+                  <input type="text" class="form-control" aria-label="apellido p" id="editarApellidoP" name="editarApellidoP">
+              </div>
+              <div class="col">
+                <label for="" class="fw-semibold">Segundo apellido</label>
+                  <input type="text" class="form-control" aria-label="apellido m" id="editarApellidoM" name="editarApellidoM">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <label for="" class="fw-semibold">Usuario</label>
+                <input type="text" class="form-control" aria-label="usuario" id="editarUsuario" name="editarUsuario">
+              </div>
+              <div class="col">
+                <label for="" class="fw-semibold">Contraseña</label>
+                  <input type="text" class="form-control" aria-label="contra" id="editarContra" name="editarContra">
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <!--PIE DE PÁGINA-->
   <footer class="">
     <p>&copy; SiCEI 2023</p>
@@ -141,25 +186,29 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
   <!--jQuery para mostrar usuarios-->
   <script type="text/javascript">
+    $(document).ready(function() {
       $('#tablausuarios').DataTable({
-        'serverSide':true,
-            'processing':true,
-            'paging':true,
-            'order':[],
-            'ajax':{
-                'url':'admin-datos-usuario.php',
-                'type':'post',
-            },
-            'fnCreateRow':function(nRow,aData,iDataIndex){
-                $(nRow).attr('id_usuario',aData[0]);
-            },
-            language: {
-              url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
-            },
+        "fnCreatedRow": function(nRow, aData, iDataIndex) {
+          $(nRow).attr('idusuario', aData[0]);
+        },
+        'serverSide': 'true',
+        'processing': 'true',
+        'paging': 'true',
+        'order': [],
+        'ajax': {
+          'url': 'admin-datos-usuario.php',
+          'type': 'post',
+        },
+        "aoColumnDefs": [{
+            "bSortable": false,
+            "aTargets": [6]
+          },],
+        language: {
+        url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
+    },
       });
-  </script>
-  <!--jQuery para añadir usuarios-->
-  <script type="text/javascript">
+    });
+    //jQuery para añadir usuarios
     $(document).on('submit','#nuevoUsuarioForm',function(event){
       event.preventDefault();
       var nombre = $('#inputNombre').val();
@@ -189,6 +238,97 @@
       else
       {
         alert("Favor de llenar todos los campos")
+      }
+    });
+    //jQuery para actualizar usuarios
+    $(document).on('submit', '#editarUsuarioForm', function(e) {
+      e.preventDefault();
+      var nombre = $('#editarNombre').val();
+      var apellidop = $('#editarApellidoP').val();
+      var apellidom = $('#editarApellidoM').val();
+      var usuario = $('#editarUsuario').val();
+      var contra = $('#editarContra').val();
+      var tridusuario = $('#tridusuario').val();
+      var idusuario = $('#idusuario').val();
+      if (nombre != '' && apellidop != '' && apellidom != '' && usuario != '' && contra != '') {
+        $.ajax({
+          url: "admin-datos-actualizar.php",
+          type: "post",
+          data: {
+            nombre: nombre,
+            apellidop: apellidop,
+            apellidom: apellidom,
+            usuario: usuario,
+            contra: contra,
+            idusuario: idusuario
+          },
+          success: function(data) {
+            var json = JSON.parse(data);
+            var status = json.status;
+            if (status == 'true') {
+              table = $('#tablausuarios').DataTable();
+              var button = '<td><a href="javascript:void();" data-idusuario="' + idusuario + '"><i role="button" class="fa-solid fa-user-pen text-info ms-1 me-2 editbtn"></i></a>  <a href="#!"  data-idusuario="' + idusuario + '"><i role="button" class="fa-solid fa-user-xmark text-danger deleteBtn"></i></a></td>';
+              var row = table.row("[idusuario='" + tridusuario + "']");
+              row.row("[idusuario='" + tridusuario + "']").data([idusuario, nombre, apellidop, apellidom, usuario, contra, button]);
+              $('#modal_editar_usuarios').modal('hide');
+            } else {
+              alert('failed');
+            }
+          }
+        });
+      } else {
+        alert('Llenar todos los campos');
+      }
+    });
+    //jQuery para editar usuarios
+    $('#tablausuarios').on('click', '.editbtn ', function(event) {
+      var table = $('#tablausuarios').DataTable();
+      var tridusuario = $(this).closest('tr').attr('idusuario');
+      var idusuario = $(this).data('idusuario');
+      $('#modal_editar_usuarios').modal('show');
+      $.ajax({
+        url: "admin-datos-editar.php",
+        data: {
+          idusuario: idusuario
+        },
+        type: 'post',
+        success: function(data) {
+          var json = JSON.parse(data);
+          $('#editarNombre').val(json.nombre);
+          $('#editarApellidoP').val(json.apellidop);
+          $('#editarApellidoM').val(json.apellidom);
+          $('#editarUsuario').val(json.usuario);
+          $('#editarContra').val(json.contra);
+          $('#idusuario').val(idusuario);
+          $('#tridusuario').val(tridusuario);
+        }
+      })
+    });
+    //jQuery para eliminar usuarios
+    $(document).on('click', '.deleteBtn', function(event) {
+      var table = $('#tablausuarios').DataTable();
+      event.preventDefault();
+      var idusuario = $(this).data('idusuario');
+      if (confirm("¿Eliminar usuario?")) {
+        $.ajax({
+          url: "admin-datos-eliminar.php",
+          data: {
+            idusuario: idusuario
+          },
+          type: "post",
+          success: function(data) {
+            var json = JSON.parse(data);
+            status = json.status;
+            if (status == 'success') {
+              $("#" + idusuario).closest('tr').remove();
+            } else {
+              alert('Failed');
+              return;
+            }
+          }
+        });
+      } else {
+        return null;
       }
     })
   </script>
