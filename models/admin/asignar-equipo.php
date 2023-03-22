@@ -99,9 +99,32 @@
   </div>
   <!--PIE DE PÁGINA-->
   <footer class="">
-    <p>&copy; SiCEI 2023</p>
+    <div class="d-flex justify-content-between">
+      <p id="fecha" class="ms-5"></p>
+      <p>&copy; SiCEI 2023</p>
+    </div>
   </footer>
   <!--Bootstrap 5-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <!--Script para obtener fecha y hora actual-->
+  <script>
+    function mostrarFechaHora() {
+    var fecha = new Date();
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth() + 1;
+    var anio = fecha.getFullYear();
+    var hora = fecha.getHours();
+    var minutos = fecha.getMinutes();
+    // Formato de la fecha y hora
+    var formatoFecha = dia + '/' + mes + '/' + anio;
+    var formatoHora = hora + ':' + minutos;
+    // Mostrar la fecha y hora en el elemento HTML
+    document.getElementById('fecha').innerHTML = 'Fecha: ' + formatoFecha + '   ' + 'Hora: ' + formatoHora;
+    // Actualizar la fecha y hora cada segundo
+    setTimeout(mostrarFechaHora, 100);
+    }
+    // Llamamos la función para que se ejecute
+    mostrarFechaHora();
+  </script>
 </body>
 </html>

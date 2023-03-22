@@ -175,7 +175,10 @@
   </div>
   <!--PIE DE PÁGINA-->
   <footer class="">
-    <p>&copy; SiCEI 2023</p>
+    <div class="d-flex justify-content-between">
+      <p id="fecha" class="ms-5"></p>
+      <p>&copy; SiCEI 2023</p>
+    </div>
   </footer>
   <!--jQuery-->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
@@ -241,6 +244,26 @@
         alert("Favor de llenar todos los campos")
       }
     })
+  </script>
+  <!--Script para obtener fecha y hora actual-->
+  <script>
+    function mostrarFechaHora() {
+    var fecha = new Date();
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth() + 1;
+    var anio = fecha.getFullYear();
+    var hora = fecha.getHours();
+    var minutos = fecha.getMinutes();
+    // Formato de la fecha y hora
+    var formatoFecha = dia + '/' + mes + '/' + anio;
+    var formatoHora = hora + ':' + minutos;
+    // Mostrar la fecha y hora en el elemento HTML
+    document.getElementById('fecha').innerHTML = 'Fecha: ' + formatoFecha + '   ' + 'Hora: ' + formatoHora;
+    // Actualizar la fecha y hora cada segundo
+    setTimeout(mostrarFechaHora, 100);
+    }
+    // Llamamos la función para que se ejecute
+    mostrarFechaHora();
   </script>
 </body>
 </html>
