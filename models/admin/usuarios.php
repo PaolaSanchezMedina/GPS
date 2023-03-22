@@ -1,4 +1,4 @@
-<?php include('conexion.php'); ?>
+<?php include('../../bd/conexion.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Hoja de estilos css-->
-    <link rel="stylesheet" href=../assets/style.css>
+    <link rel="stylesheet" href="../../assets/style.css">
     <!--Icono de la página-->
-    <link rel="shortcut icon" href="../assets/img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../assets/img/logo.png" type="image/x-icon">
     <!--Bootstrap 5-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <!--Font awesome-->
@@ -22,8 +22,8 @@
   <!--ENCABEZADO DE PÁGINA-->
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../models/admin-menu.php>
-        <img src="../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
+      <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../admin/inicio.php>
+        <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
         SiCEI
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,23 +32,23 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href=../models/admin-menu.php>Mi perfil</a>
+            <a class="nav-link text-light" aria-current="page" href=../admin/inicio.php>Mi perfil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href=../models/admin-asignar.php>Asignar equipos</a>
+            <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>Asignar equipos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href=../models/admin-usuarios.php>Usuarios</a>
+            <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Catálogos
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../models/admin-tipo-equipo.php">Tipos de equipos</a></li>
-              <li><a class="dropdown-item" href="../models/admin-proveedores.php">Proveedores</a></li>
-              <li><a class="dropdown-item" href="../models/admin-accesorios.php">Accesorios</a></li>
-              <li><a class="dropdown-item" href="../models/admin-localidades.php">Localidades</a></li>
+              <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
+              <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
+              <li><a class="dropdown-item" href="../admin/accesorios.php">Accesorios</a></li>
+              <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
             </ul>
           </li>
         </ul>
@@ -184,8 +184,9 @@
   <!--Bootstrap 5-->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-  <!--jQuery para mostrar usuarios-->
+  <!--SCRIPT PARA EL CRUD-->
   <script type="text/javascript">
+  //jQuery para mostrar usuarios
     $(document).ready(function() {
       $('#tablausuarios').DataTable({
         "fnCreatedRow": function(nRow, aData, iDataIndex) {
@@ -196,7 +197,7 @@
         'paging': 'true',
         'order': [],
         'ajax': {
-          'url': 'admin-datos-usuario.php',
+          'url': '../../bd/crud-usuario/mostrar-usuario.php',
           'type': 'post',
         },
         "aoColumnDefs": [{
@@ -208,7 +209,7 @@
     },
       });
     });
-    //jQuery para añadir usuarios
+  //jQuery para añadir usuarios
     $(document).on('submit','#nuevoUsuarioForm',function(event){
       event.preventDefault();
       var nombre = $('#inputNombre').val();
@@ -219,7 +220,7 @@
       if(nombre !='' && apellidop !='' && apellidom !='' && usuario !='' && contra !='')
       {
         $.ajax({
-          url:"admin-nuevo-usuario.php",
+          url:"../../bd/crud-usuario/nuevo-usuario.php",
           data:{nombre:nombre,apellidop:apellidop,apellidom:apellidom,usuario:usuario,contra:contra},
           type: 'post',
           success:function(data){
@@ -229,7 +230,7 @@
             {
               table = $('#tablausuarios').DataTable();
               table.draw();
-              alert('Usuario creado correctamente');
+              //alert('Usuario creado correctamente');
               $('#modal_usuarios').modal('hide');
             }
           }
@@ -238,97 +239,6 @@
       else
       {
         alert("Favor de llenar todos los campos")
-      }
-    });
-    //jQuery para actualizar usuarios
-    $(document).on('submit', '#editarUsuarioForm', function(e) {
-      e.preventDefault();
-      var nombre = $('#editarNombre').val();
-      var apellidop = $('#editarApellidoP').val();
-      var apellidom = $('#editarApellidoM').val();
-      var usuario = $('#editarUsuario').val();
-      var contra = $('#editarContra').val();
-      var tridusuario = $('#tridusuario').val();
-      var idusuario = $('#idusuario').val();
-      if (nombre != '' && apellidop != '' && apellidom != '' && usuario != '' && contra != '') {
-        $.ajax({
-          url: "admin-datos-actualizar.php",
-          type: "post",
-          data: {
-            nombre: nombre,
-            apellidop: apellidop,
-            apellidom: apellidom,
-            usuario: usuario,
-            contra: contra,
-            idusuario: idusuario
-          },
-          success: function(data) {
-            var json = JSON.parse(data);
-            var status = json.status;
-            if (status == 'true') {
-              table = $('#tablausuarios').DataTable();
-              var button = '<td><a href="javascript:void();" data-idusuario="' + idusuario + '"><i role="button" class="fa-solid fa-user-pen text-info ms-1 me-2 editbtn"></i></a>  <a href="#!"  data-idusuario="' + idusuario + '"><i role="button" class="fa-solid fa-user-xmark text-danger deleteBtn"></i></a></td>';
-              var row = table.row("[idusuario='" + tridusuario + "']");
-              row.row("[idusuario='" + tridusuario + "']").data([idusuario, nombre, apellidop, apellidom, usuario, contra, button]);
-              $('#modal_editar_usuarios').modal('hide');
-            } else {
-              alert('failed');
-            }
-          }
-        });
-      } else {
-        alert('Llenar todos los campos');
-      }
-    });
-    //jQuery para editar usuarios
-    $('#tablausuarios').on('click', '.editbtn ', function(event) {
-      var table = $('#tablausuarios').DataTable();
-      var tridusuario = $(this).closest('tr').attr('idusuario');
-      var idusuario = $(this).data('idusuario');
-      $('#modal_editar_usuarios').modal('show');
-      $.ajax({
-        url: "admin-datos-editar.php",
-        data: {
-          idusuario: idusuario
-        },
-        type: 'post',
-        success: function(data) {
-          var json = JSON.parse(data);
-          $('#editarNombre').val(json.nombre);
-          $('#editarApellidoP').val(json.apellidop);
-          $('#editarApellidoM').val(json.apellidom);
-          $('#editarUsuario').val(json.usuario);
-          $('#editarContra').val(json.contra);
-          $('#idusuario').val(idusuario);
-          $('#tridusuario').val(tridusuario);
-        }
-      })
-    });
-    //jQuery para eliminar usuarios
-    $(document).on('click', '.deleteBtn', function(event) {
-      var table = $('#tablausuarios').DataTable();
-      event.preventDefault();
-      var idusuario = $(this).data('idusuario');
-      if (confirm("¿Eliminar usuario?")) {
-        $.ajax({
-          url: "admin-datos-eliminar.php",
-          data: {
-            idusuario: idusuario
-          },
-          type: "post",
-          success: function(data) {
-            var json = JSON.parse(data);
-            status = json.status;
-            if (status == 'success') {
-              $("#" + idusuario).closest('tr').remove();
-            } else {
-              alert('Failed');
-              return;
-            }
-          }
-        });
-      } else {
-        return null;
       }
     })
   </script>

@@ -1,4 +1,4 @@
-<?php include('conexion.php');
+<?php include('../conexion.php');
 
 $nombre = $_POST['nombre'];
 $apellidop = $_POST['apellidop'];
@@ -26,4 +26,3 @@ else
 } 
 
 ?>
-

@@ -1,4 +1,4 @@
-<?php include('conexion.php');
+<?php include('../conexion.php');
 
 $output= array();
 $sql = "SELECT * FROM usuarios ";
