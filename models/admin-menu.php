@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Hoja de estilos css-->
-    <link rel="stylesheet" href=../../assets/style.css>
+    <link rel="stylesheet" href=../assets/style.css>
     <!--Icono de la página-->
-    <link rel="shortcut icon" href="../../assets/img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/logo.png" type="image/x-icon">
     <!--Bootstrap 5-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>SiCEI</title>
@@ -16,8 +16,8 @@
   <!--ENCABEZADO DE PÁGINA-->
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../../models/admin/menu-admin.php>
-        <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
+      <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../models/admin-menu.php>
+        <img src="../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
         SiCEI
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,27 +26,30 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href=../../models/admin/menu-admin.php>Mi perfil</a>
+            <a class="nav-link text-light" aria-current="page" href=../models/admin-menu.php>Mi perfil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="#">Asignar equipos</a>
+            <a class="nav-link text-light" aria-current="page" href=../models/admin-asignar.php>Asignar equipos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href=../../models/admin/usuarios.php>Usuarios</a>
+            <a class="nav-link text-light" aria-current="page" href=../models/admin-usuarios.php>Usuarios</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Catálogos
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Tipos de equipos</a></li>
-              <li><a class="dropdown-item" href="#">Proveedores</a></li>
-              <li><a class="dropdown-item" href="#">Accesorios</a></li>
-              <li><a class="dropdown-item" href="#">Localidades</a></li>
+              <li><a class="dropdown-item" href="../models/admin-tipo-equipo.php">Tipos de equipos</a></li>
+              <li><a class="dropdown-item" href="../models/admin-proveedores.php">Proveedores</a></li>
+              <li><a class="dropdown-item" href="../models/admin-accesorios.php">Accesorios</a></li>
+              <li><a class="dropdown-item" href="../models/admin-localidades.php">Localidades</a></li>
             </ul>
           </li>
         </ul>
       </div>
+      <form class="d-flex" action="../../models/login.php">
+        <button class="btn text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
+      </form>
     </div>
   </nav>
   <!--CUERPO DE PÁGINA-->

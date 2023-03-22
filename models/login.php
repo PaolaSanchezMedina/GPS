@@ -29,7 +29,7 @@
   <section id="log">
       <div class="form-box mt-4">
           <div class="form-value">
-              <form action="../models/admin/menu-admin.php" class="text-center">
+              <form action="../models/admin-menu.php" class="text-center">
                   <img src="../assets/img/logo.png" class="rounded" alt="Logo" width="40" height="38">
                   <h4 class="mt-3" style="color: white; text-align: center;">Iniciar sesión</h4>
                   <div class="inputbox">
