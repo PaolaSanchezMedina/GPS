@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <<!--Hoja de estilos css-->
+    <!--Hoja de estilos css-->
     <link rel="stylesheet" href="../../assets/style.css">
     <!--Icono de la página-->
     <link rel="shortcut icon" href="../../assets/img/logo.png" type="image/x-icon">

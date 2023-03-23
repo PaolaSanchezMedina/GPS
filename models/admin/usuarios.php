@@ -1,4 +1,4 @@
-<?php include('../../bd/conexion.php'); ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -135,10 +135,12 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo usuario</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar usuario</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form id="editarUsuarioForm" action="javascript:void();" method="post">
+        <form id="editarUsuarioForm">
+        <input type="hidden" name="idusuario" id="idusuario" value="">
+        <input type="hidden" name="tridusuario" id="tridusuario" value="">
         <div class="modal-body">
             <div class="row">
               <div class="col">
@@ -233,7 +235,6 @@
             {
               table = $('#tablausuarios').DataTable();
               table.draw();
-              //alert('Usuario creado correctamente');
               $('#modal_usuarios').modal('hide');
             }
           }
@@ -243,6 +244,69 @@
       {
         alert("Favor de llenar todos los campos")
       }
+    });
+  //jQuery para actualizar al usuario editado
+    $(document).on('submit', '#editarUsuarioForm', function(e) {
+      e.preventDefault();
+      var nombre = $('#editarNombre').val();
+      var apellidop = $('#editarApellidoP').val();
+      var apellidom = $('#editarApellidoM').val();
+      var usuario = $('#editarUsuario').val();
+      var contra = $('#editarContra').val();
+      var tridusuario = $('#tridusuario').val();
+      var idusuario = $('#idusuario').val();
+      if (nombre !='' && apellidop !='' && apellidom !='' && usuario !='' && contra !='') {
+        $.ajax({
+          url: "../../bd/crud-usuario/actualizar-usuario.php",
+          type: "post",
+          data: {
+            nombre: nombre,
+            apellidop: apellidop,
+            apellidom: apellidom,
+            usuario: usuario,
+            contra: contra
+          },
+          success: function(data) {
+            var json = JSON.parse(data);
+            var status = json.status;
+            if (status == 'true') {
+              table = $('#tablausuarios').DataTable();
+              var button = '<td><a href="javascript:void();" data-idusuario="' + idusuario + '"><i role="button" class="fa-solid fa-user-pen text-info ms-1 me-2 editbtn"></i></a>  <a href="#!"  data-idusuario="' + idusuario + '"><i role="button" class="fa-solid fa-user-xmark text-danger deleteBtn"></i></a></td>';
+              var row = table.row("[idusuario='" + tridusuario + "']");
+              row.row("[idusuario='" + tridusuario + "']").data([idusuario, nombre, apellidop, apellidom, usuario, contra]);
+              $('#modal_editar_usuarios').modal('hide');
+            } else {
+              alert('failed');
+            }
+          }
+        });
+      } else {
+        alert('Llenar todos los campos');
+      }
+    });
+  //jQuery para editar usuarios
+    $('#tablausuarios').on('click', '.editbtn ', function(event) {
+      var table = $('#tablausuarios').DataTable();
+      var tridusuario = $(this).closest('tr').attr('idusuario');
+      var idusuario = $(this).data('idusuario');
+      $('#modal_editar_usuarios').modal('show');
+      $.ajax({
+        url: "../../bd/crud-usuario/editar-usuario.php",
+        data: {
+          idusuario: idusuario
+        },
+        type: 'post',
+        success: function(data) {
+          var json = JSON.parse(data);
+          $('#editarNombre').val(json.nombre);
+          $('#editarApellidoP').val(json.apellidop);
+          $('#editarApellidoM').val(json.apellidom);
+          $('#editarUsuario').val(json.usuario);
+          $('#editarContra').val(json.contra);
+          $('#idusuario').val(idusuario);
+          $('#tridusuario').val(tridusuario);
+        }
+      })
     })
   </script>
   <!--Script para obtener fecha y hora actual-->
