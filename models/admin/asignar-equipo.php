@@ -10,6 +10,8 @@
     <link rel="shortcut icon" href="../../assets/img/logo.png" type="image/x-icon">
     <!--Bootstrap 5-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>SiCEI</title>
 </head>
 <body>
@@ -48,13 +50,13 @@
         </ul>
       </div>
       <form class="d-flex" action="../../models/login.php">
-        <button class="btn text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
+        <button class="btn border-white text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
       </form>
     </div>
   </nav>
   <!--CUERPO DE PÁGINA-->
   <div class="container fluid">
-    <h2 class="text-light mt-3">Asignar equipo</h2>
+    <h2 class="text-light mt-5">Asignar equipo</h2>
     <div class="row">
       <div class="container">
         <div class="row text-light mt-3">
@@ -74,7 +76,7 @@
               </div>
             </div>
             <div class="row mt-3">
-            <div class="col">
+              <div class="col">
                 <label for="" class="fw-semibold">Id de equipo</label>
                   <input type="text" class="form-control" aria-label="Last name">
               </div>
@@ -83,16 +85,82 @@
                 <input type="text" class="form-control" aria-label="First name">
               </div>
               <div class="col">
-                <label for="" class="fw-semibold">Observaciones</label>
+                <label for="" class="fw-semibold">Centro de costos</label>
                   <input type="text" class="form-control" aria-label="Last name">
               </div>
             </div>
             <div class="row mt-3">
               <div class="col">
                 <label for="" class="fw-semibold">Fecha de entrega</label>
+                  <input type="text" class="form-control" aria-label="Last name">
+              </div>
+              <div class="col">
+                <label for="" class="fw-semibold">Observaciones</label>
+                <input type="text" class="form-control" aria-label="First name">
               </div>
             </div>
+            <button class="btn border-white text-light rounded-4 fw-semibold mt-4" type="submit">Aceptar</button>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-between text-light">
+      <h2>Préstamos</h2>
+    </div>
+    <!--Tabla-->
+    <div class="row">
+      <div class="col">
+        <div class="tabla mt-2">
+          <table id="tablaUsuarios" class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">1er Apellido</th>
+                <th scope="col">2do Apellido</th>
+                <th scope="col">Equipo</th>
+                <th scope="col">Información</th>
+                <th scope="col">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Gabriela</td>
+                <td>Santana</td>
+                <td>Ramírez</td>
+                <td>Laptop</td>
+                <td>HP</td>
+                <td>
+                  <a href="#"><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Gabriela</td>
+                <td>Santana</td>
+                <td>Ramírez</td>
+                <td>Laptop</td>
+                <td>HP</td>
+                <td>
+                  <a href="#"><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Gabriela</td>
+                <td>Santana</td>
+                <td>Ramírez</td>
+                <td>Laptop</td>
+                <td>HP</td>
+                <td>
+                  <a href="#"><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

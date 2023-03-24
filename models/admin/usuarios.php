@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +52,7 @@
         </ul>
       </div>
       <form class="d-flex" action="../../models/login.php">
-        <button class="btn text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
+        <button class="btn border-white text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
       </form>
     </div>
   </nav>
@@ -189,7 +187,7 @@
   <!--Bootstrap 5-->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-  <!--SCRIPT PARA EL CRUD-->
+  <!--========================================SCRIPT PARA EL CRUD========================================-->
   <script type="text/javascript">
   //jQuery para mostrar usuarios
     $(document).ready(function() {
@@ -209,9 +207,7 @@
             "bSortable": false,
             "aTargets": [6]
           },],
-        language: {
-        url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
-    },
+        language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',},
       });
     });
   //jQuery para añadir usuarios
@@ -245,46 +241,7 @@
         alert("Favor de llenar todos los campos")
       }
     });
-  //jQuery para actualizar al usuario editado
-    $(document).on('submit', '#editarUsuarioForm', function(e) {
-      e.preventDefault();
-      var nombre = $('#editarNombre').val();
-      var apellidop = $('#editarApellidoP').val();
-      var apellidom = $('#editarApellidoM').val();
-      var usuario = $('#editarUsuario').val();
-      var contra = $('#editarContra').val();
-      var tridusuario = $('#tridusuario').val();
-      var idusuario = $('#idusuario').val();
-      if (nombre !='' && apellidop !='' && apellidom !='' && usuario !='' && contra !='') {
-        $.ajax({
-          url: "../../bd/crud-usuario/actualizar-usuario.php",
-          type: "post",
-          data: {
-            nombre: nombre,
-            apellidop: apellidop,
-            apellidom: apellidom,
-            usuario: usuario,
-            contra: contra
-          },
-          success: function(data) {
-            var json = JSON.parse(data);
-            var status = json.status;
-            if (status == 'true') {
-              table = $('#tablausuarios').DataTable();
-              var button = '<td><a href="javascript:void();" data-idusuario="' + idusuario + '"><i role="button" class="fa-solid fa-user-pen text-info ms-1 me-2 editbtn"></i></a>  <a href="#!"  data-idusuario="' + idusuario + '"><i role="button" class="fa-solid fa-user-xmark text-danger deleteBtn"></i></a></td>';
-              var row = table.row("[idusuario='" + tridusuario + "']");
-              row.row("[idusuario='" + tridusuario + "']").data([idusuario, nombre, apellidop, apellidom, usuario, contra]);
-              $('#modal_editar_usuarios').modal('hide');
-            } else {
-              alert('failed');
-            }
-          }
-        });
-      } else {
-        alert('Llenar todos los campos');
-      }
-    });
-  //jQuery para editar usuarios
+    //jQuery para editar usuarios
     $('#tablausuarios').on('click', '.editbtn ', function(event) {
       var table = $('#tablausuarios').DataTable();
       var tridusuario = $(this).closest('tr').attr('idusuario');
@@ -309,7 +266,7 @@
       })
     })
   </script>
-  <!--Script para obtener fecha y hora actual-->
+   <!--========================================SCRIPT PARA OBTENER FECHA Y HORA ACTUAL========================================-->
   <script>
     function mostrarFechaHora() {
     var fecha = new Date();

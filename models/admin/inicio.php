@@ -48,11 +48,49 @@
         </ul>
       </div>
       <form class="d-flex" action="../../models/login.php">
-        <button class="btn text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
+        <button class="btn border-white text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
       </form>
     </div>
   </nav>
   <!--CUERPO DE PÁGINA-->
+  <div class="container fluid">
+    <h2 class="text-light mt-5">Información</h2>
+    <div class="row">
+      <div class="container">
+        <div class="row text-light">
+          <form action="">
+          <div class="row">
+              <div class="row">
+                <label for="" class="fw-semibold mt-1">Nombre</label>
+              </div>
+              <div class="row">
+                <label for="" class="fw-semibold mt-3">Tipo de usuario</label>
+              </div>
+              <div class="row">
+                <label for="" class="fw-semibold mt-3">Domicilio</label>
+              </div>
+              <div class="row">
+                <label for="" class="fw-semibold mt-3">Contacto</label>
+              </div>
+              <div class="row">
+                <label for="" class="fw-semibold mt-3">Email</label>
+              </div>
+              <div class="row">
+                <label for="" class="fw-semibold mt-3">Centro de costos</label>
+              </div>
+              <div class="row">
+                <label for="" class="fw-semibold mt-3">Localidad</label>
+              </div>
+              <div class="row">
+                <label for="" class="fw-semibold mt-3">Jefatura</label>
+              </div>
+            </div>
+            <button class="btn border-white text-light rounded-4 fw-semibold mt-4" type="submit">Editar Información</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <!--PIE DE PÁGINA-->
   <footer class="">
     <div class="d-flex justify-content-between">

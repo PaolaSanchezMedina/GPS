@@ -52,7 +52,7 @@
         </ul>
       </div>
       <form class="d-flex" action="../../models/login.php">
-        <button class="btn text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
+        <button class="btn border-white text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
       </form>
     </div>
   </nav>
@@ -96,7 +96,6 @@
             </tbody>
           </table>
         </div>
-        
       </div>
     </div>
   </div>

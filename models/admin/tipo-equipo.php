@@ -52,7 +52,7 @@
         </ul>
       </div>
       <form class="d-flex" action="../../models/login.php">
-        <button class="btn text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
+        <button class="btn border-white text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
       </form>
     </div>
   </nav>
@@ -89,14 +89,13 @@
                 <td>0123</td>
                 <td>Supervisor</td>
                 <td>
-                  <a href="#"><i role="button" class="fa-solid fa-user-pen text-info ms-1 me-2"></i></a>
-                  <a href="#"><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a>
+                  <a href="#"><i role="button" class="fa-solid fa-pen-to-square text-info ms-1 me-2"></i></a>
+                  <a href="#"><i role="button" class="fa-solid fa-trash text-danger"></i></a>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        
       </div>
     </div>
   </div>
