@@ -21,7 +21,7 @@
     <!--ENCABEZADO DE PÁGINA-->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../admin/inicio.php>
+            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../super/inicio-supervisor.php>
                 <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
                 SiCEI
             </a>
@@ -31,27 +31,27 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/inicio.php>Mi perfil</a>
+                        <a class="nav-link text-light" aria-current="page" href="../super/inicio-supervisor.php">Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href="#">Asignar equipos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
+                        <a class="nav-link text-light" aria-current="page" href="#">Usuarios</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Catálogos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
-                            <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="../admin/accesorios.php">Accesorios</a></li>
-                            <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
+                            <li><a class="dropdown-item" href="#">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="#">Proveedores</a></li>
+                            <li><a class="dropdown-item" href="#">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="#">Localidades</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Hacer préstamo</a>
+                        <a class="nav-link text-light" aria-current="page" href=../super/prestamos-supervisor.php>Hacer préstamo</a>
                     </li>
                 </ul>
             </div>

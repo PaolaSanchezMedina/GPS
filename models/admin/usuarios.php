@@ -63,6 +63,9 @@
                             <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Hacer préstamo</a>
+                    </li>
                 </ul>
             </div>
             <form class="d-flex" action="../../models/login.php">
