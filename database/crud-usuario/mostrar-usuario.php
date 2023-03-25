@@ -55,7 +55,7 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array[] = $row['apellidom'];
 	$sub_array[] = $row['usuario'];
 	$sub_array[] = $row['contra'];
-	$sub_array[] = '<a href="javascript:void();"><i role="button" class="fa-solid fa-user-pen text-info ms-1 me-2 editbtn"></i></a> <a href="javascript:void();"><i role="button" class="fa-solid fa-user-xmark text-danger deleteBtn"></i></a>';
+	$sub_array[] = '<a href="javascript:void();" data-idusuario="'.$row['idusuario'].'"  class="btn editbtn" ><i role="button" class="fa-solid fa-user-pen text-primary"></i></a><a href="javascript:void();" data-idusuario="'.$row['idusuario'].'"  class="btn deleteBtn" ><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a>';
 	$data[] = $sub_array;
 }
 
