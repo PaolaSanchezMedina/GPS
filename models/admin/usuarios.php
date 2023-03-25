@@ -1,3 +1,4 @@
+<?php include('../../database/conexion.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,6 +89,7 @@
                                 <th scope="col">2do Apellido</th>
                                 <th scope="col">Usuario</th>
                                 <th scope="col">Contraseña</th>
+                                <th scope="col">Tipo</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -131,6 +133,10 @@
                                 <label for="" class="fw-semibold">Contraseña</label>
                                 <input type="text" class="form-control" aria-label="contra" id="inputContra" name="inputContra">
                             </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Tipo de usuario</label>
+                                <input type="text" class="form-control" aria-label="contra" id="inputTipo" name="inputTipo">
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -151,7 +157,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="editarUsuarioForm">
-                        <input type="hidden" name="idusuario" id="idusuario" value="">
+                        <input type="hidden" name="id_usuario" id="id_usuario" value="">
                         <input type="hidden" name="trid" id="trid" value="">
                         <div class="modal-body">
                             <div class="row">
@@ -176,6 +182,10 @@
                                 <div class="col">
                                     <label for="" class="fw-semibold">Contraseña</label>
                                     <input type="text" class="form-control" aria-label="contra" id="editarContra" name="editarContra">
+                                </div>
+                                <div class="col">
+                                    <label for="" class="fw-semibold">Tipo de usuario</label>
+                                    <input type="text" class="form-control" aria-label="contra" id="editarTipo" name="editarTipo">
                                 </div>
                             </div>
                         </div>
@@ -204,7 +214,7 @@
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
                 "fnCreatedRow": function(nRow, aData, iDataIndex) {
-                    $(nRow).attr('idusuario', aData[0]);
+                    $(nRow).attr('id_usuario', aData[0]);
                 },
                 'serverSide': 'true',
                 'processing': 'true',
@@ -216,7 +226,7 @@
                 },
                 "aoColumnDefs": [{
                     "bSortable": false,
-                    "aTargets": [6]
+                    "aTargets": [7]
                 }, ]
             });
         });
@@ -224,19 +234,21 @@
         $(document).on('submit', '#nuevoUsuarioForm', function(event) {
             event.preventDefault();
             var nombre = $('#inputNombre').val();
-            var apellidop = $('#inputApellidoP').val();
-            var apellidom = $('#inputApellidoM').val();
+            var primer_apellido = $('#inputApellidoP').val();
+            var segundo_apellido = $('#inputApellidoM').val();
             var usuario = $('#inputUsuario').val();
             var contra = $('#inputContra').val();
-            if (nombre != '' && apellidop != '' && apellidom != '' && usuario != '' && contra != '') {
+            var id_tipo_usuario = $('#inputTipo').val();
+            if (nombre != '' && primer_apellido != '' && segundo_apellido != '' && usuario != '' && contra != '' && id_tipo_usuario != '') {
                 $.ajax({
                     url: "../../database/crud-usuario/agregar-usuario.php",
                     data: {
                         nombre: nombre,
-                        apellidop: apellidop,
-                        apellidom: apellidom,
+                        primer_apellido: primer_apellido,
+                        segundo_apellido: segundo_apellido,
                         usuario: usuario,
-                        contra: contra
+                        contra: contra,
+                        id_tipo_usuario: id_tipo_usuario
                     },
                     type: 'post',
                     success: function(data) {
@@ -257,23 +269,25 @@
         $(document).on('submit', '#editarUsuarioForm', function(e) {
             e.preventDefault();
             var nombre = $('#editarNombre').val();
-            var apellidop = $('#editarApellidoP').val();
-            var apellidom = $('#editarApellidoM').val();
+            var primer_apellido = $('#editarApellidoP').val();
+            var segundo_apellido = $('#editarApellidoM').val();
             var usuario = $('#editarUsuario').val();
             var contra = $('#editarContra').val();
-            var trid = $('#tridusuario').val();
-            var idusuario = $('#idusuario').val();
-            if (nombre != '' && apellidop != '' && apellidom != '' && usuario != '' && contra != '') {
+            var id_tipo_usuario = $('#editarTipo').val();
+            var trid = $('#trid_usuario').val();
+            var id_usuario = $('#id_usuario').val();
+            if (nombre != '' && primer_apellido  != '' && segundo_apellido != '' && usuario != '' && contra != '' && id_tipo_usuario != '') {
                 $.ajax({
                     url: "../../database/crud-usuario/actualizar-usuario.php",
                     type: "post",
                     data: {
                         nombre: nombre,
-                        apellidop: apellidop,
-                        apellidom: apellidom,
+                        primer_apellido: primer_apellido,
+                        segundo_apellido: segundo_apellido,
                         usuario: usuario,
                         contra: contra,
-                        idusuario: idusuario
+                        id_tipo_usuario: id_tipo_usuario,
+                        id_usuario: id_usuario
                     },
                     success: function(data) {
                         var json = JSON.parse(data);
@@ -281,9 +295,9 @@
                         if (status == 'true') {
                             table = $('#tablaUsuarios').DataTable();
                             $('#modal_editar_usuarios').modal('hide');
-                            var button = '<td><a href="javascript:void();" data-idusuario="' + idusuario + '" class="btn editbtn"><i role="button" class="fa-solid fa-user-pen text-primary"></i></a><a href="javascript:void();"  data-idusuario="' + idusuario + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a></td>';
-                            var row = table.row("[idusuario='" + trid + "']");
-                            row.row("[idusuario='" + trid + "']").data([idusuario, nombre, apellidop, apellidom, usuario, contra, button]);
+                            var button = '<td><a href="javascript:void();" data-id_usuario="' + id_usuario + '" class="btn editbtn"><i role="button" class="fa-solid fa-user-pen text-primary"></i></a><a href="javascript:void();"  data-id_usuario="' + id_usuario + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a></td>';
+                            var row = table.row("[id_usuario='" + trid + "']");
+                            row.row("[id_usuario='" + trid + "']").data([id_usuario, nombre, primer_apellido, segundo_apellido, usuario, contra, id_tipo_usuario, button]);
                         } else {
                             alert('failed');
                         }
@@ -296,24 +310,25 @@
         //Editar usuarios
         $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             var table = $('#tablaUsuarios').DataTable();
-            var trid = $(this).closest('tr').attr('idusuario');
-            var idusuario = $(this).data('idusuario');
+            var trid = $(this).closest('tr').attr('id_usuario');
+            var id_usuario = $(this).data('id_usuario');
             $('#modal_editar_usuarios').modal('show');
             $.ajax({
                 url: "../../database/crud-usuario/editar-usuario.php",
                 data: {
-                    idusuario: idusuario
+                    id_usuario: id_usuario
                 },
                 type: 'post',
                 success: function(data) {
                     var json = JSON.parse(data);
                     $('#editarNombre').val(json.nombre);
-                    $('#editarApellidoP').val(json.apellidop);
-                    $('#editarApellidoM').val(json.apellidom);
+                    $('#editarApellidoP').val(json.primer_apellido);
+                    $('#editarApellidoM').val(json.segundo_apellido);
                     $('#editarUsuario').val(json.usuario);
                     $('#editarContra').val(json.contra);
-                    $('#idusuario').val(idusuario);
-                    $('#tridusuario').val(trid);
+                    $('#editarTipo').val(json.id_tipo_usuario);
+                    $('#id_usuario').val(id_usuario);
+                    $('#trid_usuario').val(trid);
                 }
             })
         });
@@ -321,19 +336,19 @@
         $(document).on('click', '.deleteBtn', function(event) {
             var table = $('#tablaUsuarios').DataTable();
             event.preventDefault();
-            var idusuario = $(this).data('idusuario');
+            var id_usuario = $(this).data('id_usuario');
             if (confirm("¿Eliminar usuario definitivamente?")) {
                 $.ajax({
                     url: "../../database/crud-usuario/eliminar-usuario.php",
                     data: {
-                        idusuario: idusuario
+                        id_usuario: id_usuario
                     },
                     type: "post",
                     success: function(data) {
                         var json = JSON.parse(data);
                         status = json.status;
                         if (status == 'success') {
-                            $("#" + idusuario).closest('tr').remove();
+                            $("#" + id_usuario).closest('tr').remove();
                         } else {
                             alert('Failed');
                             return;

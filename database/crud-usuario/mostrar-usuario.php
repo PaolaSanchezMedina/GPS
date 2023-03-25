@@ -7,22 +7,24 @@ $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
 
 $columns = array(
-	0 => 'idusuario',
+	0 => 'id_usuario',
 	1 => 'nombre',
-	2 => 'apellidop',
-	3 => 'apellidom',
+	2 => 'primer_apellido',
+	3 => 'segundo_apellido',
 	4 => 'usuario',
 	5 => 'contra',
+	6 => 'id_tipo_usuario',
 );
 
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
 	$sql .= " WHERE nombre like '%".$search_value."%'";
-	$sql .= " OR apellidop like '%".$search_value."%'";
-	$sql .= " OR apellidom like '%".$search_value."%'";
+	$sql .= " OR primer_apellido like '%".$search_value."%'";
+	$sql .= " OR segundo_apellido like '%".$search_value."%'";
 	$sql .= " OR usuario like '%".$search_value."%'";
 	$sql .= " OR contra like '%".$search_value."%'";
+	$sql .= " OR id_tipo_usuario like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -33,7 +35,7 @@ if(isset($_POST['order']))
 }
 else
 {
-	$sql .= " ORDER BY idusuario desc";
+	$sql .= " ORDER BY id_usuario desc";
 }
 
 if($_POST['length'] != -1)
@@ -49,13 +51,14 @@ $data = array();
 while($row = mysqli_fetch_assoc($query))
 {
 	$sub_array = array();
-	$sub_array[] = $row['idusuario'];
+	$sub_array[] = $row['id_usuario'];
 	$sub_array[] = $row['nombre'];
-	$sub_array[] = $row['apellidop'];
-	$sub_array[] = $row['apellidom'];
+	$sub_array[] = $row['primer_apellido'];
+	$sub_array[] = $row['segundo_apellido'];
 	$sub_array[] = $row['usuario'];
 	$sub_array[] = $row['contra'];
-	$sub_array[] = '<a href="javascript:void();" data-idusuario="'.$row['idusuario'].'"  class="btn editbtn" ><i role="button" class="fa-solid fa-user-pen text-primary"></i></a><a href="javascript:void();" data-idusuario="'.$row['idusuario'].'"  class="btn deleteBtn" ><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a>';
+	$sub_array[] = $row['id_tipo_usuario'];
+	$sub_array[] = '<a href="javascript:void();" data-id_usuario="'.$row['id_usuario'].'"  class="btn editbtn" ><i role="button" class="fa-solid fa-user-pen text-primary"></i></a><a href="javascript:void();" data-id_usuario="'.$row['id_usuario'].'"  class="btn deleteBtn" ><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a>';
 	$data[] = $sub_array;
 }
 
