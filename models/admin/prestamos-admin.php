@@ -51,7 +51,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Hacer préstamo</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Mis préstamos</a>
                     </li>
                 </ul>
             </div>
@@ -62,7 +62,7 @@
     </nav>
     <!--CUERPO DE PÁGINA-->
     <div class="container fluid">
-        <h2 class="text-light mt-5">Información</h2>
+        <h2 class="text-light mt-5">Préstamos</h2>
         <div class="row">
             <div class="container">
                 

@@ -94,11 +94,13 @@
   /*====================PANTALLAS DE ADMIN====================*/
   /*Menu del administrador*/
   /*Editar usuarios*/
-  /*Asignar equipo*/
   .formularioAsignar{
-    background-color: rgba(255, 255, 255, 0.719);
-    border-radius: 15px;
-    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    width: 1200px;
+    height: 385px;
+    color: white;
   }
   /*====================PANTALLA DE SUPERVISOR====================*/
   /*====================PANTALLA DE USUARIO====================*/

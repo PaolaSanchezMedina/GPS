@@ -16,6 +16,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Script para obtener fecha y hora actual-->
     <script src="../../assets/js/fecha-hora.js"></script>
+    <!--Data table y jQuery-->
+    <script type="text/javascript" src="../../assets/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/responsive.bootstrap5.min.js"></script>
+    <!--Data table y jQuery-->
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../../assets/css/responsive.bootstrap5.min.css">
     <title>SiCEI</title>
 </head>
 
@@ -53,7 +63,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Hacer préstamo</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Mis préstamos</a>
                     </li>
                 </ul>
             </div>
@@ -63,63 +73,121 @@
         </div>
     </nav>
     <!--CUERPO DE PÁGINA-->
-    <div class="container fluid">
-        <h2 class="text-light mt-5">Asignar equipo</h2>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between text-light">
+            <h2>Asignar equipo</h2>
+        </div>
+        <section id="log">
+            <form class="formularioAsignar mt-2" action="">
+                <div class="row mt-3 ms-2 me-2">
+                    <div class="col">
+                        <label for="" class="fw-semibold">Nombre</label>
+                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Primer apellido</label>
+                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Segundo apellido</label>
+                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
+                    </div>
+                </div>
+                <div class="row mt-2 ms-2 me-2">
+                    <div class="col">
+                        <label for="" class="fw-semibold">Nombre</label>
+                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Primer apellido</label>
+                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Segundo apellido</label>
+                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
+                    </div>
+                </div>
+                <div class="row mt-2 ms-2 me-2">
+                    <div class="col">
+                        <label for="" class="fw-semibold">Nombre</label>
+                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Primer apellido</label>
+                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Segundo apellido</label>
+                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
+                    </div>
+                </div>
+                <div class="row mt-2 ms-2 me-2">
+                    <div class="col">
+                        <label for="" class="fw-semibold">Especificaciones</label>
+                        <input type="text" class="form-control" style="height: 75px;" aria-label="nombre" id="" name="">
+                    </div>
+                </div>
+                <div class="row mt-2 ms-2 me-2 text-end">
+                    <div class="col">
+                        <button type="button" class="btn btn-light text-primary fw-semibold">Aceptar</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <div class="d-flex justify-content-between text-light mt-5">
+            <h2>Préstamos solicitados</h2>
+        </div>
+        <!--Tabla-->
         <div class="row">
-            <div class="container">
-                <div class="row text-light mt-3">
-                    <form>
-                        <div class="row">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Id de colaborador</label>
-                                <input type="text" class="form-control" aria-label="First name">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Nombre completo</label>
-                                <input type="text" class="form-control" aria-label="Last name">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Entrega</label>
-                                <input type="text" class="form-control" aria-label="Last name">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Id de equipo</label>
-                                <input type="text" class="form-control" aria-label="Last name">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Equipo</label>
-                                <input type="text" class="form-control" aria-label="First name">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Centro de costos</label>
-                                <input type="text" class="form-control" aria-label="Last name">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Fecha de entrega</label>
-                                <input type="text" class="form-control" aria-label="Last name">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Observaciones</label>
-                                <input type="text" class="form-control" aria-label="First name">
-                            </div>
-                        </div>
-                        <button class="btn border-white text-light rounded-4 fw-semibold mt-4" type="submit">Aceptar</button>
-                    </form>
+            <div class="col">
+                <div class="tabla mt-2">
+                    <table id="tablaVerPrestamos" class="table table-striped dt-responsive nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">1er Apellido</th>
+                                <th scope="col">2do Apellido</th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Contraseña</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
-            <h2>Préstamos</h2>
+            <h2>Préstamos aceptados</h2>
         </div>
-    </div>
-    </div>
-    </div>
+        <!--Tabla-->
+        <div class="row">
+            <div class="col">
+                <div class="tabla mt-2">
+                    <table id="tablaPrestamosAceptados" class="table table-striped dt-responsive nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">1er Apellido</th>
+                                <th scope="col">2do Apellido</th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Contraseña</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     <!--PIE DE PÁGINA-->
     <footer class="">
@@ -128,6 +196,28 @@
             <p>&copy; SiCEI 2023</p>
         </div>
     </footer>
+    <!--========================================SCRIPT PARA EL CRUD========================================-->
+    <script type="text/javascript">
+        //Mostrar usuarios
+        $(document).ready(function() {
+            $('#tablaVerPrestamos').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
+                },
+            })
+        })
+    </script>
+    <!--========================================SCRIPT PARA EL CRUD========================================-->
+    <script type="text/javascript">
+        //Mostrar usuarios
+        $(document).ready(function() {
+            $('#tablaPrestamosAceptados').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
+                },
+            })
+        })
+    </script>
 </body>
 
 </html>
