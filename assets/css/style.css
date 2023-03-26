@@ -9,8 +9,10 @@
     position: relative;
     min-height: 100vh;
     padding-bottom: 10vh;
-    background-repeat: no-repeat;
-    background: linear-gradient(to right, #2b32b2, #1488CC);
+    background-image: url('../img/fondo.jpg');
+    background-repeat: repeat-y;
+    /* background-repeat: no-repeat;
+    background: linear-gradient(to right, #2b32b2, #1488CC); */
   }
   footer{
     height: 10vh;
