@@ -12,8 +12,20 @@
     <!--Bootstrap 5-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Script para obtener fecha y hora actual-->
     <script src="../../assets/js/fecha-hora.js"></script>
+    <!--Data table y jQuery-->
+    <script type="text/javascript" src="../../assets/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/responsive.bootstrap5.min.js"></script>
+    <!--Data table y jQuery-->
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../../assets/css/responsive.bootstrap5.min.css">
     <title>SiCEI</title>
 </head>
 
@@ -34,20 +46,20 @@
                         <a class="nav-link text-light" aria-current="page" href="../super/inicio-supervisor.php">Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="#">Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href="../super/asignar-equipos-supervisor.php">Asignar equipos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="#">Usuarios</a>
+                        <a class="nav-link text-light" aria-current="page" href="../super/usuarios-supervisor.php">Usuarios</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Catálogos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Tipos de equipos</a></li>
-                            <li><a class="dropdown-item" href="#">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="#">Accesorios</a></li>
-                            <li><a class="dropdown-item" href="#">Localidades</a></li>
+                            <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
+                            <li><a class="dropdown-item" href="../super/accesorios-supervisor.php">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="../super/localidades-supervisor.php">Localidades</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -61,11 +73,75 @@
         </div>
     </nav>
     <!--CUERPO DE PÁGINA-->
-    <div class="container fluid">
-        <h2 class="text-light mt-5">Información</h2>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between text-light">
+            <h2>Hacer préstamo</h2>
+        </div>
+        <section id="log">
+            <form class="formularioPedir mt-2" action="">
+                <div class="row mt-3 ms-2 me-2">
+                    <div class="col">
+                        <label for="" class="fw-semibold">Nombre</label>
+                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Primer apellido</label>
+                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Segundo apellido</label>
+                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
+                    </div>
+                </div>
+                <div class="row mt-2 ms-2 me-2">
+                    <div class="col">
+                        <label for="" class="fw-semibold">Nombre</label>
+                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Primer apellido</label>
+                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Segundo apellido</label>
+                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
+                    </div>
+                </div>
+                <div class="row mt-2 ms-2 me-2">
+                    <div class="col">
+                        <label for="" class="fw-semibold">Especificaciones</label>
+                        <input type="text" class="form-control" style="height: 75px;" aria-label="nombre" id="" name="">
+                    </div>
+                </div>
+                <div class="row mt-2 ms-2 me-2 text-end">
+                    <div class="col">
+                        <button type="button" class="btn btn-light text-primary fw-semibold">Aceptar</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <div class="d-flex justify-content-between text-light mt-5">
+            <h2>Mis préstamos</h2>
+        </div>
+        <!--Tabla-->
         <div class="row">
-            <div class="container">
-                
+            <div class="col">
+                <div class="tabla mt-2">
+                    <table id="tablaMisPrestamosS" class="table table-striped dt-responsive nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id usuario</th>
+                                <th scope="col">Id equipo</th>
+                                <th scope="col">Equipo</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Modelo</th>
+                                <th scope="col">Especificaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -76,6 +152,17 @@
             <p>&copy; SiCEI 2023</p>
         </div>
     </footer>
+    <!--========================================SCRIPT PARA EL CRUD========================================-->
+    <script type="text/javascript">
+        //Mostrar usuarios
+        $(document).ready(function() {
+            $('#tablaMisPrestamosS').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
+                },
+            })
+        })
+    </script>
 </body>
 
 </html>

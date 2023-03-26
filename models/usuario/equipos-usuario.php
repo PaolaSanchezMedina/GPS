@@ -12,8 +12,20 @@
     <!--Bootstrap 5-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Script para obtener fecha y hora actual-->
     <script src="../../assets/js/fecha-hora.js"></script>
+    <!--Data table y jQuery-->
+    <script type="text/javascript" src="../../assets/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/responsive.bootstrap5.min.js"></script>
+    <!--Data table y jQuery-->
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../../assets/css/responsive.bootstrap5.min.css">
     <title>SiCEI</title>
 </head>
 
@@ -30,7 +42,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
+                <li class="nav-item">
                         <a class="nav-link text-light" aria-current="page" href="../usuario/inicio-usuario.php">Mi perfil</a>
                     </li>
                     <li class="nav-item">
@@ -47,40 +59,28 @@
         </div>
     </nav>
     <!--CUERPO DE PÁGINA-->
-    <div class="container fluid">
-        <h2 class="text-light mt-5">Información</h2>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between text-light mt-5">
+            <h2>Mis Equipos</h2>
+        </div>
+        <!--Tabla-->
         <div class="row">
-            <div class="container">
-                <div class="row text-light">
-                    <div class="row">
-                        <div class="row">
-                            <label for="" class="fw-semibold mt-1">Nombre</label>
-                        </div>
-                        <div class="row">
-                            <label for="" class="fw-semibold mt-3">Tipo de usuario</label>
-                        </div>
-                        <div class="row">
-                            <label for="" class="fw-semibold mt-3">Domicilio</label>
-                        </div>
-                        <div class="row">
-                            <label for="" class="fw-semibold mt-3">Contacto</label>
-                        </div>
-                        <div class="row">
-                            <label for="" class="fw-semibold mt-3">Email</label>
-                        </div>
-                        <div class="row">
-                            <label for="" class="fw-semibold mt-3">Centro de costos</label>
-                        </div>
-                        <div class="row">
-                            <label for="" class="fw-semibold mt-3">Localidad</label>
-                        </div>
-                        <div class="row">
-                            <label for="" class="fw-semibold mt-3">Jefatura</label>
-                        </div>
-                    </div>
-                    <form action="">
-                        <button class="btn border-white text-light rounded-4 fw-semibold mt-4" type="submit">Editar Información</button>
-                    </form>
+            <div class="col">
+                <div class="tabla mt-2">
+                    <table id="tablaMisPrestamosU" class="table table-striped dt-responsive nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id usuario</th>
+                                <th scope="col">Id equipo</th>
+                                <th scope="col">Equipo</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Modelo</th>
+                                <th scope="col">Especificaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -92,6 +92,17 @@
             <p>&copy; SiCEI 2023</p>
         </div>
     </footer>
+    <!--========================================SCRIPT PARA EL CRUD========================================-->
+    <script type="text/javascript">
+        //Mostrar usuarios
+        $(document).ready(function() {
+            $('#tablaMisPrestamosU').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
+                },
+            })
+        })
+    </script>
 </body>
 
 </html>

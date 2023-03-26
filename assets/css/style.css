@@ -94,12 +94,22 @@
   /*====================PANTALLAS DE ADMIN====================*/
   /*Menu del administrador*/
   /*Editar usuarios*/
+  /*Asignar equipos*/
   .formularioAsignar{
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255,255,255,0.1);
     border-radius: 20px;
     width: 1200px;
     height: 385px;
+    color: white;
+  }
+  /*Mis prestamos*/
+  .formularioPedir{
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    width: 1200px;
+    height: 320px;
     color: white;
   }
   /*====================PANTALLA DE SUPERVISOR====================*/
