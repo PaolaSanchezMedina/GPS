@@ -76,7 +76,6 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
             <h2>Accesorios</h2>
-            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_usuarios">Nuevo usuario</button>
         </div>
         <!--Tabla-->
         <div class="row">
