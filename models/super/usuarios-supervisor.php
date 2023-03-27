@@ -63,7 +63,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../super/prestamos-supervisor.php>Hacer préstamo</a>
+                        <a class="nav-link text-light" aria-current="page" href=../super/prestamos-supervisor.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
@@ -76,13 +76,12 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
             <h2>Usuarios</h2>
-            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_usuarios">Nuevo usuario</button>
         </div>
         <!--Tabla-->
         <div class="row">
             <div class="col">
                 <div class="tabla mt-2">
-                    <table id="tablaTipoEquipo" class="table table-striped dt-responsive nowrap" style="width:100%">
+                    <table id="tablaUsuarios" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -91,101 +90,13 @@
                                 <th scope="col">2do Apellido</th>
                                 <th scope="col">Usuario</th>
                                 <th scope="col">Contraseña</th>
-                                <th scope="col">Opciones</th>
+                                <th scope="col">Tipo</th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!--Pantalla modal para agregar un nuevo usuario-->
-    <div class="modal fade modal-xl mt-5" id="modal_usuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo usuario</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="nuevoUsuarioForm" action="javascript:void();" method="post">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Nombre</label>
-                                <input type="text" class="form-control" aria-label="nombre" id="inputNombre" name="inputNombre">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Primer apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido p" id="inputApellidoP" name="inputApellidoP">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Segundo apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido m" id="inputApellidoM" name="inputApellidoP">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Usuario</label>
-                                <input type="text" class="form-control" aria-label="usuario" id="inputUsuario" name="inputUsuario">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Contraseña</label>
-                                <input type="text" class="form-control" aria-label="contra" id="inputContra" name="inputContra">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--Pantalla modal para editar a un usuario-->
-    <div class="modal fade modal-xl mt-5" id="modal_editar_usuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar usuario</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="editarUsuarioForm">
-                    <input type="hidden" name="idusuario" id="idusuario" value="">
-                    <input type="hidden" name="tridusuario" id="tridusuario" value="">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Nombre</label>
-                                <input type="text" class="form-control" aria-label="nombre" id="editarNombre" name="editarNombre">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Primer apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido p" id="editarApellidoP" name="editarApellidoP">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Segundo apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido m" id="editarApellidoM" name="editarApellidoM">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Usuario</label>
-                                <input type="text" class="form-control" aria-label="usuario" id="editarUsuario" name="editarUsuario">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Contraseña</label>
-                                <input type="text" class="form-control" aria-label="contra" id="editarContra" name="editarContra">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -200,11 +111,22 @@
     <script type="text/javascript">
         //Mostrar usuarios
         $(document).ready(function() {
-            $('#tablaTipoEquipo').DataTable({
+            $('#tablaUsuarios').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
-            })
+                "fnCreatedRow": function(nRow, aData, iDataIndex) {
+                    $(nRow).attr('id_usuario', aData[0]);
+                },
+                'serverSide': 'true',
+                'processing': 'true',
+                'paging': 'true',
+                'order': [],
+                'ajax': {
+                    'url': '../../database/supervisor/mostrar-usuario-supervisor.php',
+                    'type': 'post',
+                },
+            });
         })
     </script>
 </body>

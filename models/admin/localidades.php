@@ -63,7 +63,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Mis préstamos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
@@ -76,7 +76,7 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
             <h2>Localidades</h2>
-            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_usuarios">Nuevo usuario</button>
+            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_localidades">Nueva localidad</button>
         </div>
         <!--Tabla-->
         <div class="row">
@@ -86,11 +86,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">1er Apellido</th>
-                                <th scope="col">2do Apellido</th>
-                                <th scope="col">Usuario</th>
-                                <th scope="col">Contraseña</th>
+                                <th scope="col">Localidad</th>
+                                <th scope="col">Municipio</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Complejo</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -101,38 +100,34 @@
             </div>
         </div>
     </div>
-    <!--Pantalla modal para agregar un nuevo usuario-->
-    <div class="modal fade modal-xl mt-5" id="modal_usuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--Pantalla modal para agregar una nueva localidad-->
+    <div class="modal fade modal-xl mt-5" id="modal_localidades" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo usuario</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva localidad</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="nuevoUsuarioForm" action="javascript:void();" method="post">
+                <form id="nuevaLocalidadForm" action="javascript:void();" method="post">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Nombre</label>
-                                <input type="text" class="form-control" aria-label="nombre" id="inputNombre" name="inputNombre">
+                                <label for="" class="fw-semibold">Localidad</label>
+                                <input type="text" class="form-control" aria-label="localidad" id="inputLocalidad" name="inputLocalidad">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Primer apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido p" id="inputApellidoP" name="inputApellidoP">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Segundo apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido m" id="inputApellidoM" name="inputApellidoP">
+                                <label for="" class="fw-semibold">Municipio</label>
+                                <input type="text" class="form-control" aria-label="municipio" id="inputMunicipio" name="inputMunicipio">
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Usuario</label>
-                                <input type="text" class="form-control" aria-label="usuario" id="inputUsuario" name="inputUsuario">
+                                <label for="" class="fw-semibold">Estado</label>
+                                <input type="text" class="form-control" aria-label="estado" id="inputEstado" name="inputEstado">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Contraseña</label>
-                                <input type="text" class="form-control" aria-label="contra" id="inputContra" name="inputContra">
+                                <label for="" class="fw-semibold">Complejo</label>
+                                <input type="text" class="form-control" aria-label="complejo" id="inputComplejo" name="inputComplejo">
                             </div>
                         </div>
                     </div>
@@ -144,40 +139,36 @@
             </div>
         </div>
     </div>
-    <!--Pantalla modal para editar a un usuario-->
-    <div class="modal fade modal-xl mt-5" id="modal_editar_usuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--Pantalla modal para editar una localidad-->
+    <div class="modal fade modal-xl mt-5" id="modal_editar_localidades" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Editar usuario</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editarUsuarioForm">
-                    <input type="hidden" name="idusuario" id="idusuario" value="">
-                    <input type="hidden" name="tridusuario" id="tridusuario" value="">
+                <form id="editarLocalidadForm">
+                    <input type="hidden" name="id_localidad" id="id_localidad" value="">
+                    <input type="hidden" name="trid" id="trid" value="">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Nombre</label>
-                                <input type="text" class="form-control" aria-label="nombre" id="editarNombre" name="editarNombre">
+                                <label for="" class="fw-semibold">Localidad</label>
+                                <input type="text" class="form-control" aria-label="localidad" id="editarLocalidad" name="editarLocalidad">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Primer apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido p" id="editarApellidoP" name="editarApellidoP">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Segundo apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido m" id="editarApellidoM" name="editarApellidoM">
+                                <label for="" class="fw-semibold">Municipio</label>
+                                <input type="text" class="form-control" aria-label="municipio" id="editarMunicipio" name="editarMunicipio">
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Usuario</label>
-                                <input type="text" class="form-control" aria-label="usuario" id="editarUsuario" name="editarUsuario">
+                                <label for="" class="fw-semibold">Estado</label>
+                                <input type="text" class="form-control" aria-label="estado" id="editarEstado" name="editarEstado">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Contraseña</label>
-                                <input type="text" class="form-control" aria-label="contra" id="editarContra" name="editarContra">
+                                <label for="" class="fw-semibold">Complejo</label>
+                                <input type="text" class="form-control" aria-label="complejo" id="editarComplejo" name="editarComplejo">
                             </div>
                         </div>
                     </div>

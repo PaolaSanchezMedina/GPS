@@ -63,7 +63,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Mis préstamos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
@@ -76,7 +76,7 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
             <h2>Tipos de equipos</h2>
-            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_usuarios">Nuevo usuario</button>
+            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_equipos">Nuevo equipo</button>
         </div>
         <!--Tabla-->
         <div class="row">
@@ -86,11 +86,15 @@
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">1er Apellido</th>
-                                <th scope="col">2do Apellido</th>
-                                <th scope="col">Usuario</th>
-                                <th scope="col">Contraseña</th>
+                                <th scope="col">Equipo</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Modelo</th>
+                                <th scope="col">No. serie</th>
+                                <th scope="col">Tipo de equipo</th>
+                                <th scope="col">Convenio</th>
+                                <th scope="col">Costo</th>
+                                <th scope="col">Proveedor</th>
+                                <th scope="col">Descripción</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -101,38 +105,56 @@
             </div>
         </div>
     </div>
-    <!--Pantalla modal para agregar un nuevo usuario-->
-    <div class="modal fade modal-xl mt-5" id="modal_usuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--Pantalla modal para agregar un nuevo equipo-->
+    <div class="modal fade modal-xl mt-5" id="modal_equipos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo usuario</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo equipo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="nuevoUsuarioForm" action="javascript:void();" method="post">
+                <form id="nuevoEquipoForm" action="javascript:void();" method="post">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Nombre</label>
-                                <input type="text" class="form-control" aria-label="nombre" id="inputNombre" name="inputNombre">
+                                <label for="" class="fw-semibold">Equipo</label>
+                                <input type="text" class="form-control" aria-label="equipo" id="inputEquipo" name="inputEquipo">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Primer apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido p" id="inputApellidoP" name="inputApellidoP">
+                                <label for="" class="fw-semibold">Marca</label>
+                                <input type="text" class="form-control" aria-label="marca" id="inputMarca" name="inputMarca">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Segundo apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido m" id="inputApellidoM" name="inputApellidoP">
+                                <label for="" class="fw-semibold">Modelo</label>
+                                <input type="text" class="form-control" aria-label="modelo" id="inputModelo" name="inputModelo">
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col">
-                                <label for="" class="fw-semibold">Usuario</label>
-                                <input type="text" class="form-control" aria-label="usuario" id="inputUsuario" name="inputUsuario">
+                                <label for="" class="fw-semibold">No. serie</label>
+                                <input type="text" class="form-control" aria-label="no. serie" id="inputSerie" name="inputSerie">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Contraseña</label>
-                                <input type="text" class="form-control" aria-label="contra" id="inputContra" name="inputContra">
+                                <label for="" class="fw-semibold">Tipo de equipo</label>
+                                <input type="text" class="form-control" aria-label="tipo equipo" id="inputTipoEquipo" name="inputTipoEquipo">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Tipo de convenio</label>
+                                <input type="text" class="form-control" aria-label="tipo convenio" id="inputTipoConvenio" name="inputTipoConvenio">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Costo</label>
+                                <input type="text" class="form-control" aria-label="costo" id="inputCosto" name="inputCosto">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Proveedor</label>
+                                <input type="text" class="form-control" aria-label="proveedor" id="inputProveedor" name="inputProveedor">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Descripción</label>
+                                <input type="text" class="form-control" aria-label="descripcion" id="inputDesc" name="inputDesc">
                             </div>
                         </div>
                     </div>
@@ -144,40 +166,58 @@
             </div>
         </div>
     </div>
-    <!--Pantalla modal para editar a un usuario-->
-    <div class="modal fade modal-xl mt-5" id="modal_editar_usuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--Pantalla modal para editar a un equipo-->
+    <div class="modal fade modal-xl mt-5" id="modal_editar_equipos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar usuario</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar equipo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editarUsuarioForm">
-                    <input type="hidden" name="idusuario" id="idusuario" value="">
-                    <input type="hidden" name="tridusuario" id="tridusuario" value="">
+                <form id="editarEquipoForm"> 
+                    <input type="hidden" name="id_equipo" id="id_equipo" value="">
+                    <input type="hidden" name="trid" id="trid" value="">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Nombre</label>
-                                <input type="text" class="form-control" aria-label="nombre" id="editarNombre" name="editarNombre">
+                                <label for="" class="fw-semibold">Equipo</label>
+                                <input type="text" class="form-control" aria-label="equipo" id="editarEquipo" name="editarEquipo">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Primer apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido p" id="editarApellidoP" name="editarApellidoP">
+                                <label for="" class="fw-semibold">Marca</label>
+                                <input type="text" class="form-control" aria-label="marca" id="editarMarca" name="editarMarca">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Segundo apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido m" id="editarApellidoM" name="editarApellidoM">
+                                <label for="" class="fw-semibold">Modelo</label>
+                                <input type="text" class="form-control" aria-label="modelo" id="editarModelo" name="editarModelo">
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col">
-                                <label for="" class="fw-semibold">Usuario</label>
-                                <input type="text" class="form-control" aria-label="usuario" id="editarUsuario" name="editarUsuario">
+                                <label for="" class="fw-semibold">No. serie</label>
+                                <input type="text" class="form-control" aria-label="no. serie" id="editarSerie" name="editarSerie">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Contraseña</label>
-                                <input type="text" class="form-control" aria-label="contra" id="editarContra" name="editarContra">
+                                <label for="" class="fw-semibold">Tipo de equipo</label>
+                                <input type="text" class="form-control" aria-label="tipo equipo" id="editarTipoEquipo" name="editarTipoEquipo">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Tipo de convenio</label>
+                                <input type="text" class="form-control" aria-label="tipo convenio" id="editarTipoConvenio" name="editarTipoConvenio">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Costo</label>
+                                <input type="text" class="form-control" aria-label="costo" id="editarCosto" name="editarCosto">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Proveedor</label>
+                                <input type="text" class="form-control" aria-label="proveedor" id="editarProveedor" name="editarProveedor">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Descripción</label>
+                                <input type="text" class="form-control" aria-label="descripcion" id="editarDesc" name="editarDesc">
                             </div>
                         </div>
                     </div>

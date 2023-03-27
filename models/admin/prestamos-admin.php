@@ -63,7 +63,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Mis préstamos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
@@ -75,24 +75,10 @@
     <!--CUERPO DE PÁGINA-->
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
-            <h2>Hacer préstamo</h2>
+            <h2>Asignar equipo</h2>
         </div>
         <section id="log">
-            <form class="formularioPedir mt-2" action="">
-                <div class="row mt-3 ms-2 me-2">
-                    <div class="col">
-                        <label for="" class="fw-semibold">Nombre</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
-                    </div>
-                    <div class="col">
-                        <label for="" class="fw-semibold">Primer apellido</label>
-                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
-                    </div>
-                    <div class="col">
-                        <label for="" class="fw-semibold">Segundo apellido</label>
-                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
-                    </div>
-                </div>
+            <form class="formularioPedir mt-2" action=""> 
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Nombre</label>
@@ -108,9 +94,13 @@
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
+                    <div class="col">
+                        <label for="" class="fw-semibold">Equipo</label>
+                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                    </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Especificaciones</label>
-                        <input type="text" class="form-control" style="height: 75px;" aria-label="nombre" id="" name="">
+                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2 text-end">

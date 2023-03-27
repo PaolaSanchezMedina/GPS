@@ -33,7 +33,7 @@
     <!--ENCABEZADO DE PÁGINA-->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../super/inicio-supervisor.php>
+            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../colaborador/inicio-colaborador.php>
                 <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
                 SiCEI
             </a>
@@ -43,27 +43,13 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/inicio-supervisor.php">Mi perfil</a>
+                        <a class="nav-link text-light" aria-current="page" href="../colaborador/inicio-colaborador.php">Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/asignar-equipos-supervisor.php">Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href="../colaborador/equipos-colaborador.php">Mis equipos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/usuarios-supervisor.php">Usuarios</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Catálogos
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
-                            <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="../super/accesorios-supervisor.php">Accesorios</a></li>
-                            <li><a class="dropdown-item" href="../super/localidades-supervisor.php">Localidades</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../super/prestamos-supervisor.php>Solicitar préstamo</a>
+                        <a class="nav-link text-light" aria-current="page" href=../colaborador/prestamos-colaborador.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
@@ -74,50 +60,14 @@
     </nav>
     <!--CUERPO DE PÁGINA-->
     <div class="container mt-5">
-        <div class="d-flex justify-content-between text-light">
-            <h2>Hacer préstamo</h2>
-        </div>
-        <section id="log">
-            <form class="formularioPedir mt-2" action=""> 
-                <div class="row mt-2 ms-2 me-2">
-                    <div class="col">
-                        <label for="" class="fw-semibold">Nombre</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
-                    </div>
-                    <div class="col">
-                        <label for="" class="fw-semibold">Primer apellido</label>
-                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
-                    </div>
-                    <div class="col">
-                        <label for="" class="fw-semibold">Segundo apellido</label>
-                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
-                    </div>
-                </div>
-                <div class="row mt-2 ms-2 me-2">
-                    <div class="col">
-                        <label for="" class="fw-semibold">Equipo</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
-                    </div>
-                    <div class="col">
-                        <label for="" class="fw-semibold">Especificaciones</label>
-                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
-                    </div>
-                </div>
-                <div class="row mt-2 ms-2 me-2 text-end">
-                    <div class="col">
-                        <button type="button" class="btn btn-light text-primary fw-semibold">Aceptar</button>
-                    </div>
-                </div>
-            </form>
-        </section>
         <div class="d-flex justify-content-between text-light mt-5">
-            <h2>Mis préstamos</h2>
+            <h2>Mis Préstamos</h2>
         </div>
         <!--Tabla-->
         <div class="row">
             <div class="col">
                 <div class="tabla mt-2">
-                    <table id="tablaMisPrestamosS" class="table table-striped dt-responsive nowrap" style="width:100%">
+                    <table id="tablaMisPrestamosU" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">Id usuario</th>
@@ -146,7 +96,7 @@
     <script type="text/javascript">
         //Mostrar usuarios
         $(document).ready(function() {
-            $('#tablaMisPrestamosS').DataTable({
+            $('#tablaMisPrestamosU').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },

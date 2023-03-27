@@ -63,7 +63,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Mis préstamos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
@@ -76,21 +76,22 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
             <h2>Proveedores</h2>
-            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_usuarios">Nuevo usuario</button>
+            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_proveedores">Nuevo proveedor</button>
         </div>
         <!--Tabla-->
         <div class="row">
             <div class="col">
-                <div class="tabla mt-2">
+                <div class="tabla mt-2"> 
                     <table id="tablaProveedores" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">1er Apellido</th>
-                                <th scope="col">2do Apellido</th>
-                                <th scope="col">Usuario</th>
-                                <th scope="col">Contraseña</th>
+                                <th scope="col">Id</th> 
+                                <th scope="col">Nombre</th> 
+                                <th scope="col">RFC</th>
+                                <th scope="col">Contacto</th>
+                                <th scope="col">Domicilio</th>
+                                <th scope="col">Código postal</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -101,15 +102,15 @@
             </div>
         </div>
     </div>
-    <!--Pantalla modal para agregar un nuevo usuario-->
-    <div class="modal fade modal-xl mt-5" id="modal_usuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--Pantalla modal para agregar un nuevo proveedor-->
+    <div class="modal fade modal-xl mt-5" id="modal_proveedores" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo usuario</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo proveedor</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="nuevoUsuarioForm" action="javascript:void();" method="post">
+                <form id="nuevoProveedorForm" action="javascript:void();" method="post">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
@@ -117,22 +118,26 @@
                                 <input type="text" class="form-control" aria-label="nombre" id="inputNombre" name="inputNombre">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Primer apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido p" id="inputApellidoP" name="inputApellidoP">
+                                <label for="" class="fw-semibold">RFC</label>
+                                <input type="text" class="form-control" aria-label="rfc" id="inputRFC" name="inputRFC">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Segundo apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido m" id="inputApellidoM" name="inputApellidoP">
+                                <label for="" class="fw-semibold">Constacto</label>
+                                <input type="text" class="form-control" aria-label="contacto" id="inputContacto" name="inputContacto">
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Usuario</label>
-                                <input type="text" class="form-control" aria-label="usuario" id="inputUsuario" name="inputUsuario">
+                                <label for="" class="fw-semibold">Domicilio</label>
+                                <input type="text" class="form-control" aria-label="domicilio" id="inputDomicilio" name="inputDomicilio">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Contraseña</label>
-                                <input type="text" class="form-control" aria-label="contra" id="inputContra" name="inputContra">
+                                <label for="" class="fw-semibold">Código postal</label>
+                                <input type="text" class="form-control" aria-label="codigo postal" id="inputCP" name="inputCP">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Email</label>
+                                <input type="text" class="form-control" aria-label="email" id="inputEmail" name="inputEmail">
                             </div>
                         </div>
                     </div>
@@ -144,40 +149,44 @@
             </div>
         </div>
     </div>
-    <!--Pantalla modal para editar a un usuario-->
-    <div class="modal fade modal-xl mt-5" id="modal_editar_usuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--Pantalla modal para editar a un proveedor-->
+    <div class="modal fade modal-xl mt-5" id="modal_editar_proveedores" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar usuario</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar proveedor</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editarUsuarioForm">
-                    <input type="hidden" name="idusuario" id="idusuario" value="">
-                    <input type="hidden" name="tridusuario" id="tridusuario" value="">
+                <form id="editarProveedorForm">
+                    <input type="hidden" name="id_proveedor" id="id_proveedor" value="">
+                    <input type="hidden" name="trid" id="trid" value="">
                     <div class="modal-body">
-                        <div class="row">
+                    <div class="row">
                             <div class="col">
                                 <label for="" class="fw-semibold">Nombre</label>
                                 <input type="text" class="form-control" aria-label="nombre" id="editarNombre" name="editarNombre">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Primer apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido p" id="editarApellidoP" name="editarApellidoP">
+                                <label for="" class="fw-semibold">RFC</label>
+                                <input type="text" class="form-control" aria-label="rfc" id="editarRFC" name="editarRFC">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Segundo apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido m" id="editarApellidoM" name="editarApellidoM">
+                                <label for="" class="fw-semibold">Contacto</label>
+                                <input type="text" class="form-control" aria-label="contacto" id="editarContacto" name="editarContacto">
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Usuario</label>
-                                <input type="text" class="form-control" aria-label="usuario" id="editarUsuario" name="editarUsuario">
+                                <label for="" class="fw-semibold">Domicilio</label>
+                                <input type="text" class="form-control" aria-label="domicilio" id="editarDomicilio" name="editarDomicilio">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Contraseña</label>
-                                <input type="text" class="form-control" aria-label="contra" id="editarContra" name="editarContra">
+                                <label for="" class="fw-semibold">Código postal</label>
+                                <input type="text" class="form-control" aria-label="codigo postal" id="editarCP" name="editarCP">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Email</label>
+                                <input type="text" class="form-control" aria-label="email" id="editarEmail" name="editarEmail">
                             </div>
                         </div>
                     </div>
