@@ -58,7 +58,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
                             <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="../admin/accesorios.php">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="../admin/colaboradores.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
                         </ul>
                     </li>

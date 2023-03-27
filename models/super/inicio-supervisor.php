@@ -46,7 +46,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
                             <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="../super/accesorios-supervisor.php">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="../super/colaboradores-supervisor.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../super/localidades-supervisor.php">Localidades</a></li>
                         </ul>
                     </li>

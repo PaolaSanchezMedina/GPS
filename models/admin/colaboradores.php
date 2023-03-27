@@ -30,10 +30,10 @@
 </head>
 
 <body>
-   <!--ENCABEZADO DE PÁGINA-->
-   <nav class="navbar navbar-expand-lg">
+    <!--ENCABEZADO DE PÁGINA-->
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../super/inicio-supervisor.php>
+            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../admin/inicio.php>
                 <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
                 SiCEI
             </a>
@@ -43,27 +43,27 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/inicio-supervisor.php">Mi perfil</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/inicio.php>Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/asignar-equipos-supervisor.php">Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>Asignar equipos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/usuarios-supervisor.php">Usuarios</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Catálogos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
-                            <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="../super/accesorios-supervisor.php">Accesorios</a></li>
-                            <li><a class="dropdown-item" href="../super/localidades-supervisor.php">Localidades</a></li>
+                            <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
+                            <li><a class="dropdown-item" href="../admin/colaboradores.php">Colaboradores</a></li>
+                            <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../super/prestamos-supervisor.php>Solicitar préstamo</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
@@ -75,21 +75,23 @@
     <!--CUERPO DE PÁGINA-->
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
-            <h2>Accesorios</h2>
+            <h2>Colaboradores</h2>
         </div>
         <!--Tabla-->
         <div class="row">
             <div class="col">
                 <div class="tabla mt-2">
-                    <table id="tablaAccesorios" class="table table-striped dt-responsive nowrap" style="width:100%">
+                    <table id="tablaColaboradores" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">1er Apellido</th>
                                 <th scope="col">2do Apellido</th>
-                                <th scope="col">Usuario</th>
-                                <th scope="col">Contraseña</th>
+                                <th scope="col">Centro de costos</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Localidad</th>
+                                <th scope="col">Jefatura</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -110,7 +112,7 @@
     <script type="text/javascript">
         //Mostrar usuarios
         $(document).ready(function() {
-            $('#tablaAccesorios').DataTable({
+            $('#tablaColaboradores').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },

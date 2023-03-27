@@ -58,7 +58,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
                             <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="../super/accesorios-supervisor.php">Accesorios</a></li>
+                            <li><a class="dropdown-item" href="../super/colaboradores-supervisor.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../super/localidades-supervisor.php">Localidades</a></li>
                         </ul>
                     </li>
@@ -89,7 +89,7 @@
                         <input type="text" class="form-control" aria-label="apellido p" id="" name="">
                     </div>
                     <div class="col">
-                        <label for="" class="fw-semibold">Fecha</label>
+                        <label for="" class="fw-semibold">Centro de costos</label>
                         <input type="text" class="form-control" aria-label="apellido m" id="" name="">
                     </div>
                 </div>
@@ -119,6 +119,26 @@
                     <div class="col">
                         <label for="" class="fw-semibold">Estado</label>
                         <input type="text" class="form-control" aria-label="apellido m" id="" name="">
+                    </div>
+                </div>
+                <div class="row mt-2 ms-2 me-2">
+                    <div class="col">
+                        <label for="" class="fw-semibold">Localidad</label>
+                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Complejo</label>
+                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Departamento</label>
+                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
+                    </div>
+                </div>
+                <div class="row mt-2 ms-2 me-2">
+                    <div class="col">
+                        <label for="" class="fw-semibold">Fecha</label>
+                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
