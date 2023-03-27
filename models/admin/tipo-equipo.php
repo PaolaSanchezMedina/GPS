@@ -231,7 +231,7 @@
     </div>
     <!--PIE DE PÁGINA-->
     <footer class="">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between mt-2">
             <p id="fecha-hora" class="ms-5"></p>
             <p>&copy; SiCEI 2023</p>
         </div>
