@@ -54,29 +54,15 @@
             <h2>Hacer préstamo</h2>
         </div>
         <section id="log">
-            <form class="formularioPedir mt-2" action=""> 
+            <form class="formularioPedir mt-2" action="">
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Nombre</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
-                    </div>
-                    <div class="col">
-                        <label for="" class="fw-semibold">Primer apellido</label>
-                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
-                    </div>
-                    <div class="col">
-                        <label for="" class="fw-semibold">Segundo apellido</label>
-                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
-                    </div>
-                </div>
-                <div class="row mt-2 ms-2 me-2">
-                    <div class="col">
-                        <label for="" class="fw-semibold">Equipo</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
-                    </div>
-                    <div class="col">
+                        <p>Paola Guadalupe Sánchez Medina</p>
                         <label for="" class="fw-semibold">Especificaciones</label>
-                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px; max-height: 100px;"></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2 text-end">

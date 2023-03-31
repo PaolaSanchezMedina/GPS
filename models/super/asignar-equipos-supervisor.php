@@ -68,7 +68,7 @@
                 </ul>
             </div>
             <form class="d-flex" action="../../models/login.php">
-                <button class="btn border-white text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
+                <button class="btn border-white text-light rounded-4 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
             </form>
         </div>
     </nav>
@@ -138,13 +138,15 @@
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Fecha</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                        <p id="fecha"></p>
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Observaciones</label>
-                        <input type="text" class="form-control" style="height: 75px;" aria-label="nombre" id="" name="">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px; max-height: 100px;"></textarea>
+                            </div>
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2 text-end">
@@ -191,6 +193,18 @@
             <p>&copy; SiCEI 2023</p>
         </div>
     </footer>
+    <!--========================================SCRIPT PARA FECHA========================================-->
+    <script>
+        function mostrarFecha() {
+        var fecha = new Date();
+        var dia = fecha.getDate();
+        var mes = fecha.getMonth() + 1;
+        var anio = fecha.getFullYear();
+        var fechaCompleta = dia + '/' + mes + '/' + anio;
+        document.getElementById('fecha').innerHTML = fechaCompleta;
+        }
+        mostrarFecha();
+    </script>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
         //Mostrar usuarios

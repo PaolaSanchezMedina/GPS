@@ -68,7 +68,7 @@
                 </ul>
             </div>
             <form class="d-flex" action="../../models/login.php">
-                <button class="btn border-white text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
+                <button class="btn border-white text-light rounded-4 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
             </form>
         </div>
     </nav>
@@ -82,69 +82,71 @@
                 <div class="row mt-3 ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Id colaborador</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                        <input type="text" class="form-control" aria-label="id colaborador" id="" name="">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Nombre</label>
-                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
+                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Centro de costos</label>
-                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
+                        <input type="text" class="form-control" aria-label="centro costos" id="" name="">
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Id equipo</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                        <input type="text" class="form-control" aria-label="id equipo" id="" name="">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Equipo</label>
-                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
+                        <input type="text" class="form-control" aria-label="equipo" id="" name="">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Marca</label>
-                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
+                        <input type="text" class="form-control" aria-label="marca" id="" name="">
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Modelo</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                        <input type="text" class="form-control" aria-label="modelo" id="" name="">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">No. Serie</label>
-                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
+                        <input type="text" class="form-control" aria-label="no serie" id="" name="">
                     </div>
                     <div class="col">
-                        <label for="" class="fw-semibold">Estado</label>
-                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
+                        <label for="" class="fw-semibold">Estado del préstamo</label>
+                        <input type="text" class="form-control" aria-label="estado" id="" name="">
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Localidad</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                        <input type="text" class="form-control" aria-label="localidad" id="" name="">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Complejo</label>
-                        <input type="text" class="form-control" aria-label="apellido p" id="" name="">
+                        <input type="text" class="form-control" aria-label="complejo" id="" name="">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Departamento</label>
-                        <input type="text" class="form-control" aria-label="apellido m" id="" name="">
+                        <input type="text" class="form-control" aria-label="departamento" id="" name="">
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Fecha</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                        <p id="fecha"></p>
                     </div>
                 </div>
-                <div class="row mt-2 ms-2 me-2">
+                <div class="row ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Observaciones</label>
-                        <input type="text" class="form-control" style="height: 75px;" aria-label="nombre" id="" name="">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px; max-height: 100px;"></textarea>
+                            </div>
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2 text-end">
@@ -191,6 +193,18 @@
             <p>&copy; SiCEI 2023</p>
         </div>
     </footer> 
+    <!--========================================SCRIPT PARA FECHA========================================-->
+    <script>
+        function mostrarFecha() {
+        var fecha = new Date();
+        var dia = fecha.getDate();
+        var mes = fecha.getMonth() + 1;
+        var anio = fecha.getFullYear();
+        var fechaCompleta = dia + '/' + mes + '/' + anio;
+        document.getElementById('fecha').innerHTML = fechaCompleta;
+        }
+        mostrarFecha();
+    </script>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
         //Mostrar usuarios
