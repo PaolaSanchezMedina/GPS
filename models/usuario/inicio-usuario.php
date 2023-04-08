@@ -54,7 +54,7 @@
         <div class="row">
             <div class="container">
                 <div class="row text-light">
-                    <div class="row">
+                    <div class="row"> 
                         <div class="row">
                             <label for="" class="fw-semibold mt-1">Nombre <?php echo $_SESSION["usuario"]; ?></label> 
                         </div>
