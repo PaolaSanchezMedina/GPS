@@ -1,5 +1,9 @@
-<?php session_start(); ?>
-
+<?php
+session_start();
+if(empty($_SESSION["id"])){
+    header("location: ../login.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -43,9 +47,7 @@
                     </li>
                 </ul>
             </div>
-            <form class="d-flex" action="../../models/login.php">
-                <button class="btn border-white text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Cerrar sesión</button>
-            </form>
+            <a class="btn border-white text-light rounded-4 fw-semibold me-3 mt-2" href="../../database/controlador-cerrar-sesion.php">Cerrar sesión</a>
         </div>
     </nav>
     <!--CUERPO DE PÁGINA-->

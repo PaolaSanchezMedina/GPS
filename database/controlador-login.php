@@ -14,14 +14,17 @@ if(!empty($_POST["btnIniciar"])){
         if($datos=$sqlL->fetch_object()){
             //Administrador
             if($resultado['id_tipo_usuario']==1){
+                $_SESSION["id"]=$datos->id_usuario;
                 $_SESSION["usuario"]=$datos->usuario;
                 header("location: admin/inicio.php");
             //Supervisor
             }elseif($resultado['id_tipo_usuario']==2){
+                $_SESSION["id"]=$datos->id_usuario;
                 $_SESSION["usuario"]=$datos->usuario;
                 header("location: super/inicio-supervisor.php");
             //Usuarios
             }elseif($resultado['id_tipo_usuario']==3){
+                $_SESSION["id"]=$datos->id_usuario;
                 $_SESSION["usuario"]=$datos->usuario;
                 header("location: usuario/inicio-usuario.php");
             }
