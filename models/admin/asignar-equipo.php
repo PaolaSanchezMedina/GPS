@@ -80,7 +80,7 @@
         <section id="log">
             <form class="formularioAsignar mt-2" action="">
                 <div class="row mt-3 ms-2 me-2">
-                    <div class="col">
+                    <div class="col-lg-2">
                         <label for="" class="fw-semibold">Id colaborador</label>
                         <input type="text" class="form-control" aria-label="id colaborador" id="" name="">
                     </div>
@@ -89,12 +89,16 @@
                         <input type="text" class="form-control" aria-label="nombre" id="" name="">
                     </div>
                     <div class="col">
-                        <label for="" class="fw-semibold">Centro de costos</label>
-                        <input type="text" class="form-control" aria-label="centro costos" id="" name="">
+                        <label for="" class="fw-semibold">1er Apellido</label>
+                        <input type="text" class="form-control" aria-label="1er apellido" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">2do Apellido</label>
+                        <input type="text" class="form-control" aria-label="2do apellido" id="" name="">
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
-                    <div class="col">
+                    <div class="col-lg-2">
                         <label for="" class="fw-semibold">Id equipo</label>
                         <input type="text" class="form-control" aria-label="id equipo" id="" name="">
                     </div>
@@ -106,19 +110,23 @@
                         <label for="" class="fw-semibold">Marca</label>
                         <input type="text" class="form-control" aria-label="marca" id="" name="">
                     </div>
-                </div>
-                <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Modelo</label>
                         <input type="text" class="form-control" aria-label="modelo" id="" name="">
                     </div>
-                    <div class="col">
+                </div>
+                <div class="row mt-2 ms-2 me-2">
+                    <div class="col-lg-4">
                         <label for="" class="fw-semibold">No. Serie</label>
                         <input type="text" class="form-control" aria-label="no serie" id="" name="">
                     </div>
-                    <div class="col">
+                    <div class="col-lg-4">
                         <label for="" class="fw-semibold">Estado del préstamo</label>
                         <input type="text" class="form-control" aria-label="estado" id="" name="">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Fecha</label>
+                        <p id="fecha" class="form-control"></p>
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
@@ -133,12 +141,6 @@
                     <div class="col">
                         <label for="" class="fw-semibold">Departamento</label>
                         <input type="text" class="form-control" aria-label="departamento" id="" name="">
-                    </div>
-                </div>
-                <div class="row mt-2 ms-2 me-2">
-                    <div class="col">
-                        <label for="" class="fw-semibold">Fecha</label>
-                        <p id="fecha"></p>
                     </div>
                 </div>
                 <div class="row ms-2 me-2">

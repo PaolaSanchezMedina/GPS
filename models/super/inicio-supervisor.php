@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -68,7 +69,7 @@
                 <div class="row text-light">
                     <div class="row">
                         <div class="row">
-                            <label for="" class="fw-semibold mt-1">Nombre</label>
+                            <label for="" class="fw-semibold mt-1">Nombre <?php echo $_SESSION["usuario"]; ?></label> 
                         </div>
                         <div class="row">
                             <label for="" class="fw-semibold mt-3">Tipo de usuario</label>

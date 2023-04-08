@@ -29,20 +29,26 @@
   <section id="log">
       <div class="form-box mt-4">
           <div class="form-value">
-              <form action="../models/admin/inicio.php" class="text-center">
+              <form method="post" action="" class="text-center">
                   <img src="../assets/img/logo.png" class="rounded" alt="Logo" width="40" height="38">
                   <h4 class="mt-3" style="color: white; text-align: center;">Iniciar sesión</h4>
+                  <?php
+                  include "../database/conexion.php";
+                  include "../database/controlador-login.php";
+                  ?>
                   <div class="inputbox">
                       <img src="../assets/img/user.png" alt="">
-                      <input type="text" required>
+                      <!--Input del usuario-->
+                      <input type="text" required id="" name="usuario">
                       <label for="">Usuario</label>
                   </div>
                   <div class="inputbox">
                     <img src="../assets/img/pass.png" alt="">
-                      <input type="password" required>
+                    <!--Input de la contraseña-->
+                      <input type="password" required  id="" name="contrasena">
                       <label for="">Contraseña</label>
                   </div>
-                  <button class="btn text-light rounded-4 fw-semibold" type="submit">Iniciar sesión</button>
+                  <input name="btnIniciar" class="btn text-light fw-semibold" type="submit" value="Iniciar Sesión"></input>
               </form>
           </div>
       </div>

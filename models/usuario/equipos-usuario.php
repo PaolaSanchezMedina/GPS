@@ -33,7 +33,7 @@
     <!--ENCABEZADO DE PÁGINA-->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../colaborador/inicio-colaborador.php>
+            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../usuario/inicio-usuario.php>
                 <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
                 SiCEI
             </a>
@@ -43,13 +43,13 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../colaborador/inicio-colaborador.php">Mi perfil</a>
+                        <a class="nav-link text-light" aria-current="page" href="../usuario/inicio-usuario.php">Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../colaborador/equipos-colaborador.php">Mis equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href="../usuario/equipos-usuario.php">Mis equipos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../colaborador/prestamos-colaborador.php>Solicitar préstamo</a>
+                        <a class="nav-link text-light" aria-current="page" href=../usuario/prestamos-usuario.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
