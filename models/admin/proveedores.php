@@ -36,7 +36,7 @@ if (empty($_SESSION["id"])) {
 </head>
 
 <body>
-    <!--ENCABEZADO DE PÁGINA-->
+    <!--ENCABEZADO DE PÁGINA--> 
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../admin/inicio.php>

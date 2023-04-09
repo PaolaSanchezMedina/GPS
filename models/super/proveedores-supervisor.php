@@ -95,9 +95,11 @@ if (empty($_SESSION["id"])) {
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Nombre</th>
+                                <th scope="col">SAP</th>
                                 <th scope="col">RFC</th>
                                 <th scope="col">Contacto</th>
-                                <th scope="col">Domicilio</th>
+                                <th scope="col">Calle</th>
+                                <th scope="col">Colonia</th>
                                 <th scope="col">Código postal</th>
                                 <th scope="col">Correo</th>
                                 <th scope="col">Opciones</th>
@@ -110,6 +112,122 @@ if (empty($_SESSION["id"])) {
             </div>
         </div>
     </div>
+    <!--Pantalla modal para agregar un nuevo proveedor-->
+    <div class="modal fade modal-xl mt-5" id="modal_proveedores" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo proveedor</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="nuevoProveedorForm" action="javascript:void();" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Nombre</label>
+                                <input type="text" class="form-control" aria-label="nombre" id="inputNombre" name="inputNombre">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">SAP</label>
+                                <input type="text" class="form-control" aria-label="sap" id="inputSAP" name="inputSAP">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">RFC</label>
+                                <input type="text" class="form-control" aria-label="rfc" id="inputRFC" name="inputRFC">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Contacto</label>
+                                <input type="text" class="form-control" aria-label="contacto" id="inputContacto" name="inputContacto">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Calle</label>
+                                <input type="text" class="form-control" aria-label="calle" id="inputCalle" name="inputCalle">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Colonia</label>
+                                <input type="text" class="form-control" aria-label="colonia" id="inputColonia" name="inputColonia">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="fw-semibold">Código postal</label>
+                                <input type="text" class="form-control" aria-label="codigo postal" id="inputCP" name="inputCP">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="fw-semibold">Correo</label>
+                                <input type="text" class="form-control" aria-label="correo" id="inputCorreo" name="inputCorreo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--Pantalla modal para editar a un proveedor-->
+    <div class="modal fade modal-xl mt-5" id="modal_editar_proveedores" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar proveedor</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editarProveedorForm">
+                    <input type="hidden" name="id_proveedor" id="id_proveedor" value="">
+                    <input type="hidden" name="trid" id="trid" value="">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Nombre</label>
+                                <input type="text" class="form-control" aria-label="nombre" id="editarNombre" name="editarNombre">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">SAP</label>
+                                <input type="text" class="form-control" aria-label="sap" id="editarSAP" name="editarSAP">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">RFC</label>
+                                <input type="text" class="form-control" aria-label="rfc" id="editarRFC" name="editarRFC">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Contacto</label>
+                                <input type="text" class="form-control" aria-label="contacto" id="editarContacto" name="editarContacto">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Calle</label>
+                                <input type="text" class="form-control" aria-label="calle" id="editarCalle" name="editarCalle">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Colonia</label>
+                                <input type="text" class="form-control" aria-label="colonia" id="editarColonia" name="editarColonia">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="" class="fw-semibold">Código postal</label>
+                                <input type="text" class="form-control" aria-label="codigo postal" id="editarCP" name="editarCP">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="fw-semibold">Correo</label>
+                                <input type="text" class="form-control" aria-label="correo" id="editarCorreo" name="editarCorreo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!--PIE DE PÁGINA-->
     <footer class="">
         <div class="d-flex justify-content-between mt-2">
@@ -119,12 +237,28 @@ if (empty($_SESSION["id"])) {
     </footer>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
-        //Mostrar usuarios
+        //Mostrar proovedores
         $(document).ready(function() {
             $('#tablaProveedores').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
+                //Esta función se llama cada que se va a crear una fila nueva con datatables
+                "fnCreatedRow": function(nRow, aData, iDataIndex) {
+                    $(nRow).attr('id_proveedor', aData[0]);
+                },
+                'serverSide': 'true', //Los datos se procesan del lado del servidor
+                'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
+                'paging': 'true', //Habilita la paginación en la tabla.
+                'order': [], //No ordena inicialmente los datos de la tabla.
+                'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
+                    'url': '../../database/crud-proovedor/mostrar-proovedor.php',
+                    'type': 'post',
+                },
+                "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
+                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
+                    "aTargets": [9] //Es la columna de opciones
+                }, ]
             })
         })
     </script>

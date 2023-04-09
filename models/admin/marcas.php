@@ -127,7 +127,7 @@ if (empty($_SESSION["id"])) {
             </div>
         </div>
     </div>
-    <!--Pantalla modal para editar a un equipo-->
+    <!--Pantalla modal para editar una marca-->
     <div class="modal fade mt-5" id="modal_editar_marcas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -163,7 +163,7 @@ if (empty($_SESSION["id"])) {
     </footer>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
-        //Mostrar usuarios
+        //Mostrar marcas
         $(document).ready(function() {
             $('#tablaMarcas').DataTable({
                 language: {

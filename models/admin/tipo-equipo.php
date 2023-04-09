@@ -171,7 +171,7 @@ if (empty($_SESSION["id"])) {
         </div>
     </footer>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
-    <script type="text/javascript">
+    <script type="text/javascript"> 
         //Mostrar usuarios
         $(document).ready(function() {
             $('#tablaTipoEquipo').DataTable({

@@ -96,8 +96,6 @@ if (empty($_SESSION["id"])) {
                                 <th scope="col">Id</th>
                                 <th scope="col">Localidad</th>
                                 <th scope="col">Municipio</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Complejo</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -105,6 +103,66 @@ if (empty($_SESSION["id"])) {
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!--Pantalla modal para agregar una nueva localidad-->
+    <div class="modal fade modal-xl mt-5" id="modal_localidades" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva localidad</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="nuevaLocalidadForm" action="javascript:void();" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Localidad</label>
+                                <input type="text" class="form-control" aria-label="localidad" id="inputLocalidad" name="inputLocalidad">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Municipio</label>
+                                <input type="text" class="form-control" aria-label="municipio" id="inputMunicipio" name="inputMunicipio">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--Pantalla modal para editar una localidad-->
+    <div class="modal fade modal-xl mt-5" id="modal_editar_localidades" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar localidad</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editarLocalidadForm">
+                    <input type="hidden" name="id_localidad" id="id_localidad" value="">
+                    <input type="hidden" name="trid" id="trid" value="">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Localidad</label>
+                                <input type="text" class="form-control" aria-label="localidad" id="editarLocalidad" name="editarLocalidad">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Municipio</label>
+                                <input type="text" class="form-control" aria-label="municipio" id="editarMunicipio" name="editarMunicipio">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -117,14 +175,30 @@ if (empty($_SESSION["id"])) {
     </footer>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
-        //Mostrar usuarios
+        //Mostrar localidades
         $(document).ready(function() {
             $('#tablaLocalidades').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
-            })
-        })
+                //Esta función se llama cada que se va a crear una fila nueva con datatables
+                "fnCreatedRow": function(nRow, aData, iDataIndex) {
+                    $(nRow).attr('id_localidad', aData[0]);
+                },
+                'serverSide': 'true', //Los datos se procesan del lado del servidor
+                'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
+                'paging': 'true', //Habilita la paginación en la tabla.
+                'order': [], //No ordena inicialmente los datos de la tabla.
+                'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
+                    'url': '../../database/crud-localidad/mostrar-localidad.php',
+                    'type': 'post',
+                },
+                "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
+                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
+                    "aTargets": [3] //Es la columna de opciones
+                }, ]
+            });
+        });
     </script>
 </body>
 

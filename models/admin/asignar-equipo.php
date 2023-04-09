@@ -173,7 +173,7 @@ if (empty($_SESSION["id"])) {
                     <table id="tablaPrestamos" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
-                                <th scope="col">Id prestamo</th>
+                                <th scope="col">Id préstamo</th>
                                 <th scope="col">Id colaborador</th>
                                 <th scope="col">Id equipo</th>
                                 <th scope="col">Identificador</th>

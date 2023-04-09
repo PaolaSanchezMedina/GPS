@@ -248,7 +248,7 @@ if (empty($_SESSION["id"])) {
                     "aTargets": [8] //Es la columna de opciones
                 }, ]
             });
-        });
+        }); 
     </script>
 </body>
 
