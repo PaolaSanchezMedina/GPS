@@ -173,17 +173,13 @@ if (empty($_SESSION["id"])) {
                     <table id="tablaPrestamos" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
+                                <th scope="col">Id prestamo</th>
                                 <th scope="col">Id colaborador</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Fecha</th>
                                 <th scope="col">Id equipo</th>
-                                <th scope="col">Equipo</th>
-                                <th scope="col">Marca</th>
-                                <th scope="col">Modelo</th>
-                                <th scope="col">No. Serie</th>
-                                <th scope="col">Estado</th>
+                                <th scope="col">Identificador</th>
+                                <th scope="col">Fecha entrega</th>
+                                <th scope="col">Id usuario</th>
                                 <th scope="col">Observaciones</th>
-                                <th scope="col">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -207,19 +203,41 @@ if (empty($_SESSION["id"])) {
             var dia = fecha.getDate();
             var mes = fecha.getMonth() + 1;
             var anio = fecha.getFullYear();
-            var fechaCompleta = dia + '/' + mes + '/' + anio;
+            if (mes < 10) {
+                mes = "0" + mes;
+            }
+            if (dia < 10) {
+                dia = "0" + dia;
+            }
+            var fechaCompleta = anio + '-' + mes + '-' + dia;
             document.getElementById('fecha').innerHTML = fechaCompleta;
         }
         mostrarFecha();
     </script>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
-        //Mostrar usuarios
+        //Mostrar prestamos
         $(document).ready(function() {
             $('#tablaPrestamos').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
+                //Esta función se llama cada que se va a crear una fila nueva con datatables
+                "fnCreatedRow": function(nRow, aData, iDataIndex) {
+                    $(nRow).attr('id_prestamo', aData[0]);
+                },
+                'serverSide': 'true', //Los datos se procesan del lado del servidor
+                'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
+                'paging': 'true', //Habilita la paginación en la tabla.
+                'order': [], //No ordena inicialmente los datos de la tabla.
+                'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
+                    'url': '../../database/crud-prestamo/mostrar-prestamo.php',
+                    'type': 'post',
+                },
+                "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
+                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
+                    //"aTargets": [9] //Es la columna de opciones
+                }, ]
             })
         })
     </script>

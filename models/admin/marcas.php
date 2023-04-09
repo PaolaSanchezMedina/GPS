@@ -110,7 +110,7 @@ if (empty($_SESSION["id"])) {
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva marca</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="nuevoEquipoForm" action="javascript:void();" method="post">
+                <form id="nuevaMarcaForm" action="javascript:void();" method="post">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
@@ -135,8 +135,8 @@ if (empty($_SESSION["id"])) {
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Editar marca</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editarEquipoForm">
-                    <input type="hidden" name="id_equipo" id="id_equipo" value="">
+                <form id="editarMarcaForm">
+                    <input type="hidden" name="id_marca" id="id_marca" value="">
                     <input type="hidden" name="trid" id="trid" value="">
                     <div class="modal-body">
                         <div class="row">
@@ -171,7 +171,7 @@ if (empty($_SESSION["id"])) {
                 },
                 //Esta función se llama cada que se va a crear una fila nueva con datatables
                 "fnCreatedRow": function(nRow, aData, iDataIndex) {
-                    $(nRow).attr('id_tipoEquipo', aData[0]);
+                    $(nRow).attr('id_marca', aData[0]);
                 },
                 'serverSide': 'true', //Los datos se procesan del lado del servidor
                 'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos

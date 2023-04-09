@@ -104,14 +104,14 @@ if (empty($_SESSION["id"])) {
         </div>
     </div>
     <!--Pantalla modal para agregar un nuevo equipo-->
-    <div class="modal fade modal-xl mt-5" id="modal_equipos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-xl mt-5" id="modal_tipo_equipos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo tipo de equipo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="nuevoEquipoForm" action="javascript:void();" method="post">
+                <form id="nuevoTipoEquipoForm" action="javascript:void();" method="post">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
@@ -133,20 +133,20 @@ if (empty($_SESSION["id"])) {
         </div>
     </div>
     <!--Pantalla modal para editar a un equipo-->
-    <div class="modal fade modal-xl mt-5" id="modal_editar_equipos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-xl mt-5" id="modal_editar_tipoEquipos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Editar tipo de equipo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editarEquipoForm">
-                    <input type="hidden" name="id_equipo" id="id_equipo" value="">
+                <form id="editarTipoEquipoForm">
+                    <input type="hidden" name="id_tipoEquipo" id="id_tipoEquipo" value="">
                     <input type="hidden" name="trid" id="trid" value="">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Equipo</label>
+                                <label for="" class="fw-semibold">Tipo de equipo</label>
                                 <input type="text" class="form-control" aria-label="tipo equipo" id="editarTipoEquipo" name="editarTipoEquipo">
                             </div>
                             <div class="col">

@@ -148,7 +148,7 @@ if (empty($_SESSION["id"])) {
                             </div>
                         </div>
                         <div class="row">
-                        <div class="col-lg-4">
+                            <div class="col-lg-4">
                                 <label for="" class="fw-semibold">Código postal</label>
                                 <input type="text" class="form-control" aria-label="codigo postal" id="inputCP" name="inputCP">
                             </div>

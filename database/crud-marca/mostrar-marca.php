@@ -43,7 +43,7 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array = array();
 	$sub_array[] = $row['id_marca'];
 	$sub_array[] = $row['nom_marca'];
-	$sub_array[] = '<a href="javascript:void();" data-id_marca="'.$row['id_marca'].'"  class="btn editbtn" ><i role="button" class="fa-solid fa-user-pen text-primary"></i></a><a href="javascript:void();" data-id_marca="'.$row['id_marca'].'"  class="btn deleteBtn" ><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a>';
+	$sub_array[] = '<a href="javascript:void();" data-id_marca="'.$row['id_marca'].'"  class="btn editbtn" ><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();" data-id_marca="'.$row['id_marca'].'"  class="btn deleteBtn" ><i role="button" class="fa-solid fa-trash-can text-danger"></i></a>';
 	$data[] = $sub_array;
 }
 
