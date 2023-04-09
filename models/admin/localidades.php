@@ -93,8 +93,6 @@ if (empty($_SESSION["id"])) {
                                 <th scope="col">Id</th>
                                 <th scope="col">Localidad</th>
                                 <th scope="col">Municipio</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Complejo</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -123,16 +121,6 @@ if (empty($_SESSION["id"])) {
                             <div class="col">
                                 <label for="" class="fw-semibold">Municipio</label>
                                 <input type="text" class="form-control" aria-label="municipio" id="inputMunicipio" name="inputMunicipio">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Estado</label>
-                                <input type="text" class="form-control" aria-label="estado" id="inputEstado" name="inputEstado">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Complejo</label>
-                                <input type="text" class="form-control" aria-label="complejo" id="inputComplejo" name="inputComplejo">
                             </div>
                         </div>
                     </div>
@@ -166,16 +154,6 @@ if (empty($_SESSION["id"])) {
                                 <input type="text" class="form-control" aria-label="municipio" id="editarMunicipio" name="editarMunicipio">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Estado</label>
-                                <input type="text" class="form-control" aria-label="estado" id="editarEstado" name="editarEstado">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Complejo</label>
-                                <input type="text" class="form-control" aria-label="complejo" id="editarComplejo" name="editarComplejo">
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -194,15 +172,31 @@ if (empty($_SESSION["id"])) {
     </footer>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
-        //Mostrar usuarios
+        //Mostrar localidades
         $(document).ready(function() {
             $('#tablaLocalidades').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
-            })
-        })
-    </script>
+                //Esta función se llama cada que se va a crear una fila nueva con datatables
+                "fnCreatedRow": function(nRow, aData, iDataIndex) {
+                    $(nRow).attr('id_localidad', aData[0]);
+                },
+                'serverSide': 'true', //Los datos se procesan del lado del servidor
+                'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
+                'paging': 'true', //Habilita la paginación en la tabla.
+                'order': [], //No ordena inicialmente los datos de la tabla.
+                'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
+                    'url': '../../database/crud-localidad/mostrar-localidad.php',
+                    'type': 'post',
+                },
+                "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
+                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
+                    "aTargets": [3] //Es la columna de opciones
+                }, ]
+            });
+        });
+    </script> 
 </body>
 
 </html>

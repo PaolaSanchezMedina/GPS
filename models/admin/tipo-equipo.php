@@ -178,8 +178,24 @@ if (empty($_SESSION["id"])) {
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
-            })
-        })
+                //Esta función se llama cada que se va a crear una fila nueva con datatables
+                "fnCreatedRow": function(nRow, aData, iDataIndex) {
+                    $(nRow).attr('id_tipoEquipo', aData[0]);
+                },
+                'serverSide': 'true', //Los datos se procesan del lado del servidor
+                'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
+                'paging': 'true', //Habilita la paginación en la tabla.
+                'order': [], //No ordena inicialmente los datos de la tabla.
+                'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
+                    'url': '../../database/crud-tipo-equipo/mostrar-tipo-equipo.php',
+                    'type': 'post',
+                },
+                "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
+                    "bSortable": false,
+                    "aTargets": [3] //Es la columna de opciones
+                }, ]
+            });
+        });
     </script>
 </body>
 

@@ -81,7 +81,7 @@ if (empty($_SESSION["id"])) {
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
             <h2>Marcas</h2>
-            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_equipos">Nueva marca</button>
+            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_marcas">Nueva marca</button>
         </div>
         <!--Tabla-->
         <div class="row">
@@ -102,6 +102,58 @@ if (empty($_SESSION["id"])) {
             </div>
         </div>
     </div>
+    <!--Pantalla modal para agregar una nueva marca-->
+    <div class="modal fade mt-5" id="modal_marcas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva marca</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="nuevoEquipoForm" action="javascript:void();" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Marca</label>
+                                <input type="text" class="form-control" aria-label="marca" id="inputMarca" name="inputMarca">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--Pantalla modal para editar a un equipo-->
+    <div class="modal fade mt-5" id="modal_editar_marcas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar marca</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editarEquipoForm">
+                    <input type="hidden" name="id_equipo" id="id_equipo" value="">
+                    <input type="hidden" name="trid" id="trid" value="">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Marca</label>
+                                <input type="text" class="form-control" aria-label="Marca" id="editarMarca" name="editarMarca">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!--PIE DE PÁGINA-->
     <footer class="">
         <div class="d-flex justify-content-between mt-2">
@@ -117,6 +169,22 @@ if (empty($_SESSION["id"])) {
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
+                //Esta función se llama cada que se va a crear una fila nueva con datatables
+                "fnCreatedRow": function(nRow, aData, iDataIndex) {
+                    $(nRow).attr('id_tipoEquipo', aData[0]);
+                },
+                'serverSide': 'true', //Los datos se procesan del lado del servidor
+                'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
+                'paging': 'true', //Habilita la paginación en la tabla.
+                'order': [], //No ordena inicialmente los datos de la tabla.
+                'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
+                    'url': '../../database/crud-marca/mostrar-marca.php',
+                    'type': 'post',
+                },
+                "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
+                    "bSortable": false,
+                    "aTargets": [2] //Es la columna de opciones
+                }, ]
             })
         })
     </script>

@@ -95,7 +95,7 @@ if (empty($_SESSION["id"])) {
                                 <th scope="col">Modelo</th>
                                 <th scope="col">No. serie</th>
                                 <th scope="col">Marca</th>
-                                <th scope="col">Tipo de equipo</th>
+                                <th scope="col">Tipo</th>
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Proveedor</th>
                                 <th scope="col">Opciones</th>
@@ -143,7 +143,7 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Descripción</label>
-                                <input type="text" class="form-control" aria-label="tipo convenio" id="inputTipoConvenio" name="inputTipoConvenio">
+                                <input type="text" class="form-control" aria-label="desc" id="inputDescripcion" name="inputDescripcion">
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -198,7 +198,7 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Descripción</label>
-                                <input type="text" class="form-control" aria-label="descripcion" id="editarDesc" name="editarDesc">
+                                <input type="text" class="form-control" aria-label="descripcion" id="editarDescripcion" name="editarDescripcion">
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -225,14 +225,30 @@ if (empty($_SESSION["id"])) {
     </footer>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
-        //Mostrar usuarios
+        //Mostrar equipos
         $(document).ready(function() {
             $('#tablaEquipos').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
-            })
-        })
+                //Esta función se llama cada que se va a crear una fila nueva con datatables
+                "fnCreatedRow": function(nRow, aData, iDataIndex) {
+                    $(nRow).attr('id_equipo', aData[0]);
+                },
+                'serverSide': 'true', //Los datos se procesan del lado del servidor
+                'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
+                'paging': 'true', //Habilita la paginación en la tabla.
+                'order': [], //No ordena inicialmente los datos de la tabla.
+                'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
+                    'url': '../../database/crud-equipo/mostrar-equipo.php',
+                    'type': 'post',
+                },
+                "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
+                    "bSortable": false,
+                    "aTargets": [8] //Es la columna de opciones
+                }, ]
+            });
+        });
     </script>
 </body>
 
