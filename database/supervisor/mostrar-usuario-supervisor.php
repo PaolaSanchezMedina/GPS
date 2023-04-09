@@ -1,30 +1,26 @@
 <?php include('../conexion.php');
 
 $output= array();
-$sql = "SELECT * FROM usuarios ";
+$sql = "SELECT * FROM usuario ";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
 
 $columns = array(
 	0 => 'id_usuario',
-	1 => 'nombre',
-	2 => 'primer_apellido',
-	3 => 'segundo_apellido',
-	4 => 'usuario',
-	5 => 'contra',
-	6 => 'id_tipo_usuario',
+	1 => 'nom_usuario',
+	2 => 'contrasena_usuario',
+	3 => 'id_tipoUsuario',
+	4 => 'id_colaborador',
 );
 
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
-	$sql .= " WHERE nombre like '%".$search_value."%'";
-	$sql .= " OR primer_apellido like '%".$search_value."%'";
-	$sql .= " OR segundo_apellido like '%".$search_value."%'";
-	$sql .= " OR usuario like '%".$search_value."%'";
-	$sql .= " OR contra like '%".$search_value."%'";
-	$sql .= " OR id_tipo_usuario like '%".$search_value."%'";
+	$sql .= " WHERE nom_usuario like '%".$search_value."%'";
+	$sql .= " OR contrasena_usuario like '%".$search_value."%'";
+	$sql .= " OR id_tipoUsuario like '%".$search_value."%'";
+	$sql .= " OR id_colaborador like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -52,12 +48,10 @@ while($row = mysqli_fetch_assoc($query))
 {
 	$sub_array = array();
 	$sub_array[] = $row['id_usuario'];
-	$sub_array[] = $row['nombre'];
-	$sub_array[] = $row['primer_apellido'];
-	$sub_array[] = $row['segundo_apellido'];
-	$sub_array[] = $row['usuario'];
-	$sub_array[] = $row['contra'];
-	$sub_array[] = $row['id_tipo_usuario'];
+	$sub_array[] = $row['nom_usuario'];
+	$sub_array[] = $row['contrasena_usuario'];
+	$sub_array[] = $row['id_tipoUsuario'];
+	$sub_array[] = $row['id_colaborador'];
 	$data[] = $sub_array;
 }
 

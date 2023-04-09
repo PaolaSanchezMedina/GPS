@@ -39,7 +39,7 @@ if (empty($_SESSION["id"])) {
     <!--ENCABEZADO DE PÁGINA-->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../admin/inicio.php>
+            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../super/inicio-supervisor.php>
                 <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
                 SiCEI
             </a>
@@ -49,28 +49,31 @@ if (empty($_SESSION["id"])) {
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/inicio.php>Mi perfil</a>
+                        <a class="nav-link text-light" aria-current="page" href="../super/inicio-supervisor.php">Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
+                        <a class="nav-link text-light" aria-current="page" href="../super/usuarios-supervisor.php">Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/equipos-admin.php>Equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href="../super/equipos-supervisor.php">Equipos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href="../super/asignar-equipos-supervisor.php">Asignar equipos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Catálogos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
-                            <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
-                            <li><a class="dropdown-item" href="../admin/marcas.php">Marcas</a></li>
-                            <li><a class="dropdown-item" href="../admin/colaboradores.php">Colaboradores</a></li>
-                            <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
+                            <li><a class="dropdown-item" href="../super/localidades-supervisor.php">Localidades</a></li>
+                            <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../super/marcas-supervisor.php">Marcas</a></li>
+                            <li><a class="dropdown-item" href="../super/colaboradores-supervisor.php">Colaboradores</a></li>
+                            <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href=../super/prestamos-supervisor.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
@@ -80,23 +83,25 @@ if (empty($_SESSION["id"])) {
     <!--CUERPO DE PÁGINA-->
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
-            <h2>Colaboradores</h2>
+            <h2>Equipos</h2>
+            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_equipos">Nuevo equipo</button>
         </div>
         <!--Tabla-->
         <div class="row">
             <div class="col">
                 <div class="tabla mt-2">
-                    <table id="tablaColaboradores" class="table table-striped dt-responsive nowrap" style="width:100%">
+                    <table id="tablaEquipo" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">1er Apellido</th>
-                                <th scope="col">2do Apellido</th>
-                                <th scope="col">Centro de costos</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Localidad</th>
-                                <th scope="col">Jefatura</th>
+                                <th scope="col">Equipo</th>
+                                <th scope="col">Modelo</th>
+                                <th scope="col">No. serie</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Tipo de equipo</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Proveedor</th>
+                                <th scope="col">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -117,26 +122,10 @@ if (empty($_SESSION["id"])) {
     <script type="text/javascript">
         //Mostrar usuarios
         $(document).ready(function() {
-            $('#tablaColaboradores').DataTable({
+            $('#tablaEquipo').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
-                //Esta función se llama cada que se va a crear una fila nueva con datatables
-                "fnCreatedRow": function(nRow, aData, iDataIndex) {
-                    $(nRow).attr('id_usuario', aData[0]);
-                },
-                'serverSide': 'true', //Los datos se procesan del lado del servidor
-                'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
-                'paging': 'true', //Habilita la paginación en la tabla.
-                'order': [], //No ordena inicialmente los datos de la tabla.
-                'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
-                    'url': '../../database/crud-colaborador/mostrar-colaborador.php',
-                    'type': 'post',
-                },
-                "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
-                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
-                    //"aTargets": [8] //Es la columna de opciones
-                }, ]
             })
         })
     </script>

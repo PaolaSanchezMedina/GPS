@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(empty($_SESSION["id"])){
+if (empty($_SESSION["id"])) {
     header("location: ../login.php");
 }
 ?>
@@ -36,8 +36,8 @@ if(empty($_SESSION["id"])){
 </head>
 
 <body>
-   <!--ENCABEZADO DE PÁGINA-->
-   <nav class="navbar navbar-expand-lg">
+    <!--ENCABEZADO DE PÁGINA-->
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../super/inicio-supervisor.php>
                 <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
@@ -52,20 +52,24 @@ if(empty($_SESSION["id"])){
                         <a class="nav-link text-light" aria-current="page" href="../super/inicio-supervisor.php">Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/asignar-equipos-supervisor.php">Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href="../super/usuarios-supervisor.php">Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/usuarios-supervisor.php">Usuarios</a>
+                        <a class="nav-link text-light" aria-current="page" href="../super/equipos-supervisor.php">Equipos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href="../super/asignar-equipos-supervisor.php">Asignar equipos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Catálogos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
-                            <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="../super/colaboradores-supervisor.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../super/localidades-supervisor.php">Localidades</a></li>
+                            <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../super/marcas-supervisor.php">Marcas</a></li>
+                            <li><a class="dropdown-item" href="../super/colaboradores-supervisor.php">Colaboradores</a></li>
+                            <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -89,12 +93,10 @@ if(empty($_SESSION["id"])){
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">1er Apellido</th>
-                                <th scope="col">2do Apellido</th>
                                 <th scope="col">Usuario</th>
                                 <th scope="col">Contraseña</th>
                                 <th scope="col">Tipo</th>
+                                <th scope="col">ID colaborador</th>
                             </tr>
                         </thead>
                         <tbody>

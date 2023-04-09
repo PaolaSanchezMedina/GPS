@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(empty($_SESSION["id"])){
+if (empty($_SESSION["id"])) {
     header("location: ../login.php");
 }
 ?>
@@ -52,20 +52,24 @@ if(empty($_SESSION["id"])){
                         <a class="nav-link text-light" aria-current="page" href="../super/inicio-supervisor.php">Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/asignar-equipos-supervisor.php">Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href="../super/usuarios-supervisor.php">Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/usuarios-supervisor.php">Usuarios</a>
+                        <a class="nav-link text-light" aria-current="page" href="../super/equipos-supervisor.php">Equipos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href="../super/asignar-equipos-supervisor.php">Asignar equipos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Catálogos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
-                            <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="../super/colaboradores-supervisor.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../super/localidades-supervisor.php">Localidades</a></li>
+                            <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../super/marcas-supervisor.php">Marcas</a></li>
+                            <li><a class="dropdown-item" href="../super/colaboradores-supervisor.php">Colaboradores</a></li>
+                            <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -80,6 +84,7 @@ if(empty($_SESSION["id"])){
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
             <h2>Proveedores</h2>
+            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_proveedores">Nuevo proveedor</button>
         </div>
         <!--Tabla-->
         <div class="row">
@@ -94,7 +99,8 @@ if(empty($_SESSION["id"])){
                                 <th scope="col">Contacto</th>
                                 <th scope="col">Domicilio</th>
                                 <th scope="col">Código postal</th>
-                                <th scope="col">Email</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>

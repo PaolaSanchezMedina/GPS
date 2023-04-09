@@ -5,7 +5,7 @@ if (empty($_SESSION["id"])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -80,23 +80,19 @@ if (empty($_SESSION["id"])) {
     <!--CUERPO DE PÁGINA-->
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
-            <h2>Colaboradores</h2>
+            <h2>Marcas</h2>
+            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_equipos">Nueva marca</button>
         </div>
         <!--Tabla-->
         <div class="row">
             <div class="col">
                 <div class="tabla mt-2">
-                    <table id="tablaColaboradores" class="table table-striped dt-responsive nowrap" style="width:100%">
+                    <table id="tablaMarcas" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">1er Apellido</th>
-                                <th scope="col">2do Apellido</th>
-                                <th scope="col">Centro de costos</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Localidad</th>
-                                <th scope="col">Jefatura</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -117,26 +113,10 @@ if (empty($_SESSION["id"])) {
     <script type="text/javascript">
         //Mostrar usuarios
         $(document).ready(function() {
-            $('#tablaColaboradores').DataTable({
+            $('#tablaMarcas').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
-                //Esta función se llama cada que se va a crear una fila nueva con datatables
-                "fnCreatedRow": function(nRow, aData, iDataIndex) {
-                    $(nRow).attr('id_usuario', aData[0]);
-                },
-                'serverSide': 'true', //Los datos se procesan del lado del servidor
-                'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
-                'paging': 'true', //Habilita la paginación en la tabla.
-                'order': [], //No ordena inicialmente los datos de la tabla.
-                'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
-                    'url': '../../database/crud-colaborador/mostrar-colaborador.php',
-                    'type': 'post',
-                },
-                "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
-                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
-                    //"aTargets": [8] //Es la columna de opciones
-                }, ]
             })
         })
     </script>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(empty($_SESSION["id"])){
+if (empty($_SESSION["id"])) {
     header("location: ../login.php");
 }
 ?>
@@ -52,24 +52,25 @@ if(empty($_SESSION["id"])){
                         <a class="nav-link text-light" aria-current="page" href=../admin/inicio.php>Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/equipos-admin.php>Equipos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>Asignar equipos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Catálogos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
-                            <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="../admin/colaboradores.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
+                            <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../admin/marcas.php">Marcas</a></li>
+                            <li><a class="dropdown-item" href="../admin/colaboradores.php">Colaboradores</a></li>
+                            <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
@@ -150,9 +151,9 @@ if(empty($_SESSION["id"])){
                 <div class="row ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Observaciones</label>
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px; max-height: 100px;"></textarea>
-                            </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px; max-height: 100px;"></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2 text-end">
@@ -198,16 +199,16 @@ if(empty($_SESSION["id"])){
             <p id="fecha-hora" class="ms-5"></p>
             <p>&copy; SiCEI 2023</p>
         </div>
-    </footer> 
+    </footer>
     <!--========================================SCRIPT PARA FECHA========================================-->
     <script>
         function mostrarFecha() {
-        var fecha = new Date();
-        var dia = fecha.getDate();
-        var mes = fecha.getMonth() + 1;
-        var anio = fecha.getFullYear();
-        var fechaCompleta = dia + '/' + mes + '/' + anio;
-        document.getElementById('fecha').innerHTML = fechaCompleta;
+            var fecha = new Date();
+            var dia = fecha.getDate();
+            var mes = fecha.getMonth() + 1;
+            var anio = fecha.getFullYear();
+            var fechaCompleta = dia + '/' + mes + '/' + anio;
+            document.getElementById('fecha').innerHTML = fechaCompleta;
         }
         mostrarFecha();
     </script>

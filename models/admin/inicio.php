@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(empty($_SESSION["id"])){
+if (empty($_SESSION["id"])) {
     header("location: ../login.php");
 }
 ?>
@@ -41,24 +41,25 @@ if(empty($_SESSION["id"])){
                         <a class="nav-link text-light" aria-current="page" href=../admin/inicio.php>Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/equipos-admin.php>Equipos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>Asignar equipos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Catálogos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
-                            <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="../admin/colaboradores.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
+                            <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../admin/marcas.php">Marcas</a></li>
+                            <li><a class="dropdown-item" href="../admin/colaboradores.php">Colaboradores</a></li>
+                            <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
@@ -73,7 +74,7 @@ if(empty($_SESSION["id"])){
                 <div class="row text-light">
                     <div class="row">
                         <div class="row">
-                            <label for="" class="fw-semibold mt-1">Nombre <?php echo $_SESSION["usuario"]; ?></label> 
+                            <label for="" class="fw-semibold mt-1">Nombre <?php echo $_SESSION["usuario"]; ?></label>
                         </div>
                         <div class="row">
                             <label for="" class="fw-semibold mt-3">Tipo de usuario</label>

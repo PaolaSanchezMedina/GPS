@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(empty($_SESSION["id"])){
+if (empty($_SESSION["id"])) {
     header("location: ../login.php");
 }
 ?>
@@ -52,24 +52,25 @@ if(empty($_SESSION["id"])){
                         <a class="nav-link text-light" aria-current="page" href=../admin/inicio.php>Mi perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/equipos-admin.php>Equipos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>Asignar equipos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Catálogos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
-                            <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="../admin/colaboradores.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
+                            <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../admin/marcas.php">Marcas</a></li>
+                            <li><a class="dropdown-item" href="../admin/colaboradores.php">Colaboradores</a></li>
+                            <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/prestamos-admin.php>Solicitar préstamo</a>
                     </li>
                 </ul>
             </div>
@@ -80,7 +81,7 @@ if(empty($_SESSION["id"])){
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
             <h2>Tipos de equipos</h2>
-            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_equipos">Nuevo equipo</button>
+            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_equipos">Nuevo tipo de equipo</button>
         </div>
         <!--Tabla-->
         <div class="row">
@@ -90,15 +91,8 @@ if(empty($_SESSION["id"])){
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Equipo</th>
-                                <th scope="col">Marca</th>
-                                <th scope="col">Modelo</th>
-                                <th scope="col">No. serie</th>
                                 <th scope="col">Tipo de equipo</th>
-                                <th scope="col">Convenio</th>
-                                <th scope="col">Costo</th>
-                                <th scope="col">Proveedor</th>
-                                <th scope="col">Descripción</th>
+                                <th scope="col">Clasificación</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -114,51 +108,19 @@ if(empty($_SESSION["id"])){
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo equipo</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo tipo de equipo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="nuevoEquipoForm" action="javascript:void();" method="post">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Equipo</label>
-                                <input type="text" class="form-control" aria-label="equipo" id="inputEquipo" name="inputEquipo">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Marca</label>
-                                <input type="text" class="form-control" aria-label="marca" id="inputMarca" name="inputMarca">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Modelo</label>
-                                <input type="text" class="form-control" aria-label="modelo" id="inputModelo" name="inputModelo">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <label for="" class="fw-semibold">No. serie</label>
-                                <input type="text" class="form-control" aria-label="no. serie" id="inputSerie" name="inputSerie">
-                            </div>
-                            <div class="col">
                                 <label for="" class="fw-semibold">Tipo de equipo</label>
                                 <input type="text" class="form-control" aria-label="tipo equipo" id="inputTipoEquipo" name="inputTipoEquipo">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Tipo de convenio</label>
-                                <input type="text" class="form-control" aria-label="tipo convenio" id="inputTipoConvenio" name="inputTipoConvenio">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Costo</label>
-                                <input type="text" class="form-control" aria-label="costo" id="inputCosto" name="inputCosto">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Proveedor</label>
-                                <input type="text" class="form-control" aria-label="proveedor" id="inputProveedor" name="inputProveedor">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Descripción</label>
-                                <input type="text" class="form-control" aria-label="descripcion" id="inputDesc" name="inputDesc">
+                                <label for="" class="fw-semibold">Clasificación</label>
+                                <input type="text" class="form-control" aria-label="clasificacion" id="inputClasificacion" name="inputClasificacion">
                             </div>
                         </div>
                     </div>
@@ -175,53 +137,21 @@ if(empty($_SESSION["id"])){
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar equipo</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar tipo de equipo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editarEquipoForm"> 
+                <form id="editarEquipoForm">
                     <input type="hidden" name="id_equipo" id="id_equipo" value="">
                     <input type="hidden" name="trid" id="trid" value="">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
                                 <label for="" class="fw-semibold">Equipo</label>
-                                <input type="text" class="form-control" aria-label="equipo" id="editarEquipo" name="editarEquipo">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Marca</label>
-                                <input type="text" class="form-control" aria-label="marca" id="editarMarca" name="editarMarca">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Modelo</label>
-                                <input type="text" class="form-control" aria-label="modelo" id="editarModelo" name="editarModelo">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <label for="" class="fw-semibold">No. serie</label>
-                                <input type="text" class="form-control" aria-label="no. serie" id="editarSerie" name="editarSerie">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Tipo de equipo</label>
                                 <input type="text" class="form-control" aria-label="tipo equipo" id="editarTipoEquipo" name="editarTipoEquipo">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Tipo de convenio</label>
-                                <input type="text" class="form-control" aria-label="tipo convenio" id="editarTipoConvenio" name="editarTipoConvenio">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Costo</label>
-                                <input type="text" class="form-control" aria-label="costo" id="editarCosto" name="editarCosto">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Proveedor</label>
-                                <input type="text" class="form-control" aria-label="proveedor" id="editarProveedor" name="editarProveedor">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Descripción</label>
-                                <input type="text" class="form-control" aria-label="descripcion" id="editarDesc" name="editarDesc">
+                                <label for="" class="fw-semibold">Clasificación</label>
+                                <input type="text" class="form-control" aria-label="clasificacion" id="editarClasificacion" name="editarClasificacion">
                             </div>
                         </div>
                     </div>
