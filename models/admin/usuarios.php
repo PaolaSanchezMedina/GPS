@@ -113,34 +113,26 @@ if (empty($_SESSION["id"])) {
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo usuario</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="nuevoUsuarioForm" action="javascript:void();" method="post">
+                <form id="nuevoUsuarioForm" action="" method="post">
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Nombre</label>
-                                <input type="text" class="form-control" aria-label="nombre" id="inputNombre" name="inputNombre">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Primer apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido p" id="inputApellidoP" name="inputApellidoP">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Segundo apellido</label>
-                                <input type="text" class="form-control" aria-label="apellido m" id="inputApellidoM" name="inputApellidoP">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
                             <div class="col">
                                 <label for="" class="fw-semibold">Usuario</label>
                                 <input type="text" class="form-control" aria-label="usuario" id="inputUsuario" name="inputUsuario">
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Contraseña</label>
-                                <input type="text" class="form-control" aria-label="contra" id="inputContra" name="inputContra">
+                                <input type="text" class="form-control" aria-label="contra" id="inputContrasena" name="inputContra">
                             </div>
-                            <div class="col">
+                        </div>
+                        <div class="row mt-3">
+                        <div class="col">
                                 <label for="" class="fw-semibold">Tipo de usuario</label>
                                 <input type="text" class="form-control" aria-label="contra" id="inputTipo" name="inputTipo">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Colaborador</label>
+                                <input type="text" class="form-control" aria-label="contra" id="inputColaborador" name="inputColaborador">
                             </div>
                         </div>
                     </div>
@@ -167,30 +159,22 @@ if (empty($_SESSION["id"])) {
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col">
-                                    <label for="" class="fw-semibold">Nombre</label>
-                                    <input type="text" class="form-control" aria-label="nombre" id="editarNombre" name="editarNombre">
-                                </div>
-                                <div class="col">
-                                    <label for="" class="fw-semibold">Primer apellido</label>
-                                    <input type="text" class="form-control" aria-label="apellido p" id="editarApellidoP" name="editarApellidoP">
-                                </div>
-                                <div class="col">
-                                    <label for="" class="fw-semibold">Segundo apellido</label>
-                                    <input type="text" class="form-control" aria-label="apellido m" id="editarApellidoM" name="editarApellidoM">
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col">
                                     <label for="" class="fw-semibold">Usuario</label>
                                     <input type="text" class="form-control" aria-label="usuario" id="editarUsuario" name="editarUsuario">
                                 </div>
                                 <div class="col">
                                     <label for="" class="fw-semibold">Contraseña</label>
-                                    <input type="text" class="form-control" aria-label="contra" id="editarContra" name="editarContra">
+                                    <input type="text" class="form-control" aria-label="contra" id="editarContrasena" name="editarContra">
                                 </div>
+                            </div>
+                            <div class="row mt-3">
                                 <div class="col">
                                     <label for="" class="fw-semibold">Tipo de usuario</label>
                                     <input type="text" class="form-control" aria-label="contra" id="editarTipo" name="editarTipo">
+                                </div>
+                                <div class="col">
+                                    <label for="" class="fw-semibold">Colaborador</label>
+                                    <input type="text" class="form-control" aria-label="contra" id="editarColaborador" name="editarTipo">
                                 </div>
                             </div>
                         </div>
@@ -237,139 +221,129 @@ if (empty($_SESSION["id"])) {
                 }, ]
             });
         });
-        // //==========Agregar usuarios==========
-        // $(document).on('submit', '#nuevoUsuarioForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
-        //     event.preventDefault(); 
-        //     //Se obtienen los valores de los campos
-        //     var nombre = $('#inputNombre').val();
-        //     var primer_apellido = $('#inputApellidoP').val();
-        //     var segundo_apellido = $('#inputApellidoM').val();
-        //     var usuario = $('#inputUsuario').val();
-        //     var contra = $('#inputContra').val();
-        //     var id_tipo_usuario = $('#inputTipo').val();
-        //     //Verifica que todos los campos esten llenos
-        //     if (nombre != '' && primer_apellido != '' && segundo_apellido != '' && usuario != '' && contra != '' && id_tipo_usuario != '') {
-        //         $.ajax({  //Petición ajax para agregar un nuevo colaborador
-        //             url: "../../database/crud-usuario/agregar-usuario.php",
-        //             data: {
-        //                 nombre: nombre,
-        //                 primer_apellido: primer_apellido,
-        //                 segundo_apellido: segundo_apellido,
-        //                 usuario: usuario,
-        //                 contra: contra,
-        //                 id_tipo_usuario: id_tipo_usuario
-        //             },
-        //             type: 'post',
-        //             success: function(data) { //Vuelve a dibujar la tabla de usuarios y ocultar el modal
-        //                 var json = JSON.parse(data);
-        //                 status = json.status;
-        //                 if (status == 'success') {
-        //                     table = $('#tablausuarios').DataTable();
-        //                     table.draw();
-        //                     $('#modal_usuarios').modal('hide');
-        //                 }
-        //             }
-        //         })
-        //     } else {
-        //         alert("Favor de llenar todos los campos")
-        //     }
-        // });
-        // //==========Actualizar usuarios==========
-        // $(document).on('submit', '#editarUsuarioForm', function(e) { //Establece un controlador de eventos en el formulario para el evento submit
-        //     e.preventDefault();
-        //     //Se obtienen los valores de los campos
-        //     var nombre = $('#editarNombre').val();
-        //     var primer_apellido = $('#editarApellidoP').val();
-        //     var segundo_apellido = $('#editarApellidoM').val();
-        //     var usuario = $('#editarUsuario').val();
-        //     var contra = $('#editarContra').val();
-        //     var id_tipo_usuario = $('#editarTipo').val();
-        //     var trid = $('#trid_usuario').val();
-        //     var id_usuario = $('#id_usuario').val();
-        //     //Verifica que todos los campos esten llenos
-        //     if (nombre != '' && primer_apellido  != '' && segundo_apellido != '' && usuario != '' && contra != '' && id_tipo_usuario != '') {
-        //         $.ajax({ //Petición ajax para actualizar un colaborador
-        //             url: "../../database/crud-usuario/actualizar-usuario.php",
-        //             type: "post",
-        //             data: {
-        //                 nombre: nombre,
-        //                 primer_apellido: primer_apellido,
-        //                 segundo_apellido: segundo_apellido,
-        //                 usuario: usuario,
-        //                 contra: contra,
-        //                 id_tipo_usuario: id_tipo_usuario,
-        //                 id_usuario: id_usuario
-        //             },
-        //             success: function(data) { //Vuelve a dibujar la tabla de usuarios y ocultar el modal
-        //                 var json = JSON.parse(data);
-        //                 var status = json.status;
-        //                 if (status == 'true') {
-        //                     table = $('#tablaUsuarios').DataTable();
-        //                     $('#modal_editar_usuarios').modal('hide');
-        //                     var button = '<td><a href="javascript:void();" data-id_usuario="' + id_usuario + '" class="btn editbtn"><i role="button" class="fa-solid fa-user-pen text-primary"></i></a><a href="javascript:void();"  data-id_usuario="' + id_usuario + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a></td>';
-        //                     var row = table.row("[id_usuario='" + trid + "']");
-        //                     row.row("[id_usuario='" + trid + "']").data([id_usuario, nombre, primer_apellido, segundo_apellido, usuario, contra, id_tipo_usuario, button]);
-        //                 } else {
-        //                     alert('failed');
-        //                 }
-        //             }
-        //         });
-        //     } else {
-        //         alert('Llenar todos los campos');
-        //     }
-        // });
-        // //==========Editar usuarios==========
-        // $('#tablaUsuarios').on('click', '.editbtn ', function(event) { //Abre el modal de editar colaboradores
-        //     var table = $('#tablaUsuarios').DataTable(); //Se inicializa la tabla de usuarios mediante el uso del plugin jQuery DataTables
-        //     var trid = $(this).closest('tr').attr('id_usuario'); //Se está obteniendo el ID del colaborador que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
-        //     var id_usuario = $(this).data('id_usuario'); //Se está obteniendo el ID del usuario de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id_usuario" en el botón.
-        //     $('#modal_editar_usuarios').modal('show');
-        //     $.ajax({ //Petición ajax para editar un colaborador
-        //         url: "../../database/crud-usuario/editar-usuario.php",
-        //         data: {
-        //             id_usuario: id_usuario
-        //         },
-        //         type: 'post',
-        //         success: function(data) {
-        //             var json = JSON.parse(data);
-        //             $('#editarNombre').val(json.nombre);
-        //             $('#editarApellidoP').val(json.primer_apellido);
-        //             $('#editarApellidoM').val(json.segundo_apellido);
-        //             $('#editarUsuario').val(json.usuario);
-        //             $('#editarContra').val(json.contra);
-        //             $('#editarTipo').val(json.id_tipo_usuario);
-        //             $('#id_usuario').val(id_usuario);
-        //             $('#trid_usuario').val(trid);
-        //         }
-        //     })
-        // });
-        // //==========Eliminar usuarios==========
-        // $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar un colaborador
-        //     var table = $('#tablaUsuarios').DataTable();
-        //     event.preventDefault();
-        //     var id_usuario = $(this).data('id_usuario'); //Se está obteniendo el ID del usuario de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id_usuario" en el botón.
-        //     if (confirm("¿Eliminar usuario definitivamente?")) {
-        //         $.ajax({
-        //             url: "../../database/crud-usuario/eliminar-usuario.php",
-        //             data: {
-        //                 id_usuario: id_usuario
-        //             },
-        //             type: "post",
-        //             success: function(data) {
-        //                 var json = JSON.parse(data);
-        //                 status = json.status;
-        //                 if (status == 'success') {
-        //                     $("#" + id_usuario).closest('tr').remove();
-        //                 } else {
-        //                     alert('Failed');
-        //                     return;
-        //                 }
-        //             }
-        //         });
-        //     } else {
-        //         return null;
-        //     }
-        // })
+        //==========Agregar usuarios==========
+        $(document).on('submit', '#nuevoUsuarioForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
+            event.preventDefault(); 
+            //Se obtienen los valores de los campos
+            var nom_usuario = $('#inputUsuario').val();
+            var contrasena_usuario = $('#inputContrasena').val();
+            var id_tipoUsuario = $('#inputTipo').val();
+            var id_colaborador = $('#inputColaborador').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_usuario != '' && contrasena_usuario != '' && id_tipoUsuario != '' && id_colaborador != '') {
+                $.ajax({  //Petición ajax para agregar un nuevo colaborador
+                    url: "../../database/crud-usuario/agregar-usuario.php",
+                    data: {
+                        nom_usuario: nom_usuario,
+                        contrasena_usuario: contrasena_usuario,
+                        id_tipoUsuario: id_tipoUsuario,
+                        id_colaborador: id_colaborador
+                    },
+                    type: 'post',
+                    success: function(data) { //Vuelve a dibujar la tabla de usuarios y ocultar el modal
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            table = $('#tablausuarios').DataTable();
+                            table.draw();
+                            $('#modal_usuarios').modal('hide');
+                        }
+                    }
+                })
+            } else {
+                alert("Favor de llenar todos los campos")
+            }
+        });
+        //==========Actualizar usuarios==========
+        $(document).on('submit', '#editarUsuarioForm', function(e) { //Establece un controlador de eventos en el formulario para el evento submit
+            e.preventDefault();
+            //Se obtienen los valores de los campos
+            var nom_usuario = $('#editarUsuario').val();
+            var contrasena_usuario = $('#editarContrasena').val();
+            var id_tipoUsuario = $('#editarTipo').val();
+            var id_colaborador = $('#editarColaborador').val();
+            var trid = $('#trid_usuario').val();
+            var id_usuario = $('#id_usuario').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_usuario != '' && contrasena_usuario != '' && id_tipoUsuario != '' && id_colaborador != '') {
+                $.ajax({ //Petición ajax para actualizar un colaborador
+                    url: "../../database/crud-usuario/actualizar-usuario.php",
+                    type: "post",
+                    data: {
+                        nom_usuario: nom_usuario,
+                        contrasena_usuario: contrasena_usuario,
+                        id_tipoUsuario: id_tipoUsuario,
+                        id_colaborador: id_colaborador,
+                        id_usuario: id_usuario
+                    },
+                    success: function(data) { //Vuelve a dibujar la tabla de usuarios y ocultar el modal
+                        var json = JSON.parse(data);
+                        var status = json.status;
+                        if (status == 'true') {
+                            table = $('#tablaUsuarios').DataTable();
+                            $('#modal_editar_usuarios').modal('hide');
+                            var button = '<td><a href="javascript:void();" data-id_usuario="' + id_usuario + '" class="btn editbtn"><i role="button" class="fa-solid fa-user-pen text-primary"></i></a><a href="javascript:void();"  data-id_usuario="' + id_usuario + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a></td>';
+                            var row = table.row("[id_usuario='" + trid + "']");
+                            row.row("[id_usuario='" + trid + "']").data([id_usuario, nom_usuario, contrasena_usuario, id_tipoUsuario, id_colaborador, button]);
+                        } else {
+                            alert('Failed');
+                        }
+                    }
+                });
+            } else {
+                alert('Llenar todos los campos');
+            }
+        });
+        //==========Editar usuarios==========
+        $('#tablaUsuarios').on('click', '.editbtn ', function(event) { //Abre el modal de editar colaboradores
+            var table = $('#tablaUsuarios').DataTable(); //Se inicializa la tabla de usuarios mediante el uso del plugin jQuery DataTables
+            var trid = $(this).closest('tr').attr('id_usuario'); //Se está obteniendo el ID del colaborador que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_usuario = $(this).data('id_usuario'); //Se está obteniendo el ID del usuario de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id_usuario" en el botón.
+            $('#modal_editar_usuarios').modal('show');
+            $.ajax({ //Petición ajax para editar un colaborador
+                url: "../../database/crud-usuario/editar-usuario.php",
+                data: {
+                    id_usuario: id_usuario
+                },
+                type: 'post',
+                success: function(data) {
+                    var json = JSON.parse(data);
+                    $('#editarUsuario').val(json.nom_usuario);
+                    $('#editarContrasena').val(json.contrasena_usuario);
+                    $('#editarTipo').val(json.id_tipoUsuario);
+                    $('#editarColaborador').val(json.id_colaborador);
+                    $('#id_usuario').val(id_usuario);
+                    $('#trid_usuario').val(trid);
+                }
+            })
+        });
+        //==========Eliminar usuarios==========
+        $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar un colaborador
+            var table = $('#tablaUsuarios').DataTable();
+            event.preventDefault();
+            var id_usuario = $(this).data('id_usuario'); //Se está obteniendo el ID del usuario de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id_usuario" en el botón.
+            if (confirm("¿Eliminar usuario definitivamente?")) {
+                $.ajax({
+                    url: "../../database/crud-usuario/eliminar-usuario.php",
+                    data: {
+                        id_usuario: id_usuario
+                    },
+                    type: "post",
+                    success: function(data) {
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            $("#" + id_usuario).closest('tr').remove();
+                        } else {
+                            alert('Failed');
+                            return;
+                        }
+                    }
+                });
+            } else {
+                return null;
+            }
+        })
     </script>
 </body>
 

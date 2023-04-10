@@ -1,15 +1,13 @@
 <?php 
 include('../conexion.php');
 
-$nombre = $_POST['nombre'];
-$primer_apellido = $_POST['primer_apellido'];
-$segundo_apellido = $_POST['segundo_apellido'];
-$usuario = $_POST['usuario'];
-$contra = $_POST['contra'];
-$id_tipo_usuario = $_POST['id_tipo_usuario'];
+$nom_usuario = $_POST['nom_usuario'];
+$contrasena_usuario = $_POST['contrasena_usuario'];
+$id_tipoUsuario = $_POST['id_tipoUsuario'];
+$id_colaborador = $_POST['id_colaborador'];
 $id_usuario = $_POST['id_usuario'];
 
-$sql = "UPDATE `usuarios` SET  `nombre`='$nombre' , `primer_apellido`= '$primer_apellido', `segundo_apellido`='$segundo_apellido', `usuario`='$usuario',  `contra`='$contra',  `id_tipo_usuario`='$id_tipo_usuario' WHERE id_usuario='$id_usuario' ";
+$sql = "UPDATE `usuario` SET  `nom_usuario`='$nom_usuario',  `contrasena_usuario`='$contrasena_usuario',  `id_tipoUsuario`='$id_tipoUsuario',  `id_colaborador`='$id_colaborador' WHERE id_usuario='$id_usuario' ";
 $query= mysqli_query($con,$sql);
 $lastId = mysqli_insert_id($con);
 if($query ==true)
