@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(empty($_SESSION["id"])){
+if (empty($_SESSION["id"])) {
     header("location: ../login.php");
 }
 ?>
@@ -76,28 +76,28 @@ if(empty($_SESSION["id"])){
                 <div class="row text-light">
                     <div class="row">
                         <div class="row">
-                            <label for="" class="fw-semibold mt-1">Nombre <?php echo $_SESSION["usuario"]; ?></label> 
+                            <label for="" class="fw-semibold mt-1">Nombre</label>
+                            <label for="" class="text-light"><?php echo $_SESSION["nombre"] . " " . $_SESSION["apellidoP"] . " " . $_SESSION["apellidoM"]; ?></label>
                         </div>
                         <div class="row">
                             <label for="" class="fw-semibold mt-3">Tipo de usuario</label>
-                        </div>
-                        <div class="row">
-                            <label for="" class="fw-semibold mt-3">Domicilio</label>
-                        </div>
-                        <div class="row">
-                            <label for="" class="fw-semibold mt-3">Contacto</label>
-                        </div>
-                        <div class="row">
-                            <label for="" class="fw-semibold mt-3">Email</label>
+                            <label for="" class="text-light">Supervisor</label>
                         </div>
                         <div class="row">
                             <label for="" class="fw-semibold mt-3">Centro de costos</label>
+                            <label for="" class="text-light"><?php echo $_SESSION["centroCostos"]; ?></label>
+                        </div>
+                        <div class="row">
+                            <label for="" class="fw-semibold mt-3">Correo</label>
+                            <label for="" class="text-light"><?php echo $_SESSION["correo"]; ?></label>
                         </div>
                         <div class="row">
                             <label for="" class="fw-semibold mt-3">Localidad</label>
+                            <label for="" class="text-light"><?php echo $_SESSION["localidad"]; ?></label>
                         </div>
                         <div class="row">
                             <label for="" class="fw-semibold mt-3">Jefatura</label>
+                            <label for="" class="text-light"><?php echo $_SESSION["jefatura"]; ?></label>
                         </div>
                     </div>
                     <form action="">

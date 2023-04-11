@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(empty($_SESSION["id"])){
+if (empty($_SESSION["id"])) {
     header("location: ../login.php");
 }
 ?>
@@ -61,8 +61,20 @@ if(empty($_SESSION["id"])){
             <form class="formularioPedir mt-2" action="">
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
-                        <label for="" class="fw-semibold">Nombre</label>
-                        <p>Paola Guadalupe Sánchez Medina</p>
+                        <div class="row">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Nombre</label>
+                                <p><?php echo $_SESSION["nombre"] . " " . $_SESSION["apellidoP"] . " " . $_SESSION["apellidoM"]; ?></p>
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">De</label>
+                                <p><?php echo $_SESSION["correo"]; ?></p>
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Para</label>
+                                <p><?php echo $_SESSION["correoA"]; ?></p>
+                            </div>
+                        </div>
                         <label for="" class="fw-semibold">Especificaciones</label>
                         <div class="form-floating">
                             <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px; max-height: 100px;"></textarea>
