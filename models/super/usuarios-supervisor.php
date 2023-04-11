@@ -129,7 +129,7 @@ if (empty($_SESSION["id"])) {
                 'paging': 'true',
                 'order': [],
                 'ajax': {
-                    'url': '../../database/supervisor/mostrar-usuario-supervisor.php',
+                    'url': '../../database/crud-usuario/mostrar-usuario-supervisor.php',
                     'type': 'post',
                 },
             });

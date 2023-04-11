@@ -128,7 +128,11 @@ if (empty($_SESSION["id"])) {
                         <div class="row mt-3">
                         <div class="col">
                                 <label for="" class="fw-semibold">Tipo de usuario</label>
-                                <input type="text" class="form-control" aria-label="contra" id="inputTipo" name="inputTipo">
+                                <select class="form-select" aria-label="Default select example" name="inputTipo" id="inputTipo">
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Supervisor</option>
+                                    <option value="3">Usuario general</option>
+                                </select>
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Colaborador</label>
@@ -170,7 +174,11 @@ if (empty($_SESSION["id"])) {
                             <div class="row mt-3">
                                 <div class="col">
                                     <label for="" class="fw-semibold">Tipo de usuario</label>
-                                    <input type="text" class="form-control" aria-label="contra" id="editarTipo" name="editarTipo">
+                                    <select class="form-select" aria-label="Default select example" name="inputTipo" id="inputTipo">
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Supervisor</option>
+                                        <option value="3">Usuario general</option>
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <label for="" class="fw-semibold">Colaborador</label>

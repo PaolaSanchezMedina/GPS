@@ -123,15 +123,16 @@ if (empty($_SESSION["id"])) {
         <div class="row">
             <div class="col">
                 <div class="tabla mt-2">
-                    <table id="tablaMisPrestamosS" class="table table-striped dt-responsive nowrap" style="width:100%">
+                    <table id="tablaMisPrestamos" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
-                                <th scope="col">Id usuario</th>
-                                <th scope="col">Id equipo</th>
+                                <th scope="col">Préstamo</th>
+                                <th scope="col">Colaborador</th>
                                 <th scope="col">Equipo</th>
-                                <th scope="col">Marca</th>
-                                <th scope="col">Modelo</th>
-                                <th scope="col">Especificaciones</th>
+                                <th scope="col">Identificador</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Entrego</th>
+                                <th scope="col">Observaciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -150,12 +151,28 @@ if (empty($_SESSION["id"])) {
     </footer>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
-        //Mostrar usuarios
+        //Mostrar los prestamos del colaborador
         $(document).ready(function() {
-            $('#tablaMisPrestamosS').DataTable({
+            $('#tablaMisPrestamos').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
+                //Esta función se llama cada que se va a crear una fila nueva con datatables
+                "fnCreatedRow": function(nRow, aData, iDataIndex) {
+                    $(nRow).attr('id_prestamo', aData[0]);
+                },
+                'serverSide': 'true', //Los datos se procesan del lado del servidor
+                'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
+                'paging': 'true', //Habilita la paginación en la tabla.
+                'order': [], //No ordena inicialmente los datos de la tabla.
+                'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
+                    'url': '../../database/supervisor-usuario/mis-prestamos.php',
+                    'type': 'post',
+                },
+                "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
+                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
+                    //"aTargets": [9] //Es la columna de opciones
+                }, ]
             })
         })
     </script>
