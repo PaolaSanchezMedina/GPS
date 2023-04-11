@@ -174,7 +174,7 @@ if (empty($_SESSION["id"])) {
                             <div class="row mt-3">
                                 <div class="col">
                                     <label for="" class="fw-semibold">Tipo de usuario</label>
-                                    <select class="form-select" aria-label="Default select example" name="inputTipo" id="inputTipo">
+                                    <select class="form-select" aria-label="Default select example" name="editarTipo" id="editarTipo">
                                         <option value="1">Administrador</option>
                                         <option value="2">Supervisor</option>
                                         <option value="3">Usuario general</option>
