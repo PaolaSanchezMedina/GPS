@@ -196,6 +196,121 @@ if (empty($_SESSION["id"])) {
                 }, ]
             });
         });
+        //==========Agregar Localidad==========
+        $(document).on('submit', '#nuevaLocalidadForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
+            event.preventDefault();
+            //Se obtienen los valores de los campos
+            var nom_localidad = $('#inputLocalidad').val();
+            var id_municipio = $('#inputMunicipio').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_localidad != '' && id_municipio != '') {
+                $.ajax({ //Petición ajax
+                    url: "../../database/crud-localidad/agregar-localidad.php",
+                    data: {
+                        nom_localidad: nom_localidad,
+                        id_municipio: id_municipio
+                    },
+                    type: 'post',
+                    success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            table = $('#tablaLocalidades').DataTable();
+                            table.draw(); 
+                            $('#modal_localidades').modal('hide');
+                        }
+                    }
+                })
+            } else {
+                alert("Favor de llenar todos los campos")
+            }
+        });
+        //==========Actualizar localidad==========
+        $(document).on('submit', '#editarLocalidadForm', function(e) { //Establece un controlador de eventos en el formulario para el evento submit
+            e.preventDefault();
+            //Se obtienen los valores de los campos
+            var nom_localidad = $('#editarLocalidad').val();
+            var id_municipio = $('#editarMunicipio').val();
+            var trid = $('#trid_localidad').val();
+            var id_localidad = $('#id_localidad').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_localidad != '' && id_municipio != '') { 
+                $.ajax({ //Petición ajax para actualizar
+                    url: "../../database/crud-localidad/actualizar-localidad.php",
+                    type: "post",
+                    data: {
+                        nom_localidad: nom_localidad,
+                        id_municipio: id_municipio,
+                        id_localidad: id_localidad
+                    },
+                    success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
+                        var json = JSON.parse(data);
+                        var status = json.status;
+                        if (status == 'true') {
+                            table = $('#tablaLocalidades').DataTable();
+                            table.draw();
+                            $('#modal_editar_localidades').modal('hide');
+                            var button = '<td><a href="javascript:void();" data-id_localidad="' + id_localidad + '" class="btn editbtn"><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();"  data-id_localidad="' + id_localidad + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-trash-can text-danger"></i></a></td>';
+                            var row = table.row("[id_localidad='" + trid + "']");
+                            row.row("[id_localidad='" + trid + "']").data([id_localidad, nom_localidad, id_municipio, button]);
+                        } else {
+                            alert('Failed');
+                        }
+                    }
+                });
+            } else {
+                alert('Llenar todos los campos');
+            }
+        });
+        //==========Editar localidad==========
+        $('#tablaLocalidades').on('click', '.editbtn ', function(event) { //Abre el modal de editar
+            var table = $('#tablaLocalidades').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
+            var trid = $(this).closest('tr').attr('id_localidad'); //Se está obteniendo el ID del equipo que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_localidad = $(this).data('id_localidad'); //Se está obteniendo el ID del equipo de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            $('#modal_editar_localidades').modal('show');
+            $.ajax({ //Petición ajax para editar
+                url: "../../database/crud-localidad/editar-localidad.php",
+                data: {
+                    id_localidad: id_localidad
+                },
+                type: 'post',
+                success: function(data) {
+                    var json = JSON.parse(data);
+                    $('#editarLocalidad').val(json.nom_localidad);
+                    $('#editarMunicipio').val(json.id_municipio);
+                    $('#id_localidad').val(id_localidad);
+                    $('#trid_localidad').val(trid);
+                }
+            })
+        });
+        //==========Eliminar equipo==========
+        $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar
+            var table = $('#tablaLocalidades').DataTable();
+            event.preventDefault();
+            var id_localidad = $(this).data('id_localidad'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            if (confirm("¿Eliminar localidad definitivamente?")) {
+                $.ajax({
+                    url: "../../database/crud-localidad/eliminar-localidad.php",
+                    data: {
+                        id_localidad: id_localidad
+                    },
+                    type: "post",
+                    success: function(data) {
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            $("#" + id_localidad).closest('tr').remove();
+                            table.draw();
+                        } else {
+                            alert('Failed');
+                            return;
+                        }
+                    }
+                });
+            } else {
+                return null;
+            }
+        })
     </script>
 </body>
 

@@ -343,6 +343,7 @@ if (empty($_SESSION["id"])) {
                         status = json.status;
                         if (status == 'success') {
                             $("#" + id_usuario).closest('tr').remove();
+                            table.draw(); 
                         } else {
                             alert('Failed');
                             return;

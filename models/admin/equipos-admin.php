@@ -302,7 +302,7 @@ if (empty($_SESSION["id"])) {
             var trid = $('#trid_equipo').val();
             var id_equipo = $('#id_equipo').val();
             //Verifica que todos los campos esten llenos
-            if (nom_equipo != '' && modelo_equipo != '' && noSerie_equipo != '' && id_marca != '' && id_tipoEquipo != '' && descripcion_equipo != '' && id_tipoEquipo != '') {
+            if (nom_equipo != '' && modelo_equipo != '' && noSerie_equipo != '' && id_marca != '' && id_tipoEquipo != '' && descripcion_equipo != '' && id_proveedor != '') {
                 $.ajax({ //Petición ajax para actualizar un equipo
                     url: "../../database/crud-equipo/actualizar-equipo.php",
                     type: "post",
@@ -378,6 +378,7 @@ if (empty($_SESSION["id"])) {
                         status = json.status;
                         if (status == 'success') {
                             $("#" + id_equipo).closest('tr').remove();
+                            table.draw(); 
                         } else {
                             alert('Failed');
                             return;
