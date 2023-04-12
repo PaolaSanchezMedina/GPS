@@ -126,7 +126,7 @@ if (empty($_SESSION["id"])) {
                             </div>
                         </div>
                         <div class="row mt-3">
-                        <div class="col">
+                            <div class="col">
                                 <label for="" class="fw-semibold">Tipo de usuario</label>
                                 <select class="form-select" aria-label="Default select example" name="inputTipo" id="inputTipo">
                                     <option value="1">Administrador</option>
@@ -224,14 +224,14 @@ if (empty($_SESSION["id"])) {
                     'type': 'post',
                 },
                 "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
-                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
+                    "bSortable": false, //Desabilita el ordenamiento de una columna
                     "aTargets": [5] //Es la columna de opciones
                 }, ]
             });
         });
         //==========Agregar usuarios==========
         $(document).on('submit', '#nuevoUsuarioForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
-            event.preventDefault(); 
+            event.preventDefault();
             //Se obtienen los valores de los campos
             var nom_usuario = $('#inputUsuario').val();
             var contrasena_usuario = $('#inputContrasena').val();
@@ -239,7 +239,7 @@ if (empty($_SESSION["id"])) {
             var id_colaborador = $('#inputColaborador').val();
             //Verifica que todos los campos esten llenos
             if (nom_usuario != '' && contrasena_usuario != '' && id_tipoUsuario != '' && id_colaborador != '') {
-                $.ajax({  //Petición ajax para agregar un nuevo colaborador
+                $.ajax({ //Petición ajax para agregar
                     url: "../../database/crud-usuario/agregar-usuario.php",
                     data: {
                         nom_usuario: nom_usuario,
@@ -248,7 +248,7 @@ if (empty($_SESSION["id"])) {
                         id_colaborador: id_colaborador
                     },
                     type: 'post',
-                    success: function(data) { //Vuelve a dibujar la tabla de usuarios y ocultar el modal
+                    success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
                         var json = JSON.parse(data);
                         status = json.status;
                         if (status == 'success') {
@@ -274,7 +274,7 @@ if (empty($_SESSION["id"])) {
             var id_usuario = $('#id_usuario').val();
             //Verifica que todos los campos esten llenos
             if (nom_usuario != '' && contrasena_usuario != '' && id_tipoUsuario != '' && id_colaborador != '') {
-                $.ajax({ //Petición ajax para actualizar un colaborador
+                $.ajax({ //Petición ajax para actualizar
                     url: "../../database/crud-usuario/actualizar-usuario.php",
                     type: "post",
                     data: {
@@ -284,7 +284,7 @@ if (empty($_SESSION["id"])) {
                         id_colaborador: id_colaborador,
                         id_usuario: id_usuario
                     },
-                    success: function(data) { //Vuelve a dibujar la tabla de usuarios y ocultar el modal
+                    success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
                         var json = JSON.parse(data);
                         var status = json.status;
                         if (status == 'true') {
@@ -304,12 +304,12 @@ if (empty($_SESSION["id"])) {
             }
         });
         //==========Editar usuarios==========
-        $('#tablaUsuarios').on('click', '.editbtn ', function(event) { //Abre el modal de editar colaboradores
-            var table = $('#tablaUsuarios').DataTable(); //Se inicializa la tabla de usuarios mediante el uso del plugin jQuery DataTables
-            var trid = $(this).closest('tr').attr('id_usuario'); //Se está obteniendo el ID del colaborador que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
-            var id_usuario = $(this).data('id_usuario'); //Se está obteniendo el ID del usuario de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id_usuario" en el botón.
+        $('#tablaUsuarios').on('click', '.editbtn ', function(event) { //Abre el modal de editar
+            var table = $('#tablaUsuarios').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
+            var trid = $(this).closest('tr').attr('id_usuario'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_usuario = $(this).data('id_usuario'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
             $('#modal_editar_usuarios').modal('show');
-            $.ajax({ //Petición ajax para editar un colaborador
+            $.ajax({ //Petición ajax para editar
                 url: "../../database/crud-usuario/editar-usuario.php",
                 data: {
                     id_usuario: id_usuario
@@ -327,10 +327,10 @@ if (empty($_SESSION["id"])) {
             })
         });
         //==========Eliminar usuarios==========
-        $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar un colaborador
+        $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar
             var table = $('#tablaUsuarios').DataTable();
             event.preventDefault();
-            var id_usuario = $(this).data('id_usuario'); //Se está obteniendo el ID del usuario de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id_usuario" en el botón.
+            var id_usuario = $(this).data('id_usuario'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
             if (confirm("¿Eliminar usuario definitivamente?")) {
                 $.ajax({
                     url: "../../database/crud-usuario/eliminar-usuario.php",
@@ -343,7 +343,7 @@ if (empty($_SESSION["id"])) {
                         status = json.status;
                         if (status == 'success') {
                             $("#" + id_usuario).closest('tr').remove();
-                            table.draw(); 
+                            table.draw();
                         } else {
                             alert('Failed');
                             return;

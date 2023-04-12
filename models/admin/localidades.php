@@ -172,7 +172,7 @@ if (empty($_SESSION["id"])) {
     </footer>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
-        //Mostrar localidades
+        //==========Mostrar Localidades==========
         $(document).ready(function() {
             $('#tablaLocalidades').DataTable({
                 language: {
@@ -191,7 +191,7 @@ if (empty($_SESSION["id"])) {
                     'type': 'post',
                 },
                 "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
-                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
+                    "bSortable": false, //Desabilita el ordenamiento de una columna
                     "aTargets": [3] //Es la columna de opciones
                 }, ]
             });
@@ -204,7 +204,7 @@ if (empty($_SESSION["id"])) {
             var id_municipio = $('#inputMunicipio').val();
             //Verifica que todos los campos esten llenos
             if (nom_localidad != '' && id_municipio != '') {
-                $.ajax({ //Petición ajax
+                $.ajax({ //Petición ajax para agregar
                     url: "../../database/crud-localidad/agregar-localidad.php",
                     data: {
                         nom_localidad: nom_localidad,
@@ -216,7 +216,7 @@ if (empty($_SESSION["id"])) {
                         status = json.status;
                         if (status == 'success') {
                             table = $('#tablaLocalidades').DataTable();
-                            table.draw(); 
+                            table.draw();
                             $('#modal_localidades').modal('hide');
                         }
                     }
@@ -234,7 +234,7 @@ if (empty($_SESSION["id"])) {
             var trid = $('#trid_localidad').val();
             var id_localidad = $('#id_localidad').val();
             //Verifica que todos los campos esten llenos
-            if (nom_localidad != '' && id_municipio != '') { 
+            if (nom_localidad != '' && id_municipio != '') {
                 $.ajax({ //Petición ajax para actualizar
                     url: "../../database/crud-localidad/actualizar-localidad.php",
                     type: "post",
@@ -243,7 +243,7 @@ if (empty($_SESSION["id"])) {
                         id_municipio: id_municipio,
                         id_localidad: id_localidad
                     },
-                    success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
+                    success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
                         var json = JSON.parse(data);
                         var status = json.status;
                         if (status == 'true') {
@@ -265,8 +265,8 @@ if (empty($_SESSION["id"])) {
         //==========Editar localidad==========
         $('#tablaLocalidades').on('click', '.editbtn ', function(event) { //Abre el modal de editar
             var table = $('#tablaLocalidades').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
-            var trid = $(this).closest('tr').attr('id_localidad'); //Se está obteniendo el ID del equipo que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
-            var id_localidad = $(this).data('id_localidad'); //Se está obteniendo el ID del equipo de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            var trid = $(this).closest('tr').attr('id_localidad'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_localidad = $(this).data('id_localidad'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
             $('#modal_editar_localidades').modal('show');
             $.ajax({ //Petición ajax para editar
                 url: "../../database/crud-localidad/editar-localidad.php",

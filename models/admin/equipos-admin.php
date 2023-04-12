@@ -262,7 +262,7 @@ if (empty($_SESSION["id"])) {
             var id_proveedor = $('#inputProveedor').val();
             //Verifica que todos los campos esten llenos
             if (nom_equipo != '' && modelo_equipo != '' && noSerie_equipo != '' && id_marca != '' && id_tipoEquipo != '' && descripcion_equipo != '' && id_tipoEquipo != '') {
-                $.ajax({ //Petición ajax para agregar un nuevo equipo
+                $.ajax({ //Petición ajax para agregar
                     url: "../../database/crud-equipo/agregar-equipo.php",
                     data: {
                         nom_equipo: nom_equipo,
@@ -274,7 +274,7 @@ if (empty($_SESSION["id"])) {
                         id_proveedor: id_proveedor
                     },
                     type: 'post',
-                    success: function(data) { //Vuelve a dibujar la tabla de equipos y ocultar el modal
+                    success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
                         var json = JSON.parse(data);
                         status = json.status;
                         if (status == 'success') {
@@ -303,7 +303,7 @@ if (empty($_SESSION["id"])) {
             var id_equipo = $('#id_equipo').val();
             //Verifica que todos los campos esten llenos
             if (nom_equipo != '' && modelo_equipo != '' && noSerie_equipo != '' && id_marca != '' && id_tipoEquipo != '' && descripcion_equipo != '' && id_proveedor != '') {
-                $.ajax({ //Petición ajax para actualizar un equipo
+                $.ajax({ //Petición ajax para actualizar
                     url: "../../database/crud-equipo/actualizar-equipo.php",
                     type: "post",
                     data: {
@@ -316,7 +316,7 @@ if (empty($_SESSION["id"])) {
                         id_proveedor: id_proveedor,
                         id_equipo: id_equipo
                     },
-                    success: function(data) { //Vuelve a dibujar la tabla de equipos y ocultar el modal
+                    success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
                         var json = JSON.parse(data);
                         var status = json.status;
                         if (status == 'true') {
@@ -336,12 +336,12 @@ if (empty($_SESSION["id"])) {
             }
         });
         //==========Editar equipo==========
-        $('#tablaEquipos').on('click', '.editbtn ', function(event) { //Abre el modal de editar equipos
-            var table = $('#tablaEquipos').DataTable(); //Se inicializa la tabla de equipos mediante el uso del plugin jQuery DataTables
-            var trid = $(this).closest('tr').attr('id_equipo'); //Se está obteniendo el ID del equipo que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
-            var id_equipo = $(this).data('id_equipo'); //Se está obteniendo el ID del equipo de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id_equipo" en el botón.
+        $('#tablaEquipos').on('click', '.editbtn ', function(event) { //Abre el modal de editar
+            var table = $('#tablaEquipos').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
+            var trid = $(this).closest('tr').attr('id_equipo'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_equipo = $(this).data('id_equipo'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
             $('#modal_editar_equipos').modal('show');
-            $.ajax({ //Petición ajax para editar un equipo
+            $.ajax({ //Petición ajax para editar
                 url: "../../database/crud-equipo/editar-equipo.php",
                 data: {
                     id_equipo: id_equipo
@@ -362,10 +362,10 @@ if (empty($_SESSION["id"])) {
             })
         });
         //==========Eliminar equipo==========
-        $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar un equipo
+        $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar
             var table = $('#tablaEquipos').DataTable();
             event.preventDefault();
-            var id_equipo = $(this).data('id_equipo'); //Se está obteniendo el ID del equipo de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id_equipo" en el botón.
+            var id_equipo = $(this).data('id_equipo'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
             if (confirm("¿Eliminar equipo definitivamente?")) {
                 $.ajax({
                     url: "../../database/crud-equipo/eliminar-equipo.php",
@@ -378,7 +378,7 @@ if (empty($_SESSION["id"])) {
                         status = json.status;
                         if (status == 'success') {
                             $("#" + id_equipo).closest('tr').remove();
-                            table.draw(); 
+                            table.draw();
                         } else {
                             alert('Failed');
                             return;
