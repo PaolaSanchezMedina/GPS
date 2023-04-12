@@ -252,7 +252,7 @@ if (empty($_SESSION["id"])) {
                         var json = JSON.parse(data);
                         status = json.status;
                         if (status == 'success') {
-                            table = $('#tablausuarios').DataTable();
+                            table = $('#tablaUsuarios').DataTable();
                             table.draw();
                             $('#modal_usuarios').modal('hide');
                         }
@@ -289,6 +289,7 @@ if (empty($_SESSION["id"])) {
                         var status = json.status;
                         if (status == 'true') {
                             table = $('#tablaUsuarios').DataTable();
+                            table.draw();
                             $('#modal_editar_usuarios').modal('hide');
                             var button = '<td><a href="javascript:void();" data-id_usuario="' + id_usuario + '" class="btn editbtn"><i role="button" class="fa-solid fa-user-pen text-primary"></i></a><a href="javascript:void();"  data-id_usuario="' + id_usuario + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a></td>';
                             var row = table.row("[id_usuario='" + trid + "']");
