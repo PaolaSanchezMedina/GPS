@@ -81,7 +81,7 @@ if (empty($_SESSION["id"])) {
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
             <h2>Tipos de equipos</h2>
-            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_equipos">Nuevo tipo de equipo</button>
+            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_tipo_equipos">Nuevo tipo de equipo</button>
         </div>
         <!--Tabla-->
         <div class="row">
@@ -172,7 +172,7 @@ if (empty($_SESSION["id"])) {
     </footer>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript"> 
-        //Mostrar usuarios
+        //==========Mostrar tipo de equipo==========
         $(document).ready(function() {
             $('#tablaTipoEquipo').DataTable({
                 language: {
@@ -195,6 +195,94 @@ if (empty($_SESSION["id"])) {
                     "aTargets": [3] //Es la columna de opciones
                 }, ]
             });
+        });
+        //==========Agregar tipo de equipo==========
+        $(document).on('submit', '#nuevoTipoEquipoForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
+            event.preventDefault();
+            //Se obtienen los valores de los campos
+            var nom_tipoEquipo = $('#inputTipoEquipo').val();
+            var id_clasiEquipo = $('#inputClasificacion').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_tipoEquipo != '' && id_clasiEquipo != '') {
+                $.ajax({ //Petición ajax para agregar
+                    url: "../../database/crud-tipo-equipo/agregar-tipo-equipo.php",
+                    data: {
+                        nom_tipoEquipo: nom_tipoEquipo,
+                        id_clasiEquipo: id_clasiEquipo
+                    },
+                    type: 'post',
+                    success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            table = $('#tablaTipoEquipo').DataTable();
+                            table.draw();
+                            $('#modal_tipo_equipos').modal('hide');
+                        }
+                    }
+                })
+            } else {
+                alert("Favor de llenar todos los campos")
+            }
+        });
+        //==========Actualizar tipo de equipo==========
+        $(document).on('submit', '#editarTipoEquipoForm', function(e) { //Establece un controlador de eventos en el formulario para el evento submit
+            e.preventDefault();
+            //Se obtienen los valores de los campos
+            var nom_tipoEquipo = $('#editarTipoEquipo').val();
+            var id_clasiEquipo = $('#editarClasificacion').val();
+            var trid = $('#trid_tipoEquipo').val();
+            var id_tipoEquipo = $('#id_tipoEquipo').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_tipoEquipo != '' && id_clasiEquipo != '') {
+                $.ajax({ //Petición ajax para actualizar
+                    url: "../../database/crud-tipo-equipo/actualizar-tipo-equipo.php",
+                    type: "post",
+                    data: {
+                        nom_tipoEquipo: nom_tipoEquipo,
+                        id_clasiEquipo: id_clasiEquipo,
+                        id_tipoEquipo: id_tipoEquipo
+                    },
+                    success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
+                        var json = JSON.parse(data);
+                        var status = json.status;
+                        if (status == 'true') {
+                            table = $('#tablaTipoEquipo').DataTable();
+                            table.draw();
+                            $('#modal_editar_tipoEquipos').modal('hide');
+                            var button = '<td><a href="javascript:void();" data-id_tipoEquipo="' + id_tipoEquipo + '" class="btn editbtn"><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();"  data-id_tipoEquipo="' + id_tipoEquipo + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-trash-can text-danger"></i></a></td>';
+                            var row = table.row("[id_tipoEquipo='" + trid + "']");
+                            row.row("[id_tipoEquipo='" + trid + "']").data([id_tipoEquipo, nom_tipoEquipo, id_clasiEquipo, button]);
+                        } else {
+                            alert('Failed');
+                        }
+                    }
+                });
+            } else {
+                alert('Llenar todos los campos');
+            }
+        });
+        //==========Editar tipo de equipo==========
+        $('#tablaTipoEquipo').on('click', '.editbtn ', function(event) { //Abre el modal de editar
+            var table = $('#tablaTipoEquipo').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
+            var trid = $(this).closest('tr').attr('id_tipoEquipo'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_tipoEquipo = $(this).data('id_tipoEquipo'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            console.log(id_tipoEquipo);
+            $('#modal_editar_tipoEquipos').modal('show');
+            $.ajax({ //Petición ajax para editar
+                url: "../../database/crud-tipo-equipo/editar-tipo-equipo.php",
+                data: {
+                    id_tipoEquipo: id_tipoEquipo
+                },
+                type: 'post',
+                success: function(data) {
+                    var json = JSON.parse(data);
+                    $('#editarTipoEquipo').val(json.nom_tipoEquipo);
+                    $('#editarClasificacion').val(json.id_clasiEquipo);
+                    $('#id_tipoEquipo').val(id_tipoEquipo);
+                    $('#trid_tipoEquipo').val(trid);
+                }
+            })
         });
     </script>
 </body>

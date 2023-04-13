@@ -267,6 +267,7 @@ if (empty($_SESSION["id"])) {
             var table = $('#tablaLocalidades').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
             var trid = $(this).closest('tr').attr('id_localidad'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
             var id_localidad = $(this).data('id_localidad'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            console.log(id_localidad);
             $('#modal_editar_localidades').modal('show');
             $.ajax({ //Petición ajax para editar
                 url: "../../database/crud-localidad/editar-localidad.php",
@@ -283,7 +284,7 @@ if (empty($_SESSION["id"])) {
                 }
             })
         });
-        //==========Eliminar equipo==========
+        //==========Eliminar localidad==========
         $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar
             var table = $('#tablaLocalidades').DataTable();
             event.preventDefault();

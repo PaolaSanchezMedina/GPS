@@ -251,7 +251,147 @@ if (empty($_SESSION["id"])) {
                     "aTargets": [8] //Es la columna de opciones
                 }, ]
             });
-        }); 
+        });
+        //==========Agregar Equipo==========
+        $(document).on('submit', '#nuevoEquipoForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
+            event.preventDefault();
+            //Se obtienen los valores de los campos
+            var nom_equipo = $('#inputEquipo').val();
+            var modelo_equipo = $('#inputModelo').val();
+            var noSerie_equipo = $('#inputSerie').val();
+            var id_marca = $('#inputMarca').val();
+            var id_tipoEquipo = $('#inputTipoEquipo').val();
+            var descripcion_equipo = $('#inputDescripcion').val();
+            var id_proveedor = $('#inputProveedor').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_equipo != '' && modelo_equipo != '' && noSerie_equipo != '' && id_marca != '' && id_tipoEquipo != '' && descripcion_equipo != '' && id_tipoEquipo != '') {
+                $.ajax({ //Petición ajax para agregar
+                    url: "../../database/crud-equipo/agregar-equipo.php",
+                    data: {
+                        nom_equipo: nom_equipo,
+                        modelo_equipo: modelo_equipo,
+                        noSerie_equipo: noSerie_equipo,
+                        id_marca: id_marca,
+                        id_tipoEquipo: id_tipoEquipo,
+                        descripcion_equipo: descripcion_equipo,
+                        id_proveedor: id_proveedor
+                    },
+                    type: 'post',
+                    success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            table = $('#tablaEquipos').DataTable();
+                            table.draw();
+                            $('#modal_equipos').modal('hide');
+                        }
+                    }
+                })
+            } else {
+                alert("Favor de llenar todos los campos")
+            }
+        });
+        //==========Actualizar equipo==========
+        $(document).on('submit', '#editarEquipoForm', function(e) { //Establece un controlador de eventos en el formulario para el evento submit
+            e.preventDefault();
+            //Se obtienen los valores de los campos
+            var nom_equipo = $('#editarEquipo').val();
+            var modelo_equipo = $('#editarModelo').val();
+            var noSerie_equipo = $('#editarSerie').val();
+            var id_marca = $('#editarMarca').val();
+            var id_tipoEquipo = $('#editarTipoEquipo').val();
+            var descripcion_equipo = $('#editarDescripcion').val();
+            var id_proveedor = $('#editarProveedor').val();
+            var trid = $('#trid_equipo').val();
+            var id_equipo = $('#id_equipo').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_equipo != '' && modelo_equipo != '' && noSerie_equipo != '' && id_marca != '' && id_tipoEquipo != '' && descripcion_equipo != '' && id_proveedor != '') {
+                $.ajax({ //Petición ajax para actualizar
+                    url: "../../database/crud-equipo/actualizar-equipo.php",
+                    type: "post",
+                    data: {
+                        nom_equipo: nom_equipo,
+                        modelo_equipo: modelo_equipo,
+                        noSerie_equipo: noSerie_equipo,
+                        id_marca: id_marca,
+                        id_tipoEquipo: id_tipoEquipo,
+                        descripcion_equipo: descripcion_equipo,
+                        id_proveedor: id_proveedor,
+                        id_equipo: id_equipo
+                    },
+                    success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
+                        var json = JSON.parse(data);
+                        var status = json.status;
+                        if (status == 'true') {
+                            table = $('#tablaEquipos').DataTable();
+                            table.draw();
+                            $('#modal_editar_equipos').modal('hide');
+                            var button = '<td><a href="javascript:void();" data-id_equipo="' + id_equipo + '" class="btn editbtn"><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();"  data-id_equipo="' + id_equipo + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-trash-can text-danger"></i></a></td>';
+                            var row = table.row("[id_equipo='" + trid + "']");
+                            row.row("[id_equipo='" + trid + "']").data([id_equipo, nom_equipo, modelo_equipo, noSerie_equipo, id_marca, id_tipoEquipo, descripcion_equipo, id_proveedor, button]);
+                        } else {
+                            alert('Failed');
+                        }
+                    }
+                });
+            } else {
+                alert('Llenar todos los campos');
+            }
+        });
+        //==========Editar equipo==========
+        $('#tablaEquipos').on('click', '.editbtn ', function(event) { //Abre el modal de editar
+            var table = $('#tablaEquipos').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
+            var trid = $(this).closest('tr').attr('id_equipo'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_equipo = $(this).data('id_equipo'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            $('#modal_editar_equipos').modal('show');
+            $.ajax({ //Petición ajax para editar
+                url: "../../database/crud-equipo/editar-equipo.php",
+                data: {
+                    id_equipo: id_equipo
+                },
+                type: 'post',
+                success: function(data) {
+                    var json = JSON.parse(data);
+                    $('#editarEquipo').val(json.nom_equipo);
+                    $('#editarModelo').val(json.modelo_equipo);
+                    $('#editarSerie').val(json.noSerie_equipo);
+                    $('#editarMarca').val(json.id_marca);
+                    $('#editarTipoEquipo').val(json.id_tipoEquipo);
+                    $('#editarDescripcion').val(json.descripcion_equipo);
+                    $('#editarProveedor').val(json.id_proveedor);
+                    $('#id_equipo').val(id_equipo);
+                    $('#trid_equipo').val(trid);
+                }
+            })
+        });
+        //==========Eliminar equipo==========
+        $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar
+            var table = $('#tablaEquipos').DataTable();
+            event.preventDefault();
+            var id_equipo = $(this).data('id_equipo'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            if (confirm("¿Eliminar equipo definitivamente?")) {
+                $.ajax({
+                    url: "../../database/crud-equipo/eliminar-equipo.php",
+                    data: {
+                        id_equipo: id_equipo
+                    },
+                    type: "post",
+                    success: function(data) {
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            $("#" + id_equipo).closest('tr').remove();
+                            table.draw();
+                        } else {
+                            alert('Failed');
+                            return;
+                        }
+                    }
+                });
+            } else {
+                return null;
+            }
+        }) 
     </script>
 </body>
 

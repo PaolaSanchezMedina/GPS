@@ -189,6 +189,117 @@ if (empty($_SESSION["id"])) {
                     "aTargets": [2] //Es la columna de opciones
                 }, ]
             })
+        });
+        //==========Agregar Marca==========
+        $(document).on('submit', '#nuevaMarcaForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
+            event.preventDefault();
+            //Se obtienen los valores de los campos
+            var nom_marca = $('#inputMarca').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_marca != '') {
+                $.ajax({ //Petición ajax para agregar
+                    url: "../../database/crud-marca/agregar-marca.php",
+                    data: {
+                        nom_marca: nom_marca
+                    },
+                    type: 'post',
+                    success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            table = $('#tablaMarcas').DataTable();
+                            table.draw();
+                            $('#modal_marcas').modal('hide');
+                        }
+                    }
+                })
+            } else {
+                alert("Favor de llenar todos los campos")
+            }
+        });
+        //==========Actualizar marca==========
+        $(document).on('submit', '#editarMarcaForm', function(e) { //Establece un controlador de eventos en el formulario para el evento submit
+            e.preventDefault();
+            //Se obtienen los valores de los campos
+            var nom_marca = $('#editarMarca').val();
+            var trid = $('#trid_marca').val();
+            var id_marca = $('#id_marca').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_marca != '') {
+                $.ajax({ //Petición ajax para actualizar
+                    url: "../../database/crud-marca/actualizar-marca.php",
+                    type: "post",
+                    data: {
+                        nom_marca: nom_marca,
+                        id_marca: id_marca
+                    },
+                    success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
+                        var json = JSON.parse(data);
+                        var status = json.status;
+                        if (status == 'true') {
+                            table = $('#tablaMarcas').DataTable();
+                            table.draw();
+                            $('#modal_editar_marcas').modal('hide');
+                            var button = '<td><a href="javascript:void();" data-id_marca="' + id_marca + '" class="btn editbtn"><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();"  data-id_marca="' + id_marca + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-trash-can text-danger"></i></a></td>';
+                            var row = table.row("[id_marca='" + trid + "']");
+                            row.row("[id_marca='" + trid + "']").data([id_marca, nom_marca, button]);
+                        } else {
+                            alert('Failed');
+                        }
+                    }
+                });
+            } else {
+                alert('Llenar todos los campos');
+            }
+        });
+        //==========Editar marca==========
+        $('#tablaMarcas').on('click', '.editbtn ', function(event) { //Abre el modal de editar
+            var table = $('#tablaMarcas').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
+            var trid = $(this).closest('tr').attr('id_marca'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_marca = $(this).data('id_marca'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            console.log(id_marca);
+            $('#modal_editar_marcas').modal('show');
+            $.ajax({ //Petición ajax para editar
+                url: "../../database/crud-marca/editar-marca.php",
+                data: {
+                    id_marca: id_marca
+                },
+                type: 'post',
+                success: function(data) {
+                    var json = JSON.parse(data);
+                    $('#editarMarca').val(json.nom_marca);
+                    $('#id_marca').val(id_marca);
+                    $('#trid_marca').val(trid);
+                }
+            })
+        });
+        //==========Eliminar marca==========
+        $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar
+            var table = $('#tablaMarcas').DataTable();
+            event.preventDefault();
+            var id_marca = $(this).data('id_marca'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            if (confirm("¿Eliminar marca definitivamente?")) {
+                $.ajax({
+                    url: "../../database/crud-marca/eliminar-marca.php",
+                    data: {
+                        id_marca: id_marca
+                    },
+                    type: "post",
+                    success: function(data) {
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            $("#" + id_marca).closest('tr').remove();
+                            table.draw();
+                        } else {
+                            alert('Failed');
+                            return;
+                        }
+                    }
+                });
+            } else {
+                return null;
+            }
         })
     </script>
 </body>
