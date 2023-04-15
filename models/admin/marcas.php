@@ -66,7 +66,7 @@ if (empty($_SESSION["id"])) {
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
-                            <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../admin/tipos-equipos.php">Tipos de equipos</a></li>
                             <li><a class="dropdown-item" href="../admin/marcas.php">Marcas</a></li>
                             <li><a class="dropdown-item" href="../admin/colaboradores.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>

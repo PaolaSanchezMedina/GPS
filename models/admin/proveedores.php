@@ -66,7 +66,7 @@ if (empty($_SESSION["id"])) {
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
-                            <li><a class="dropdown-item" href="../admin/tipo-equipo.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../admin/tipos-equipos.php">Tipos de equipos</a></li>
                             <li><a class="dropdown-item" href="../admin/marcas.php">Marcas</a></li>
                             <li><a class="dropdown-item" href="../admin/colaboradores.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../admin/proveedores.php">Proveedores</a></li>
@@ -258,38 +258,40 @@ if (empty($_SESSION["id"])) {
                 }, ]
             })
         });
-        //==========Agregar Equipo==========
-        $(document).on('submit', '#nuevoEquipoForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
+        //==========Agregar Proovedor==========
+        $(document).on('submit', '#nuevoProveedorForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
             event.preventDefault();
             //Se obtienen los valores de los campos
-            var nom_equipo = $('#inputEquipo').val();
-            var modelo_equipo = $('#inputModelo').val();
-            var noSerie_equipo = $('#inputSerie').val();
-            var id_marca = $('#inputMarca').val();
-            var id_tipoEquipo = $('#inputTipoEquipo').val();
-            var descripcion_equipo = $('#inputDescripcion').val();
-            var id_proveedor = $('#inputProveedor').val();
+            var nom_proveedor = $('#inputNombre').val();
+            var noProvSAP_proveedor = $('#inputSAP').val();
+            var RFC_proveedor = $('#inputRFC').val();
+            var contacto_proveedor = $('#inputContacto').val();
+            var calle_proveedor = $('#inputCalle').val();
+            var colonia_proveedor = $('#inputColonia').val();
+            var codigoPostal_proveedor = $('#inputCP').val();
+            var correo_proveedor = $('#inputCorreo').val();
             //Verifica que todos los campos esten llenos
-            if (nom_equipo != '' && modelo_equipo != '' && noSerie_equipo != '' && id_marca != '' && id_tipoEquipo != '' && descripcion_equipo != '' && id_tipoEquipo != '') {
+            if (nom_proveedor != '' && noProvSAP_proveedor != '' && RFC_proveedor != '' && contacto_proveedor != '' && calle_proveedor != '' && colonia_proveedor != '' && codigoPostal_proveedor != '' && correo_proveedor != '') {
                 $.ajax({ //Petición ajax para agregar
-                    url: "../../database/crud-equipo/agregar-equipo.php",
+                    url: "../../database/crud-proovedor/agregar-proovedor.php",
                     data: {
-                        nom_equipo: nom_equipo,
-                        modelo_equipo: modelo_equipo,
-                        noSerie_equipo: noSerie_equipo,
-                        id_marca: id_marca,
-                        id_tipoEquipo: id_tipoEquipo,
-                        descripcion_equipo: descripcion_equipo,
-                        id_proveedor: id_proveedor
+                        nom_proveedor: nom_proveedor,
+                        noProvSAP_proveedor: noProvSAP_proveedor,
+                        RFC_proveedor: RFC_proveedor,
+                        contacto_proveedor: contacto_proveedor,
+                        calle_proveedor: calle_proveedor,
+                        colonia_proveedor: colonia_proveedor,
+                        codigoPostal_proveedor: codigoPostal_proveedor,
+                        correo_proveedor: correo_proveedor
                     },
                     type: 'post',
                     success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
                         var json = JSON.parse(data);
                         status = json.status;
                         if (status == 'success') {
-                            table = $('#tablaEquipos').DataTable();
+                            table = $('#tablaProveedores').DataTable();
                             table.draw();
-                            $('#modal_equipos').modal('hide');
+                            $('#modal_proveedores').modal('hide');
                         }
                     }
                 })
@@ -297,44 +299,46 @@ if (empty($_SESSION["id"])) {
                 alert("Favor de llenar todos los campos")
             }
         });
-        //==========Actualizar equipo==========
-        $(document).on('submit', '#editarEquipoForm', function(e) { //Establece un controlador de eventos en el formulario para el evento submit
+        //==========Actualizar Proovedor==========
+        $(document).on('submit', '#editarProveedorForm', function(e) { //Establece un controlador de eventos en el formulario para el evento submit
             e.preventDefault();
             //Se obtienen los valores de los campos
-            var nom_equipo = $('#editarEquipo').val();
-            var modelo_equipo = $('#editarModelo').val();
-            var noSerie_equipo = $('#editarSerie').val();
-            var id_marca = $('#editarMarca').val();
-            var id_tipoEquipo = $('#editarTipoEquipo').val();
-            var descripcion_equipo = $('#editarDescripcion').val();
-            var id_proveedor = $('#editarProveedor').val();
-            var trid = $('#trid_equipo').val();
-            var id_equipo = $('#id_equipo').val();
+            var nom_proveedor = $('#editarNombre').val();
+            var noProvSAP_proveedor = $('#editarSAP').val();
+            var RFC_proveedor = $('#editarRFC').val();
+            var contacto_proveedor = $('#editarContacto').val();
+            var calle_proveedor = $('#editarCalle').val();
+            var colonia_proveedor = $('#editarColonia').val();
+            var codigoPostal_proveedor = $('#editarCP').val();
+            var correo_proveedor = $('#editarCorreo').val();
+            var trid = $('#id_proveedor').val();
+            var id_proveedor = $('#id_proveedor').val();
             //Verifica que todos los campos esten llenos
-            if (nom_equipo != '' && modelo_equipo != '' && noSerie_equipo != '' && id_marca != '' && id_tipoEquipo != '' && descripcion_equipo != '' && id_proveedor != '') {
+            if (nom_proveedor != '' && noProvSAP_proveedor != '' && RFC_proveedor != '' && contacto_proveedor != '' && calle_proveedor != '' && colonia_proveedor != '' && codigoPostal_proveedor!= '' && correo_proveedor != '') {
                 $.ajax({ //Petición ajax para actualizar
-                    url: "../../database/crud-equipo/actualizar-equipo.php",
+                    url: "../../database/crud-proovedor/actualizar-proovedor.php",
                     type: "post",
                     data: {
-                        nom_equipo: nom_equipo,
-                        modelo_equipo: modelo_equipo,
-                        noSerie_equipo: noSerie_equipo,
-                        id_marca: id_marca,
-                        id_tipoEquipo: id_tipoEquipo,
-                        descripcion_equipo: descripcion_equipo,
-                        id_proveedor: id_proveedor,
-                        id_equipo: id_equipo
+                        nom_proveedor: nom_proveedor,
+                        noProvSAP_proveedor: noProvSAP_proveedor,
+                        RFC_proveedor: RFC_proveedor,
+                        contacto_proveedor: contacto_proveedor,
+                        calle_proveedor: calle_proveedor,
+                        colonia_proveedor: colonia_proveedor,
+                        codigoPostal_proveedor: codigoPostal_proveedor,
+                        correo_proveedor: correo_proveedor,
+                        id_proveedor: id_proveedor
                     },
                     success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
                         var json = JSON.parse(data);
                         var status = json.status;
                         if (status == 'true') {
-                            table = $('#tablaEquipos').DataTable();
+                            table = $('#tablaProveedores').DataTable();
                             table.draw();
-                            $('#modal_editar_equipos').modal('hide');
-                            var button = '<td><a href="javascript:void();" data-id_equipo="' + id_equipo + '" class="btn editbtn"><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();"  data-id_equipo="' + id_equipo + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-trash-can text-danger"></i></a></td>';
-                            var row = table.row("[id_equipo='" + trid + "']");
-                            row.row("[id_equipo='" + trid + "']").data([id_equipo, nom_equipo, modelo_equipo, noSerie_equipo, id_marca, id_tipoEquipo, descripcion_equipo, id_proveedor, button]);
+                            $('#modal_editar_proveedores').modal('hide');
+                            var button = '<td><a href="javascript:void();" data-id_proveedor="' + id_proveedor + '" class="btn editbtn"><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();"  data-id_proveedor="' + id_proveedor + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-trash-can text-danger"></i></a></td>';
+                            var row = table.row("[id_proveedor='" + trid + "']");
+                            row.row("[id_proveedor='" + trid + "']").data([id_proveedor, nom_proveedor, noProvSAP_proveedor, RFC_proveedor, contacto_proveedor, calle_proveedor, colonia_proveedor, codigoPostal_proveedor, correo_proveedor, button]);
                         } else {
                             alert('Failed');
                         }
@@ -344,49 +348,51 @@ if (empty($_SESSION["id"])) {
                 alert('Llenar todos los campos');
             }
         });
-        //==========Editar equipo==========
-        $('#tablaEquipos').on('click', '.editbtn ', function(event) { //Abre el modal de editar
-            var table = $('#tablaEquipos').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
-            var trid = $(this).closest('tr').attr('id_equipo'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
-            var id_equipo = $(this).data('id_equipo'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
-            $('#modal_editar_equipos').modal('show');
+        //==========Editar Proovedor==========
+        $('#tablaProveedores').on('click', '.editbtn ', function(event) { //Abre el modal de editar
+            var table = $('#tablaProveedores').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
+            var trid = $(this).closest('tr').attr('id_proveedor'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_proveedor = $(this).data('id_proveedor'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            console.log(id_proveedor);
+            $('#modal_editar_proveedores').modal('show');
             $.ajax({ //Petición ajax para editar
-                url: "../../database/crud-equipo/editar-equipo.php",
+                url: "../../database/crud-proovedor/editar-proovedor.php",
                 data: {
-                    id_equipo: id_equipo
+                    id_proveedor: id_proveedor
                 },
                 type: 'post',
                 success: function(data) {
                     var json = JSON.parse(data);
-                    $('#editarEquipo').val(json.nom_equipo);
-                    $('#editarModelo').val(json.modelo_equipo);
-                    $('#editarSerie').val(json.noSerie_equipo);
-                    $('#editarMarca').val(json.id_marca);
-                    $('#editarTipoEquipo').val(json.id_tipoEquipo);
-                    $('#editarDescripcion').val(json.descripcion_equipo);
-                    $('#editarProveedor').val(json.id_proveedor);
-                    $('#id_equipo').val(id_equipo);
-                    $('#trid_equipo').val(trid);
+                    $('#editarNombre').val(json.nom_proveedor);
+                    $('#editarSAP').val(json.noProvSAP_proveedor);
+                    $('#editarRFC').val(json.RFC_proveedor);
+                    $('#editarContacto').val(json.contacto_proveedor);
+                    $('#editarCalle').val(json.calle_proveedor);
+                    $('#editarColonia').val(json.colonia_proveedor);
+                    $('#editarCP').val(json.codigoPostal_proveedor);
+                    $('#editarCorreo').val(json.correo_proveedor);
+                    $('#id_proveedor').val(id_proveedor);
+                    $('#trid_proveedor').val(trid);
                 }
             })
         });
-        //==========Eliminar equipo==========
+        //==========Eliminar Proovedor==========
         $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar
-            var table = $('#tablaEquipos').DataTable();
+            var table = $('#tablaProveedores').DataTable();
             event.preventDefault();
-            var id_equipo = $(this).data('id_equipo'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
-            if (confirm("¿Eliminar equipo definitivamente?")) {
+            var id_proveedor = $(this).data('id_proveedor'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            if (confirm("¿Eliminar proovedor definitivamente?")) {
                 $.ajax({
-                    url: "../../database/crud-equipo/eliminar-equipo.php",
+                    url: "../../database/crud-proovedor/eliminar-proovedor.php",
                     data: {
-                        id_equipo: id_equipo
+                        id_proveedor: id_proveedor
                     },
                     type: "post",
                     success: function(data) {
                         var json = JSON.parse(data);
                         status = json.status;
                         if (status == 'success') {
-                            $("#" + id_equipo).closest('tr').remove();
+                            $("#" + id_proveedor).closest('tr').remove();
                             table.draw();
                         } else {
                             alert('Failed');

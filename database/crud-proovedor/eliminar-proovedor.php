@@ -1,8 +1,8 @@
 <?php 
 include('../conexion.php');
 
-$equipment_id = $_POST['id_equipo'];
-$sql = "DELETE FROM equipo WHERE id_equipo='$equipment_id'";
+$proveedor_id = $_POST['id_proveedor'];
+$sql = "DELETE FROM provedor WHERE id_proveedor='$proveedor_id'";
 $delQuery =mysqli_query($con,$sql);
 if($delQuery==true)
 {

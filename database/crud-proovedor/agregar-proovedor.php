@@ -1,14 +1,15 @@
 <?php include('../conexion.php');
 
-$nom_equipo = $_POST['nom_equipo'];
-$modelo_equipo = $_POST['modelo_equipo'];
-$noSerie_equipo = $_POST['noSerie_equipo'];
-$id_marca = $_POST['id_marca'];
-$id_tipoEquipo = $_POST['id_tipoEquipo'];
-$descripcion_equipo = $_POST['descripcion_equipo'];
-$id_proveedor = $_POST['id_proveedor'];
+$nom_proveedor = $_POST['nom_proveedor'];
+$noProvSAP_proveedor = $_POST['noProvSAP_proveedor'];
+$RFC_proveedor = $_POST['RFC_proveedor'];
+$contacto_proveedor = $_POST['contacto_proveedor'];
+$calle_proveedor = $_POST['calle_proveedor'];
+$colonia_proveedor = $_POST['colonia_proveedor'];
+$codigoPostal_proveedor = $_POST['codigoPostal_proveedor'];
+$correo_proveedor = $_POST['correo_proveedor'];
 
-$sql = "INSERT INTO `equipo` (`nom_equipo`,`modelo_equipo`,`noSerie_equipo`,`id_marca`,`id_tipoEquipo`,`descripcion_equipo`,`id_proveedor`) values ('$nom_equipo', '$modelo_equipo', '$noSerie_equipo', '$id_marca', '$id_tipoEquipo', '$descripcion_equipo', '$id_proveedor' )";
+$sql = "INSERT INTO `provedor` (`nom_proveedor`,`noProvSAP_proveedor`,`RFC_proveedor`,`contacto_proveedor`,`calle_proveedor`,`colonia_proveedor`,`codigoPostal_proveedor`,`correo_proveedor`) values ('$nom_proveedor', '$noProvSAP_proveedor', '$RFC_proveedor', '$contacto_proveedor', '$calle_proveedor', '$colonia_proveedor', '$codigoPostal_proveedor', '$correo_proveedor' )";
 $query= mysqli_query($con,$sql);
 if($query==true)
 {

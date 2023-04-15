@@ -1,16 +1,17 @@
 <?php 
 include('../conexion.php');
 
-$nom_equipo = $_POST['nom_equipo'];
-$modelo_equipo = $_POST['modelo_equipo'];
-$noSerie_equipo = $_POST['noSerie_equipo'];
-$id_marca = $_POST['id_marca'];
-$id_tipoEquipo = $_POST['id_tipoEquipo'];
-$descripcion_equipo = $_POST['descripcion_equipo'];
+$nom_proveedor = $_POST['nom_proveedor'];
+$noProvSAP_proveedor = $_POST['noProvSAP_proveedor'];
+$RFC_proveedor = $_POST['RFC_proveedor'];
+$contacto_proveedor = $_POST['contacto_proveedor'];
+$calle_proveedor = $_POST['calle_proveedor'];
+$colonia_proveedor = $_POST['colonia_proveedor'];
+$codigoPostal_proveedor = $_POST['codigoPostal_proveedor'];
+$correo_proveedor = $_POST['correo_proveedor'];
 $id_proveedor = $_POST['id_proveedor'];
-$id_equipo = $_POST['id_equipo'];
 
-$sql = "UPDATE `equipo` SET  `nom_equipo`='$nom_equipo',  `modelo_equipo`='$modelo_equipo',  `noSerie_equipo`='$noSerie_equipo',  `id_marca`='$id_marca',  `id_tipoEquipo`='$id_tipoEquipo',  `descripcion_equipo`='$descripcion_equipo',  `id_proveedor`='$id_proveedor' WHERE id_equipo='$id_equipo' ";
+$sql = "UPDATE `provedor` SET  `nom_proveedor`='$nom_proveedor',  `noProvSAP_proveedor`='$noProvSAP_proveedor',  `RFC_proveedor`='$RFC_proveedor',  `contacto_proveedor`='$contacto_proveedor',  `calle_proveedor`='$calle_proveedor',  `colonia_proveedor`='$colonia_proveedor',  `codigoPostal_proveedor`='$codigoPostal_proveedor',  `correo_proveedor`='$correo_proveedor' WHERE id_proveedor='$id_proveedor' ";
 $query= mysqli_query($con,$sql);
 $lastId = mysqli_insert_id($con);
 if($query ==true)
@@ -27,6 +28,4 @@ else
         'status'=>'false', 
     );
     echo json_encode($data);
-} 
-
-?>
+}
