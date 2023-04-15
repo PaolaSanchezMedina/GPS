@@ -66,7 +66,7 @@ if (empty($_SESSION["id"])) {
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../super/localidades-supervisor.php">Localidades</a></li>
-                            <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../super/tipos-equipo-supervisor.php">Tipos de equipos</a></li>
                             <li><a class="dropdown-item" href="../super/marcas-supervisor.php">Marcas</a></li>
                             <li><a class="dropdown-item" href="../super/colaboradores-supervisor.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
@@ -175,7 +175,7 @@ if (empty($_SESSION["id"])) {
     </footer>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
-        //Mostrar localidades
+        //==========Mostrar Localidades==========
         $(document).ready(function() {
             $('#tablaLocalidades').DataTable({
                 language: {
@@ -194,7 +194,7 @@ if (empty($_SESSION["id"])) {
                     'type': 'post',
                 },
                 "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
-                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
+                    "bSortable": false, //Desabilita el ordenamiento de una columna
                     "aTargets": [3] //Es la columna de opciones
                 }, ]
             });
@@ -270,6 +270,7 @@ if (empty($_SESSION["id"])) {
             var table = $('#tablaLocalidades').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
             var trid = $(this).closest('tr').attr('id_localidad'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
             var id_localidad = $(this).data('id_localidad'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            console.log(id_localidad);
             $('#modal_editar_localidades').modal('show');
             $.ajax({ //Petición ajax para editar
                 url: "../../database/crud-localidad/editar-localidad.php",
@@ -286,7 +287,7 @@ if (empty($_SESSION["id"])) {
                 }
             })
         });
-        //==========Eliminar equipo==========
+        //==========Eliminar localidad==========
         $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar
             var table = $('#tablaLocalidades').DataTable();
             event.preventDefault();

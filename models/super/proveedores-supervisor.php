@@ -66,7 +66,7 @@ if (empty($_SESSION["id"])) {
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../super/localidades-supervisor.php">Localidades</a></li>
-                            <li><a class="dropdown-item" href="../super/tipo-equipo-supervisor.php">Tipos de equipos</a></li>
+                            <li><a class="dropdown-item" href="../super/tipos-equipo-supervisor.php">Tipos de equipos</a></li>
                             <li><a class="dropdown-item" href="../super/marcas-supervisor.php">Marcas</a></li>
                             <li><a class="dropdown-item" href="../super/colaboradores-supervisor.php">Colaboradores</a></li>
                             <li><a class="dropdown-item" href="../super/proveedores-supervisor.php">Proveedores</a></li>
@@ -260,6 +260,152 @@ if (empty($_SESSION["id"])) {
                     "aTargets": [9] //Es la columna de opciones
                 }, ]
             })
+        });
+        //==========Agregar Proovedor==========
+        $(document).on('submit', '#nuevoProveedorForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
+            event.preventDefault();
+            //Se obtienen los valores de los campos
+            var nom_proveedor = $('#inputNombre').val();
+            var noProvSAP_proveedor = $('#inputSAP').val();
+            var RFC_proveedor = $('#inputRFC').val();
+            var contacto_proveedor = $('#inputContacto').val();
+            var calle_proveedor = $('#inputCalle').val();
+            var colonia_proveedor = $('#inputColonia').val();
+            var codigoPostal_proveedor = $('#inputCP').val();
+            var correo_proveedor = $('#inputCorreo').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_proveedor != '' && noProvSAP_proveedor != '' && RFC_proveedor != '' && contacto_proveedor != '' && calle_proveedor != '' && colonia_proveedor != '' && codigoPostal_proveedor != '' && correo_proveedor != '') {
+                $.ajax({ //Petición ajax para agregar
+                    url: "../../database/crud-proovedor/agregar-proovedor.php",
+                    data: {
+                        nom_proveedor: nom_proveedor,
+                        noProvSAP_proveedor: noProvSAP_proveedor,
+                        RFC_proveedor: RFC_proveedor,
+                        contacto_proveedor: contacto_proveedor,
+                        calle_proveedor: calle_proveedor,
+                        colonia_proveedor: colonia_proveedor,
+                        codigoPostal_proveedor: codigoPostal_proveedor,
+                        correo_proveedor: correo_proveedor
+                    },
+                    type: 'post',
+                    success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            table = $('#tablaProveedores').DataTable();
+                            table.draw();
+                            $('#modal_proveedores').modal('hide');
+                        }
+                    }
+                })
+            } else {
+                alert("Favor de llenar todos los campos")
+            }
+        });
+        //==========Actualizar Proovedor==========
+        $(document).on('submit', '#editarProveedorForm', function(e) { //Establece un controlador de eventos en el formulario para el evento submit
+            e.preventDefault();
+            //Se obtienen los valores de los campos
+            var nom_proveedor = $('#editarNombre').val();
+            var noProvSAP_proveedor = $('#editarSAP').val();
+            var RFC_proveedor = $('#editarRFC').val();
+            var contacto_proveedor = $('#editarContacto').val();
+            var calle_proveedor = $('#editarCalle').val();
+            var colonia_proveedor = $('#editarColonia').val();
+            var codigoPostal_proveedor = $('#editarCP').val();
+            var correo_proveedor = $('#editarCorreo').val();
+            var trid = $('#id_proveedor').val();
+            var id_proveedor = $('#id_proveedor').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_proveedor != '' && noProvSAP_proveedor != '' && RFC_proveedor != '' && contacto_proveedor != '' && calle_proveedor != '' && colonia_proveedor != '' && codigoPostal_proveedor != '' && correo_proveedor != '') {
+                $.ajax({ //Petición ajax para actualizar
+                    url: "../../database/crud-proovedor/actualizar-proovedor.php",
+                    type: "post",
+                    data: {
+                        nom_proveedor: nom_proveedor,
+                        noProvSAP_proveedor: noProvSAP_proveedor,
+                        RFC_proveedor: RFC_proveedor,
+                        contacto_proveedor: contacto_proveedor,
+                        calle_proveedor: calle_proveedor,
+                        colonia_proveedor: colonia_proveedor,
+                        codigoPostal_proveedor: codigoPostal_proveedor,
+                        correo_proveedor: correo_proveedor,
+                        id_proveedor: id_proveedor
+                    },
+                    success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
+                        var json = JSON.parse(data);
+                        var status = json.status;
+                        if (status == 'true') {
+                            table = $('#tablaProveedores').DataTable();
+                            table.draw();
+                            $('#modal_editar_proveedores').modal('hide');
+                            var button = '<td><a href="javascript:void();" data-id_proveedor="' + id_proveedor + '" class="btn editbtn"><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();"  data-id_proveedor="' + id_proveedor + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-trash-can text-danger"></i></a></td>';
+                            var row = table.row("[id_proveedor='" + trid + "']");
+                            row.row("[id_proveedor='" + trid + "']").data([id_proveedor, nom_proveedor, noProvSAP_proveedor, RFC_proveedor, contacto_proveedor, calle_proveedor, colonia_proveedor, codigoPostal_proveedor, correo_proveedor, button]);
+                        } else {
+                            alert('Failed');
+                        }
+                    }
+                });
+            } else {
+                alert('Llenar todos los campos');
+            }
+        });
+        //==========Editar Proovedor==========
+        $('#tablaProveedores').on('click', '.editbtn ', function(event) { //Abre el modal de editar
+            var table = $('#tablaProveedores').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
+            var trid = $(this).closest('tr').attr('id_proveedor'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_proveedor = $(this).data('id_proveedor'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            console.log(id_proveedor);
+            $('#modal_editar_proveedores').modal('show');
+            $.ajax({ //Petición ajax para editar
+                url: "../../database/crud-proovedor/editar-proovedor.php",
+                data: {
+                    id_proveedor: id_proveedor
+                },
+                type: 'post',
+                success: function(data) {
+                    var json = JSON.parse(data);
+                    $('#editarNombre').val(json.nom_proveedor);
+                    $('#editarSAP').val(json.noProvSAP_proveedor);
+                    $('#editarRFC').val(json.RFC_proveedor);
+                    $('#editarContacto').val(json.contacto_proveedor);
+                    $('#editarCalle').val(json.calle_proveedor);
+                    $('#editarColonia').val(json.colonia_proveedor);
+                    $('#editarCP').val(json.codigoPostal_proveedor);
+                    $('#editarCorreo').val(json.correo_proveedor);
+                    $('#id_proveedor').val(id_proveedor);
+                    $('#trid_proveedor').val(trid);
+                }
+            })
+        });
+        //==========Eliminar Proovedor==========
+        $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar
+            var table = $('#tablaProveedores').DataTable();
+            event.preventDefault();
+            var id_proveedor = $(this).data('id_proveedor'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            if (confirm("¿Eliminar proovedor definitivamente?")) {
+                $.ajax({
+                    url: "../../database/crud-proovedor/eliminar-proovedor.php",
+                    data: {
+                        id_proveedor: id_proveedor
+                    },
+                    type: "post",
+                    success: function(data) {
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            $("#" + id_proveedor).closest('tr').remove();
+                            table.draw();
+                        } else {
+                            alert('Failed');
+                            return;
+                        }
+                    }
+                });
+            } else {
+                return null;
+            }
         })
     </script>
 </body>

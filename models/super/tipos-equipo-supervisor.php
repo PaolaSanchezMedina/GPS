@@ -5,7 +5,7 @@ if (empty($_SESSION["id"])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -83,18 +83,19 @@ if (empty($_SESSION["id"])) {
     <!--CUERPO DE PÁGINA-->
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
-            <h2>Marcas</h2>
-            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_marcas">Nueva marca</button>
+            <h2>Tipos de equipos</h2>
+            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_tipo_equipos">Nuevo tipo de equipo</button>
         </div>
         <!--Tabla-->
         <div class="row">
             <div class="col">
                 <div class="tabla mt-2">
-                    <table id="tablaMarcas" class="table table-striped dt-responsive nowrap" style="width:100%">
+                    <table id="tablaTiposEquipo" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Marca</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Clasificación</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -105,20 +106,24 @@ if (empty($_SESSION["id"])) {
             </div>
         </div>
     </div>
-    <!--Pantalla modal para agregar una nueva marca-->
-    <div class="modal fade mt-5" id="modal_marcas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--Pantalla modal para agregar un nuevo tipo de equipo-->
+    <div class="modal fade modal-xl mt-5" id="modal_tipo_equipos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva marca</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo tipo de equipo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="nuevaMarcaForm" action="javascript:void();" method="post">
+                <form id="nuevoTipoEquipoForm" action="javascript:void();" method="post">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Marca</label>
-                                <input type="text" class="form-control" aria-label="marca" id="inputMarca" name="inputMarca">
+                                <label for="" class="fw-semibold">Tipo de equipo</label>
+                                <input type="text" class="form-control" aria-label="tipo de equipo" id="inputTipoE" name="inputTipoE">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Clasificación</label>
+                                <input type="text" class="form-control" aria-label="clasificacion" id="inputClasificacion" name="inputClasificacion">
                             </div>
                         </div>
                     </div>
@@ -130,22 +135,26 @@ if (empty($_SESSION["id"])) {
             </div>
         </div>
     </div>
-    <!--Pantalla modal para editar una marca-->
-    <div class="modal fade mt-5" id="modal_editar_marcas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--Pantalla modal para editar un tipo de equipo-->
+    <div class="modal fade modal-xl mt-5" id="modal_editar_tipoEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar marca</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar tipo de equipo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editarMarcaForm">
-                    <input type="hidden" name="id_marca" id="id_marca" value="">
+                <form id="editarTipoEquipoForm">
+                    <input type="hidden" name="id_tipoEquipo" id="id_tipoEquipo" value="">
                     <input type="hidden" name="trid" id="trid" value="">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Marca</label>
-                                <input type="text" class="form-control" aria-label="Marca" id="editarMarca" name="editarMarca">
+                                <label for="" class="fw-semibold">Tipo de equipo</label>
+                                <input type="text" class="form-control" aria-label="tipo de equipo" id="editarTipoE" name="editarTipoE">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Clasificación</label>
+                                <input type="text" class="form-control" aria-label="Clasificacion" id="editarClasificacion" name="editarClasificacion">
                             </div>
                         </div>
                     </div>
@@ -166,50 +175,52 @@ if (empty($_SESSION["id"])) {
     </footer>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
-        //Mostrar marcas
+        //Mostrar tipos de equipos
         $(document).ready(function() {
-            $('#tablaMarcas').DataTable({
+            $('#tablaTiposEquipo').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
                 },
                 //Esta función se llama cada que se va a crear una fila nueva con datatables
                 "fnCreatedRow": function(nRow, aData, iDataIndex) {
-                    $(nRow).attr('id_marca', aData[0]);
+                    $(nRow).attr('id_tipoEquipo', aData[0]);
                 },
                 'serverSide': 'true', //Los datos se procesan del lado del servidor
                 'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
                 'paging': 'true', //Habilita la paginación en la tabla.
                 'order': [], //No ordena inicialmente los datos de la tabla.
                 'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
-                    'url': '../../database/crud-marca/mostrar-marca.php',
+                    'url': '../../database/crud-tipoEquipo/mostrar-tipoEquipo.php',
                     'type': 'post',
                 },
                 "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
                     "bSortable": false,
-                    "aTargets": [2] //Es la columna de opciones
+                    "aTargets": [3] //Es la columna de opciones
                 }, ]
             })
         });
-        //==========Agregar Marca==========
-        $(document).on('submit', '#nuevaMarcaForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
+        //==========Agregar tipo de equipo==========
+        $(document).on('submit', '#nuevoTipoEquipoForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
             event.preventDefault();
             //Se obtienen los valores de los campos
-            var nom_marca = $('#inputMarca').val();
+            var nom_tipoEquipo = $('#inputTipoE').val();
+            var id_clasiEquipo = $('#inputClasificacion').val();
             //Verifica que todos los campos esten llenos
-            if (nom_marca != '') {
+            if (nom_tipoEquipo != '' && id_clasiEquipo != '') {
                 $.ajax({ //Petición ajax para agregar
-                    url: "../../database/crud-marca/agregar-marca.php",
+                    url: "../../database/crud-tipoEquipo/agregar-tipoEquipo.php",
                     data: {
-                        nom_marca: nom_marca
+                        nom_tipoEquipo: nom_tipoEquipo,
+                        id_clasiEquipo: id_clasiEquipo
                     },
                     type: 'post',
                     success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
                         var json = JSON.parse(data);
                         status = json.status;
                         if (status == 'success') {
-                            table = $('#tablaMarcas').DataTable();
+                            table = $('#tablaTiposEquipo').DataTable();
                             table.draw();
-                            $('#modal_marcas').modal('hide');
+                            $('#modal_tipo_equipos').modal('hide');
                         }
                     }
                 })
@@ -217,32 +228,35 @@ if (empty($_SESSION["id"])) {
                 alert("Favor de llenar todos los campos")
             }
         });
-        //==========Actualizar marca==========
-        $(document).on('submit', '#editarMarcaForm', function(e) { //Establece un controlador de eventos en el formulario para el evento submit
+        //==========Actualizar marca=========
+        $(document).on('submit', '#editarTipoEquipoForm', function(e) { //Establece un controlador de eventos en el formulario para el evento submit
             e.preventDefault();
             //Se obtienen los valores de los campos
-            var nom_marca = $('#editarMarca').val();
-            var trid = $('#trid_marca').val();
-            var id_marca = $('#id_marca').val();
+            var nom_tipoEquipo = $('#editarTipoE').val();
+            var id_clasiEquipo = $('#editarClasificacion').val();
+            var trid = $('#trid').val();
+            var id_tipoEquipo = $('#id_tipoEquipo').val();
+            console.log(id_tipoEquipo);
             //Verifica que todos los campos esten llenos
-            if (nom_marca != '') {
+            if (nom_tipoEquipo != '' && id_clasiEquipo != '') {
                 $.ajax({ //Petición ajax para actualizar
-                    url: "../../database/crud-marca/actualizar-marca.php",
+                    url: "../../database/crud-tipoEquipo/actualizar-tipoEquipo.php",
                     type: "post",
                     data: {
-                        nom_marca: nom_marca,
-                        id_marca: id_marca
+                        nom_tipoEquipo: nom_tipoEquipo,
+                        id_clasiEquipo: id_clasiEquipo,
+                        id_tipoEquipo: id_tipoEquipo
                     },
                     success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
                         var json = JSON.parse(data);
                         var status = json.status;
                         if (status == 'true') {
-                            table = $('#tablaMarcas').DataTable();
+                            table = $('#tablaTiposEquipo').DataTable();
                             table.draw();
-                            $('#modal_editar_marcas').modal('hide');
-                            var button = '<td><a href="javascript:void();" data-id_marca="' + id_marca + '" class="btn editbtn"><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();"  data-id_marca="' + id_marca + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-trash-can text-danger"></i></a></td>';
-                            var row = table.row("[id_marca='" + trid + "']");
-                            row.row("[id_marca='" + trid + "']").data([id_marca, nom_marca, button]);
+                            $('#modal_editar_tipoEquipo').modal('hide');
+                            var button = '<td><a href="javascript:void();" data-id_tipoEquipo="' + id_tipoEquipo + '" class="btn editbtn"><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();"  data-id_tipoEquipo="' + id_tipoEquipo + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-trash-can text-danger"></i></a></td>';
+                            var row = table.row("[id_tipoEquipo='" + trid + "']");
+                            row.row("[id_tipoEquipo='" + trid + "']").data([id_tipoEquipo, nom_tipoEquipo, id_clasiEquipo, button]);
                         } else {
                             alert('Failed');
                         }
@@ -252,44 +266,47 @@ if (empty($_SESSION["id"])) {
                 alert('Llenar todos los campos');
             }
         });
-        //==========Editar marca==========
-        $('#tablaMarcas').on('click', '.editbtn ', function(event) { //Abre el modal de editar
-            var table = $('#tablaMarcas').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
-            var trid = $(this).closest('tr').attr('id_marca'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
-            var id_marca = $(this).data('id_marca'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
-            console.log(id_marca);
-            $('#modal_editar_marcas').modal('show');
+        //==========Editar tipo equipo==========
+        $('#tablaTiposEquipo').on('click', '.editbtn ', function(event) { //Abre el modal de editar
+            var table = $('#tablaTiposEquipo').DataTable(); //Se inicializa la tabla mediante el uso del plugin jQuery DataTables
+            var trid = $(this).closest('tr').attr('id_tipoEquipo'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_tipoEquipo = trid; //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            console.log(id_tipoEquipo);
+            $('#modal_editar_tipoEquipo').modal('show');
             $.ajax({ //Petición ajax para editar
-                url: "../../database/crud-marca/editar-marca.php",
+                url: "../../database/crud-tipoEquipo/editar-tipoEquipo.php",
                 data: {
-                    id_marca: id_marca
+                    id_tipoEquipo: id_tipoEquipo,
+
                 },
                 type: 'post',
                 success: function(data) {
                     var json = JSON.parse(data);
-                    $('#editarMarca').val(json.nom_marca);
-                    $('#id_marca').val(id_marca);
-                    $('#trid_marca').val(trid);
+                    $('#editarTipoE').val(json.nom_tipoEquipo);
+                    $('#editarClasificacion').val(json.id_clasiEquipo);
+                    $('#id_tipoEquipo').val(id_tipoEquipo);
+                    $('#trid_tipoEquipo').val(trid);
                 }
             })
         });
         //==========Eliminar marca==========
         $(document).on('click', '.deleteBtn', function(event) { //Se abre una alerta para eliminar
-            var table = $('#tablaMarcas').DataTable();
+            var table = $('#tablaTiposEquipo').DataTable();
             event.preventDefault();
-            var id_marca = $(this).data('id_marca'); //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
-            if (confirm("¿Eliminar marca definitivamente?")) {
+            var trid = $(this).closest('tr').attr('id_tipoEquipo'); //Se está obteniendo el ID que se va a editar. Esto se hace a través del uso de la función closest() que busca el elemento padre más cercano que tenga la etiqueta <tr>
+            var id_tipoEquipo = trid; //Se está obteniendo el ID de la fila correspondiente al botón de edición al utilizar la función "data" que lee el valor del atributo "data-id" en el botón.
+            if (confirm("¿Eliminar tipo de equipo definitivamente?")) {
                 $.ajax({
-                    url: "../../database/crud-marca/eliminar-marca.php",
+                    url: "../../database/crud-tipoEquipo/eliminar-tipoEquipo.php",
                     data: {
-                        id_marca: id_marca
+                        id_tipoEquipo: id_tipoEquipo
                     },
                     type: "post",
                     success: function(data) {
                         var json = JSON.parse(data);
                         status = json.status;
                         if (status == 'success') {
-                            $("#" + id_marca).closest('tr').remove();
+                            $("#" + id_tipoEquipo).closest('tr').remove();
                             table.draw();
                         } else {
                             alert('Failed');
