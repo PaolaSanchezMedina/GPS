@@ -1,7 +1,9 @@
 <?php include('../conexion.php');
 
 $output= array();
-$sql = "SELECT * FROM localidad ";
+$sql = "SELECT l.id_localidad, l.nom_localidad, m.nom_municipio 
+FROM localidad l
+JOIN municipio m ON l.id_municipio = m.id_municipio";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
@@ -9,14 +11,14 @@ $total_all_rows = mysqli_num_rows($totalQuery);
 $columns = array(
 	0 => 'id_localidad',
 	1 => 'nom_localidad',
-	2 => 'id_municipio',
+	2 => 'nom_municipio',
 );
 
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
 	$sql .= " WHERE nom_localidad like '%".$search_value."%'";
-	$sql .= " OR id_municipio like '%".$search_value."%'";
+	$sql .= " OR m.nom_municipio like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -45,7 +47,7 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array = array();
 	$sub_array[] = $row['id_localidad'];
 	$sub_array[] = $row['nom_localidad'];
-	$sub_array[] = $row['id_municipio'];
+	$sub_array[] = $row['nom_municipio'];
 	$sub_array[] = '<a href="javascript:void();" data-id_localidad="'.$row['id_localidad'].'"  class="btn editbtn" ><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();" data-id_localidad="'.$row['id_localidad'].'"  class="btn deleteBtn" ><i role="button" class="fa-solid fa-trash-can text-danger"></i></a>';
 	$data[] = $sub_array;
 }

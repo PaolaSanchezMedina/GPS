@@ -1,7 +1,10 @@
 <?php include('../conexion.php');
 
 $output= array();
-$sql = "SELECT * FROM colaborador ";
+$sql = "SELECT c.id_colaborador, c.nom_colaborador, c.aPaterno_colaborador, c.aMaterno_colaborador, c.centroCostos_colaborador, c.correo_colaborador, l.nom_localidad, j.nom_jefatura
+FROM colaborador c
+JOIN localidad l ON c.id_localidad = l.id_localidad
+JOIN jefatura j ON c.id_jefatura = j.id_jefatura";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
@@ -13,8 +16,8 @@ $columns = array(
 	3 => 'aMaterno_colaborador',
 	4 => 'centroCostos_colaborador',
     5 => 'correo_colaborador',
-    6 => 'id_localidad',
-    7 => 'id_jefatura',
+    6 => 'nom_localidad',
+    7 => 'nom_jefatura',
 );
 
 if(isset($_POST['search']['value']))
@@ -25,8 +28,8 @@ if(isset($_POST['search']['value']))
 	$sql .= " OR aMaterno_colaborador like '%".$search_value."%'";
 	$sql .= " OR centroCostos_colaborador like '%".$search_value."%'";
     $sql .= " OR correo_colaborador like '%".$search_value."%'";
-    $sql .= " OR id_localidad like '%".$search_value."%'";
-    $sql .= " OR id_jefatura like '%".$search_value."%'";
+    $sql .= " OR l.nom_localidad like '%".$search_value."%'";
+    $sql .= " OR j.nom_jefatura like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -59,8 +62,8 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array[] = $row['aMaterno_colaborador'];
 	$sub_array[] = $row['centroCostos_colaborador'];
     $sub_array[] = $row['correo_colaborador'];
-	$sub_array[] = $row['id_localidad'];
-	$sub_array[] = $row['id_jefatura'];
+	$sub_array[] = $row['nom_localidad'];
+	$sub_array[] = $row['nom_jefatura'];
 	$data[] = $sub_array;
 }
 

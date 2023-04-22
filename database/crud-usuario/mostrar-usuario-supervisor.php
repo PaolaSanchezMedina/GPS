@@ -1,7 +1,10 @@
 <?php include('../conexion.php');
 
 $output= array();
-$sql = "SELECT * FROM usuario ";
+$sql = "SELECT u.id_usuario, u.nom_usuario, u.contrasena_usuario, t.nom_tipoUsuario, CONCAT(c.nom_colaborador, ' ', c.aPaterno_colaborador, ' ', c.aMaterno_colaborador) as nombre_completo
+FROM usuario u
+JOIN colaborador c ON u.id_colaborador = c.id_colaborador
+JOIN tipousuario t ON u.id_tipoUsuario = t.id_tipoUsuario";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
@@ -10,8 +13,8 @@ $columns = array(
 	0 => 'id_usuario',
 	1 => 'nom_usuario',
 	2 => 'contrasena_usuario',
-	3 => 'id_tipoUsuario',
-	4 => 'id_colaborador',
+	3 => 'nom_tipoUsuario',
+	4 => 'nombre_completo',
 );
 
 if(isset($_POST['search']['value']))
@@ -19,8 +22,8 @@ if(isset($_POST['search']['value']))
 	$search_value = $_POST['search']['value'];
 	$sql .= " WHERE nom_usuario like '%".$search_value."%'";
 	$sql .= " OR contrasena_usuario like '%".$search_value."%'";
-	$sql .= " OR id_tipoUsuario like '%".$search_value."%'";
-	$sql .= " OR id_colaborador like '%".$search_value."%'";
+	$sql .= " OR t.nom_tipoUsuario like '%".$search_value."%'";
+	$sql .= " OR CONCAT(c.nom_colaborador, ' ', c.aPaterno_colaborador, ' ', c.aMaterno_colaborador) like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -50,8 +53,8 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array[] = $row['id_usuario'];
 	$sub_array[] = $row['nom_usuario'];
 	$sub_array[] = $row['contrasena_usuario'];
-	$sub_array[] = $row['id_tipoUsuario'];
-	$sub_array[] = $row['id_colaborador'];
+	$sub_array[] = $row['nom_tipoUsuario']; 
+	$sub_array[] = $row['nombre_completo'];
 	$data[] = $sub_array;
 }
 

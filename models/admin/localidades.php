@@ -199,6 +199,7 @@ if (empty($_SESSION["id"])) {
         //==========Agregar Localidad==========
         $(document).on('submit', '#nuevaLocalidadForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
             event.preventDefault();
+            
             //Se obtienen los valores de los campos
             var nom_localidad = $('#inputLocalidad').val();
             var id_municipio = $('#inputMunicipio').val();

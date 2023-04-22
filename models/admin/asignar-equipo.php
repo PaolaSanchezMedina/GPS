@@ -126,7 +126,7 @@ if (empty($_SESSION["id"])) {
                         <input type="text" class="form-control" aria-label="no serie" id="" name="">
                     </div>
                     <div class="col-lg-4">
-                        <label for="" class="fw-semibold">Estado del préstamo</label>
+                        <label for="" class="fw-semibold">Identificador</label>
                         <input type="text" class="form-control" aria-label="estado" id="" name="">
                     </div>
                     <div class="col">
@@ -174,11 +174,11 @@ if (empty($_SESSION["id"])) {
                         <thead>
                             <tr>
                                 <th scope="col">Id préstamo</th>
-                                <th scope="col">Id colaborador</th>
-                                <th scope="col">Id equipo</th>
+                                <th scope="col">Colaborador</th>
+                                <th scope="col">Equipo</th>
                                 <th scope="col">Identificador</th>
                                 <th scope="col">Fecha entrega</th>
-                                <th scope="col">Id usuario</th>
+                                <th scope="col">Entrega</th>
                                 <th scope="col">Observaciones</th>
                             </tr>
                         </thead>

@@ -129,7 +129,7 @@ if (empty($_SESSION["id"])) {
                         <input type="text" class="form-control" aria-label="no serie" id="" name="">
                     </div>
                     <div class="col-lg-4">
-                        <label for="" class="fw-semibold">Estado del préstamo</label>
+                        <label for="" class="fw-semibold">Identificador</label>
                         <input type="text" class="form-control" aria-label="estado" id="" name="">
                     </div>
                     <div class="col">

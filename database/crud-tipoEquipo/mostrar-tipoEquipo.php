@@ -1,7 +1,9 @@
 <?php include('../conexion.php');
 
 $output= array();
-$sql = "SELECT * FROM tipoequipo ";
+$sql = "SELECT t.id_tipoEquipo, t.nom_tipoEquipo, c.nom_clasiEquipo
+FROM tipoequipo t
+JOIN clasificacionequipo c ON t.id_clasiEquipo = c.id_clasiEquipo";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
@@ -9,14 +11,14 @@ $total_all_rows = mysqli_num_rows($totalQuery);
 $columns = array(
 	0 => 'id_tipoEquipo',
 	1 => 'nom_tipoEquipo',
-	2 => 'id_clasiEquipo',
+	2 => 'nom_clasiEquipo',
 );
 
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
 	$sql .= " WHERE nom_tipoEquipo like '%".$search_value."%'";
-	$sql .= " OR id_clasiEquipo like '%".$search_value."%'";
+	$sql .= " OR c.nom_clasiEquipo like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -45,7 +47,7 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array = array();
 	$sub_array[] = $row['id_tipoEquipo'];
 	$sub_array[] = $row['nom_tipoEquipo'];
-	$sub_array[] = $row['id_clasiEquipo'];
+	$sub_array[] = $row['nom_clasiEquipo'];
 	$sub_array[] = '<a href="javascript:void();" data-id_tipoEquipo="'.$row['id_tipoEquipo'].'"  class="btn editbtn" ><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();" data-id_tipoEquipo="'.$row['id_tipoEquipo'].'"  class="btn deleteBtn" ><i role="button" class="fa-solid fa-trash-can text-danger"></i></a>';
 	$data[] = $sub_array;
 }
