@@ -177,11 +177,11 @@ if (empty($_SESSION["id"])) {
                         <thead>
                             <tr>
                                 <th scope="col">Id préstamo</th>
-                                <th scope="col">Id colaborador</th>
-                                <th scope="col">Id equipo</th>
+                                <th scope="col">Colaborador</th>
+                                <th scope="col">Equipo</th>
                                 <th scope="col">Identificador</th>
                                 <th scope="col">Fecha entrega</th>
-                                <th scope="col">Id usuario</th>
+                                <th scope="col">Entrega</th>
                                 <th scope="col">Observaciones</th>
                             </tr>
                         </thead>

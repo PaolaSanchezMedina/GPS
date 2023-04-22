@@ -96,7 +96,7 @@ if (empty($_SESSION["id"])) {
                                 <th scope="col">Usuario</th>
                                 <th scope="col">Contraseña</th>
                                 <th scope="col">Tipo</th>
-                                <th scope="col">ID colaborador</th>
+                                <th scope="col">Colaborador</th>
                             </tr>
                         </thead>
                         <tbody>
