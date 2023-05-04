@@ -98,9 +98,6 @@ if (empty($_SESSION["id"])) {
                             <label for="" class="text-light"><?php echo $_SESSION["jefatura"]; ?></label>
                         </div>
                     </div>
-                    <form action="">
-                        <button class="btn border-white text-light rounded-4 fw-semibold mt-4" type="submit">Editar Información</button>
-                    </form>
                 </div>
             </div>
         </div>

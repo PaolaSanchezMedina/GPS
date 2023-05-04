@@ -45,6 +45,8 @@ if (!empty($_POST["btnIniciar"])) {
             //Administrador
             if ($resultado['id_tipoUsuario'] == 1) {
                 $_SESSION["id"] = $datos->id_usuario;
+                $_SESSION["usuario"] = $datos->nom_usuario;
+                $_SESSION["idColaborador"] = $datos->id_colaborador;
                 $_SESSION["nombre"] = $resultadoC->nom_colaborador;
                 $_SESSION["apellidoP"] = $resultadoC->aPaterno_colaborador;
                 $_SESSION["apellidoM"] = $resultadoC->aMaterno_colaborador;
@@ -56,6 +58,8 @@ if (!empty($_POST["btnIniciar"])) {
             //Supervisor
             } elseif ($resultado['id_tipoUsuario'] == 2) {
                 $_SESSION["id"] = $datos->id_usuario;
+                $_SESSION["usuario"] = $datos->nom_usuario;
+                $_SESSION["idColaborador"] = $datos->id_colaborador;
                 $_SESSION["nombre"] = $resultadoC->nom_colaborador;
                 $_SESSION["apellidoP"] = $resultadoC->aPaterno_colaborador;
                 $_SESSION["apellidoM"] = $resultadoC->aMaterno_colaborador;

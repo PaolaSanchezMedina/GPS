@@ -87,72 +87,76 @@ if (empty($_SESSION["id"])) {
                 <div class="row mt-3 ms-2 me-2">
                     <div class="col-lg-2">
                         <label for="" class="fw-semibold">Id colaborador</label>
-                        <input type="text" class="form-control" aria-label="id colaborador" id="" name="">
+                        <input type="text" class="form-control" aria-label="id colaborador" id="idColaborador" name="idColaborador">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Nombre</label>
-                        <input type="text" class="form-control" aria-label="nombre" id="" name="">
+                        <input type="text" class="form-control" aria-label="nombre" id="nombre" name="nombre">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">1er Apellido</label>
-                        <input type="text" class="form-control" aria-label="1er apellido" id="" name="">
+                        <input type="text" class="form-control" aria-label="1er apellido" id="primerApellido" name="primerApellido">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">2do Apellido</label>
-                        <input type="text" class="form-control" aria-label="2do apellido" id="" name="">
+                        <input type="text" class="form-control" aria-label="2do apellido" id="segundoApellido" name="segundoApellido">
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col-lg-2">
                         <label for="" class="fw-semibold">Id equipo</label>
-                        <input type="text" class="form-control" aria-label="id equipo" id="" name="">
+                        <input type="text" class="form-control" aria-label="id equipo" id="idEquipo" name="idEquipo">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Equipo</label>
-                        <input type="text" class="form-control" aria-label="equipo" id="" name="">
+                        <input type="text" class="form-control" aria-label="equipo" id="equipo" name="equipo">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Marca</label>
-                        <input type="text" class="form-control" aria-label="marca" id="" name="">
+                        <input type="text" class="form-control" aria-label="marca" id="marca" name="marca">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Modelo</label>
-                        <input type="text" class="form-control" aria-label="modelo" id="" name="">
+                        <input type="text" class="form-control" aria-label="modelo" id="modelo" name="modelo">
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col-lg-4">
                         <label for="" class="fw-semibold">No. Serie</label>
-                        <input type="text" class="form-control" aria-label="no serie" id="" name="">
+                        <input type="text" class="form-control" aria-label="no serie" id="noSerie" name="noSerie">
                     </div>
                     <div class="col-lg-4">
                         <label for="" class="fw-semibold">Identificador</label>
-                        <input type="text" class="form-control" aria-label="estado" id="" name="">
+                        <input type="text" class="form-control" aria-label="identificador" id="identificador" name="identificador">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Fecha</label>
-                        <p id="fecha" class="form-control"></p>
+                        <p id="fecha" name="fecha" class="form-control"></p>
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Entrega</label>
+                        <p id="entrega" name="entrega" class="form-control"><?php echo $_SESSION["usuario"]; ?></p>
                     </div>
                 </div>
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Localidad</label>
-                        <input type="text" class="form-control" aria-label="localidad" id="" name="">
+                        <input type="text" class="form-control" aria-label="localidad" id="localidad" name="localidad">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Complejo</label>
-                        <input type="text" class="form-control" aria-label="complejo" id="" name="">
+                        <input type="text" class="form-control" aria-label="complejo" id="complejo" name="complejo">
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Departamento</label>
-                        <input type="text" class="form-control" aria-label="departamento" id="" name="">
+                        <input type="text" class="form-control" aria-label="departamento" id="departamento" name="departamento">
                     </div>
                 </div>
                 <div class="row ms-2 me-2">
                     <div class="col">
                         <label for="" class="fw-semibold">Observaciones</label>
                         <div class="form-floating">
-                            <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px; max-height: 100px;"></textarea>
+                            <textarea class="form-control" placeholder="" id="observaciones" name="observaciones" style="height: 100px; max-height: 100px;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -240,6 +244,41 @@ if (empty($_SESSION["id"])) {
                 }, ]
             })
         })
+        //==========Asignar equipos==========
+        $(document).on('submit', '#nuevoUsuarioForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
+            event.preventDefault();
+            //Se obtienen los valores de los campos
+            var idColaborador = $('#inputUsuario').val();
+            var idEquipo = $('#inputContrasena').val();
+            var identificador = $('#inputTipo').val();
+            var fecha = $('#inputColaborador').val();
+            var entrega = $('#inputColaborador').val();
+            var observaciones = $('#inputColaborador').val();
+            //Verifica que todos los campos esten llenos
+            if (nom_usuario != '' && contrasena_usuario != '' && id_tipoUsuario != '' && id_colaborador != '') {
+                $.ajax({ //Petición ajax para agregar
+                    url: "../../database/crud-usuario/agregar-usuario.php",
+                    data: {
+                        nom_usuario: nom_usuario,
+                        contrasena_usuario: contrasena_usuario,
+                        id_tipoUsuario: id_tipoUsuario,
+                        id_colaborador: id_colaborador
+                    },
+                    type: 'post',
+                    success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            table = $('#tablaUsuarios').DataTable();
+                            table.draw();
+                            $('#modal_usuarios').modal('hide');
+                        }
+                    }
+                })
+            } else {
+                alert("Favor de llenar todos los campos")
+            }
+        });
     </script>
 </body>
 

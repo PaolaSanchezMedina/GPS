@@ -100,7 +100,7 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Para</label>
-                                <p><?php echo $_SESSION["correoA"]; ?></p>
+                                <p>spprtsicei@gmail.com</p>
                             </div>
                         </div>
                         <label for="" class="fw-semibold">Especificaciones</label>
