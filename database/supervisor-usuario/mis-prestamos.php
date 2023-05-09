@@ -1,12 +1,15 @@
 <?php include('../conexion.php');
-//$idColaborador = $_SESSION["idColaborador"];
+include('../controlador-login.php');
+
+$idColaborador = $_SESSION["idColaborador"];
 
 $output= array();
-$sql = "SELECT p.id_prestamo, CONCAT(c.nom_colaborador, ' ', c.aPaterno_colaborador, ' ', c.aMaterno_colaborador) as nombre_completo, e.nom_equipo, p.identifEquipo_prestamo, p.fechaEntrega_prestamo, u.nom_usuario, p.observaciones_prestamo
+
+$sql = "SELECT p.id_prestamo, p.id_colaborador, CONCAT(c.nom_colaborador, ' ', c.aPaterno_colaborador, ' ', c.aMaterno_colaborador) as nombre_completo, e.nom_equipo, p.identifEquipo_prestamo, p.fechaEntrega_prestamo, u.nom_usuario, p.observaciones_prestamo
 FROM prestamo p
 JOIN colaborador c ON p.id_colaborador = c.id_colaborador
 JOIN equipo e ON p.id_equipo = e.id_equipo
-JOIN usuario u ON p.id_usuario = u.id_usuario"; 
+JOIN usuario u ON p.id_usuario = u.id_usuario";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);

@@ -26,61 +26,30 @@ if (!empty($_POST["btnIniciar"])) {
             //Consulta a la tabla de colaboradores para obtener la información
             $sqlDatosC = $con->query("SELECT * FROM colaborador WHERE id_colaborador='$id_colaborador'");
             $resultadoC = $sqlDatosC->fetch_object();
-            //Se guardan los id de localidad y jefatura en variables a parte
-            $id_localidad = $resultadoC->id_localidad;
-            $id_jefatura = $resultadoC->id_jefatura;
-
-            //Consulta a la tabla localidad para obtener el nombre de la localidad
-            $sqlDatosL = $con->query("SELECT * FROM localidad WHERE id_localidad='$id_localidad'");
-            $resultadoL = $sqlDatosL->fetch_object();
-
-            //Consulta a la tabla jefatura para obtener el nombre de la jefatura
-            $sqlDatosJ = $con->query("SELECT * FROM jefatura WHERE id_jefatura='$id_jefatura'");
-            $resultadoJ = $sqlDatosJ->fetch_object();
-
-            //Consulta que obtiene el correo del Administrador
-            $sqlCorreo = $con->query("SELECT c.correo_colaborador FROM colaborador c INNER JOIN usuario u ON c.id_colaborador = u.id_colaborador WHERE u.id_tipoUsuario = 1");
-            $datosCorreo = $sqlCorreo->fetch_object();
 
             //Administrador
             if ($resultado['id_tipoUsuario'] == 1) {
                 $_SESSION["id"] = $datos->id_usuario;
-                $_SESSION["usuario"] = $datos->nom_usuario;
                 $_SESSION["idColaborador"] = $datos->id_colaborador;
-                $_SESSION["nombre"] = $resultadoC->nom_colaborador;
-                $_SESSION["apellidoP"] = $resultadoC->aPaterno_colaborador;
-                $_SESSION["apellidoM"] = $resultadoC->aMaterno_colaborador;
-                $_SESSION["centroCostos"] = $resultadoC->centroCostos_colaborador;
-                $_SESSION["correoA"] = $resultadoC->correo_colaborador;
-                $_SESSION["localidad"] = $resultadoL->nom_localidad;
-                $_SESSION["jefatura"] = $resultadoJ->nom_jefatura;
-                header("location: admin/inicio.php");
+                header("location: admin/usuarios.php");
             //Supervisor
             } elseif ($resultado['id_tipoUsuario'] == 2) {
                 $_SESSION["id"] = $datos->id_usuario;
-                $_SESSION["usuario"] = $datos->nom_usuario;
                 $_SESSION["idColaborador"] = $datos->id_colaborador;
                 $_SESSION["nombre"] = $resultadoC->nom_colaborador;
                 $_SESSION["apellidoP"] = $resultadoC->aPaterno_colaborador;
                 $_SESSION["apellidoM"] = $resultadoC->aMaterno_colaborador;
-                $_SESSION["centroCostos"] = $resultadoC->centroCostos_colaborador;
                 $_SESSION["correo"] = $resultadoC->correo_colaborador;
-                $_SESSION["correoA"] = $datosCorreo->correo_colaborador;
-                $_SESSION["localidad"] = $resultadoL->nom_localidad;
-                $_SESSION["jefatura"] = $resultadoJ->nom_jefatura;
-                header("location: super/inicio-supervisor.php");
+                header("location: super/usuarios-supervisor.php");
             //Usuarios
             } elseif ($resultado['id_tipoUsuario'] == 3) {
                 $_SESSION["id"] = $datos->id_usuario;
+                $_SESSION["idColaborador"] = $datos->id_colaborador;
                 $_SESSION["nombre"] = $resultadoC->nom_colaborador;
                 $_SESSION["apellidoP"] = $resultadoC->aPaterno_colaborador;
                 $_SESSION["apellidoM"] = $resultadoC->aMaterno_colaborador;
-                $_SESSION["centroCostos"] = $resultadoC->centroCostos_colaborador;
                 $_SESSION["correo"] = $resultadoC->correo_colaborador;
-                $_SESSION["correoA"] = $datosCorreo->correo_colaborador;
-                $_SESSION["localidad"] = $resultadoL->nom_localidad;
-                $_SESSION["jefatura"] = $resultadoJ->nom_jefatura;
-                header("location: usuario/inicio-usuario.php");
+                header("location: usuario/prestamos-usuario.php");
             }
         } else {
             echo "<div class='alert alert-danger'>Usuario o contraseña incorrectos</div>";

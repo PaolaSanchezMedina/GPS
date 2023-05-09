@@ -39,7 +39,7 @@ if (empty($_SESSION["id"])) {
     <!--ENCABEZADO DE PÁGINA-->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../super/inicio-supervisor.php>
+            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href="#">
                 <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
                 SiCEI
             </a>
@@ -48,9 +48,6 @@ if (empty($_SESSION["id"])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/inicio-supervisor.php">Mi perfil</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" aria-current="page" href="../super/usuarios-supervisor.php">Usuarios</a>
                     </li>
@@ -90,9 +87,9 @@ if (empty($_SESSION["id"])) {
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <div class="row">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Nombre</label>
-                                <p><?php echo $_SESSION["nombre"] . " " . $_SESSION["apellidoP"] . " " . $_SESSION["apellidoM"]; ?></p>
+                            <div class="col-lg-2">
+                                <label for="" class="fw-semibold">Asunto</label>
+                                <input type="text" style="height: 30px;" class="form-control" aria-label="asunto" id="asunto" name="asunto">
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">De</label>
@@ -116,31 +113,6 @@ if (empty($_SESSION["id"])) {
                 </div>
             </form>
         </section>
-        <div class="d-flex justify-content-between text-light mt-5">
-            <h2>Mis préstamos</h2>
-        </div>
-        <!--Tabla-->
-        <div class="row">
-            <div class="col">
-                <div class="tabla mt-2">
-                    <table id="tablaMisPrestamos" class="table table-striped dt-responsive nowrap" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th scope="col">Préstamo</th>
-                                <th scope="col">Colaborador</th>
-                                <th scope="col">Equipo</th>
-                                <th scope="col">Identificador</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Entrego</th>
-                                <th scope="col">Observaciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
     </div>
     <!--PIE DE PÁGINA-->
     <footer class="">

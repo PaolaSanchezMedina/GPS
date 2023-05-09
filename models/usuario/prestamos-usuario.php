@@ -29,26 +29,10 @@ if (empty($_SESSION["id"])) {
     <!--ENCABEZADO DE PÁGINA-->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../usuario/inicio-usuario.php>
+            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href="#">
                 <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
                 SiCEI
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../usuario/inicio-usuario.php">Mi perfil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../usuario/equipos-usuario.php">Mis equipos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../usuario/prestamos-usuario.php>Solicitar préstamo</a>
-                    </li>
-                </ul>
-            </div>
             <a class="btn border-white text-light rounded-4 fw-semibold me-3 mt-2" href="../../database/controlador-cerrar-sesion.php">Cerrar sesión</a>
         </div>
     </nav>
@@ -62,9 +46,9 @@ if (empty($_SESSION["id"])) {
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
                         <div class="row">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Nombre</label>
-                                <p><?php echo $_SESSION["nombre"] . " " . $_SESSION["apellidoP"] . " " . $_SESSION["apellidoM"]; ?></p>
+                            <div class="col-lg-2">
+                                <label for="" class="fw-semibold">Asunto</label>
+                                <input type="text" style="height: 30px;" class="form-control" aria-label="asunto" id="asunto" name="asunto">
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">De</label>

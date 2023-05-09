@@ -39,7 +39,7 @@ if (empty($_SESSION["id"])) {
     <!--ENCABEZADO DE PÁGINA-->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../admin/inicio.php>
+            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href="#">
                 <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
                 SiCEI
             </a>
@@ -48,9 +48,6 @@ if (empty($_SESSION["id"])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/inicio.php>Mi perfil</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
                     </li>
@@ -131,12 +128,20 @@ if (empty($_SESSION["id"])) {
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Fecha</label>
+                        <input type="date" class="form-control" aria-label="fecha entrega" id="fecha-entrega" name="fecha-entrega">
+                    </div>
+                    <div class="col">
+                        <label for="" class="fw-semibold">Entrega</label>
+                        <input type="text" class="form-control" aria-label="entrega" id="entrega" name="entrega">
+                    </div>
+                    <!-- <div class="col">
+                        <label for="" class="fw-semibold">Fecha</label>
                         <p id="fecha" name="fecha" class="form-control"></p>
                     </div>
                     <div class="col">
                         <label for="" class="fw-semibold">Entrega</label>
                         <p id="entrega" name="entrega" class="form-control"><?php echo $_SESSION["usuario"]; ?></p>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row mt-2 ms-2 me-2">
                     <div class="col">
@@ -216,7 +221,7 @@ if (empty($_SESSION["id"])) {
             var fechaCompleta = anio + '-' + mes + '-' + dia;
             document.getElementById('fecha').innerHTML = fechaCompleta;
         }
-        mostrarFecha();
+        mostrarFecha(); 
     </script>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
@@ -245,40 +250,40 @@ if (empty($_SESSION["id"])) {
             })
         })
         //==========Asignar equipos==========
-        $(document).on('submit', '#nuevoUsuarioForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
-            event.preventDefault();
-            //Se obtienen los valores de los campos
-            var idColaborador = $('#inputUsuario').val();
-            var idEquipo = $('#inputContrasena').val();
-            var identificador = $('#inputTipo').val();
-            var fecha = $('#inputColaborador').val();
-            var entrega = $('#inputColaborador').val();
-            var observaciones = $('#inputColaborador').val();
-            //Verifica que todos los campos esten llenos
-            if (nom_usuario != '' && contrasena_usuario != '' && id_tipoUsuario != '' && id_colaborador != '') {
-                $.ajax({ //Petición ajax para agregar
-                    url: "../../database/crud-usuario/agregar-usuario.php",
-                    data: {
-                        nom_usuario: nom_usuario,
-                        contrasena_usuario: contrasena_usuario,
-                        id_tipoUsuario: id_tipoUsuario,
-                        id_colaborador: id_colaborador
-                    },
-                    type: 'post',
-                    success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
-                        var json = JSON.parse(data);
-                        status = json.status;
-                        if (status == 'success') {
-                            table = $('#tablaUsuarios').DataTable();
-                            table.draw();
-                            $('#modal_usuarios').modal('hide');
-                        }
-                    }
-                })
-            } else {
-                alert("Favor de llenar todos los campos")
-            }
-        });
+        // $(document).on('submit', '#nuevoUsuarioForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
+        //     event.preventDefault();
+        //     //Se obtienen los valores de los campos
+        //     var idColaborador = $('#inputUsuario').val();
+        //     var idEquipo = $('#inputContrasena').val();
+        //     var identificador = $('#inputTipo').val();
+        //     var fecha = $('#inputColaborador').val();
+        //     var entrega = $('#inputColaborador').val();
+        //     var observaciones = $('#inputColaborador').val();
+        //     //Verifica que todos los campos esten llenos
+        //     if (nom_usuario != '' && contrasena_usuario != '' && id_tipoUsuario != '' && id_colaborador != '') {
+        //         $.ajax({ //Petición ajax para agregar
+        //             url: "../../database/crud-usuario/agregar-usuario.php",
+        //             data: {
+        //                 nom_usuario: nom_usuario,
+        //                 contrasena_usuario: contrasena_usuario,
+        //                 id_tipoUsuario: id_tipoUsuario,
+        //                 id_colaborador: id_colaborador
+        //             },
+        //             type: 'post',
+        //             success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
+        //                 var json = JSON.parse(data);
+        //                 status = json.status;
+        //                 if (status == 'success') {
+        //                     table = $('#tablaUsuarios').DataTable();
+        //                     table.draw();
+        //                     $('#modal_usuarios').modal('hide');
+        //                 }
+        //             }
+        //         })
+        //     } else {
+        //         alert("Favor de llenar todos los campos")
+        //     }
+        // });
     </script>
 </body>
 

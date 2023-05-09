@@ -39,7 +39,7 @@ if (empty($_SESSION["id"])) {
     <!--ENCABEZADO DE PÁGINA-->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href=../admin/inicio.php>
+            <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href="#">
                 <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
                 SiCEI
             </a>
@@ -48,9 +48,6 @@ if (empty($_SESSION["id"])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/inicio.php>Mi perfil</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
                     </li>
