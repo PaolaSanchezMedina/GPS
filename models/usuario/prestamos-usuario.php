@@ -59,7 +59,7 @@ if (empty($_SESSION["id"])) {
                     </div>
                     <div class="mb-3">
                         <label for="especificaciones" class="form-label">Especificaciones</label>
-                        <textarea style="max-height: 150px;" class="form-control" id="especificaciones" name="especificaciones" rows="3"></textarea>
+                        <textarea style="max-height: 150px;" class="form-control" id="especificaciones" name="especificaciones" rows="3" required></textarea>
                     </div>
                     <div class="d-flex flex-row-reverse">
                         <input name="enviar" id="enviar" class="btn bg-primary text-light fw-semibold" type="submit" value="Enviar"></input>
