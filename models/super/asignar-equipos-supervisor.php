@@ -40,22 +40,21 @@ if (empty($_SESSION["id"])) {
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href="#">
-                <img src="../../assets/img/logo.png" alt="Logo" width="40" height="38" class="d-inline-block align-text-bottom mt-1">
-                SiCEI
+                <img src="../../assets/img/sicei-logo.png" alt="Logo" width="130" height="50" class="d-inline-block align-text-bottom">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+            </button> 
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/usuarios-supervisor.php">Usuarios</a>
+                        <a class="nav-link text-light" aria-current="page" href=../super/usuarios-supervisor.php>Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/equipos-supervisor.php">Equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../super/equipos-supervisor.php>Equipos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../super/asignar-equipos-supervisor.php">Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../super/asignar-equipos-supervisor.php>Asignar equipos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -81,48 +80,7 @@ if (empty($_SESSION["id"])) {
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
             <h2>Asignar equipo</h2>
-        </div>
-        <section id="log">
-            <form class="formularioAsignar mt-2" action="">
-                <div class="row mt-2 ms-2 me-2">
-                    <div class="col-lg-2">
-                        <label for="" class="fw-semibold">Id colaborador</label>
-                        <input type="text" class="form-control" aria-label="id colaborador" id="idColaborador" name="idColaborador">
-                    </div>
-                    <div class="col-lg-2">
-                        <label for="" class="fw-semibold">Id equipo</label>
-                        <input type="text" class="form-control" aria-label="id equipo" id="idEquipo" name="idEquipo">
-                    </div>
-                    <div class="col">
-                        <label for="" class="fw-semibold">Identificador</label>
-                        <input type="text" class="form-control" aria-label="identificador" id="identificador" name="identificador">
-                    </div>
-                    <div class="col-lg-2">
-                        <label for="" class="fw-semibold">Quien entrega</label>
-                        <input type="text" class="form-control" aria-label="entrega" id="entrega" name="entrega">
-                    </div>
-                    <div class="col-lg-2">
-                        <label for="" class="fw-semibold">Fecha de entrega</label>
-                        <input type="date" class="form-control" aria-label="fecha" id="fecha" name="fecha">
-                    </div>
-                </div>
-                <div class="row ms-2 me-2">
-                    <div class="col">
-                        <label for="" class="fw-semibold">Observaciones</label>
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px; max-height: 100px;"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-2 ms-2 me-2 text-end">
-                    <div class="col">
-                        <button type="button" class="btn btn-light text-primary fw-semibold">Aceptar</button>
-                    </div>
-                </div>
-            </form>
-        </section>
-        <div class="d-flex justify-content-between text-light mt-5">
-            <h2>Préstamos</h2>
+            <button type="button" class="btn btn-light text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modal_asignar">Asignar equipo</button>
         </div>
         <!--Tabla-->
         <div class="row">
@@ -147,6 +105,55 @@ if (empty($_SESSION["id"])) {
             </div>
         </div>
     </div>
+    <!--Pantalla modal para asignar un equipo-->
+    <div class="modal fade modal-xl mt-5" id="modal_asignar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Asignar un equipo</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="asignarEquipoForm" action="" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Id Colaborador</label>
+                                <input type="text" class="form-control" aria-label="usuario" id="inputColaborador" name="inputColaborador">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Id equipo</label>
+                                <input type="text" class="form-control" aria-label="contra" id="inputEquipo" name="inputEquipo">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Identificador</label>
+                                <input type="text" class="form-control" aria-label="usuario" id="inputIdentificador" name="inputIdentificador">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Fecha entrega</label>
+                                <input type="date" class="form-control" aria-label="contra" id="inputFecha" name="inputFecha">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Usuario que entrega</label>
+                                <input type="text" class="form-control" aria-label="contra" name="inputEntrega" id="inputEntrega">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Observaciones</label>
+                                <input type="text" class="form-control" aria-label="contra" id="inputObservaciones" name="inputObservaciones">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!--PIE DE PÁGINA-->
     <footer class="">
         <div class="d-flex justify-content-between mt-2">
@@ -154,24 +161,6 @@ if (empty($_SESSION["id"])) {
             <p>&copy; SiCEI 2023</p>
         </div>
     </footer>
-    <!--========================================SCRIPT PARA FECHA========================================-->
-    <script>
-        function mostrarFecha() {
-            var fecha = new Date();
-            var dia = fecha.getDate();
-            var mes = fecha.getMonth() + 1;
-            var anio = fecha.getFullYear();
-            if (mes < 10) {
-                mes = "0" + mes;
-            }
-            if (dia < 10) {
-                dia = "0" + dia;
-            }
-            var fechaCompleta = anio + '-' + mes + '-' + dia;
-            document.getElementById('fecha').innerHTML = fechaCompleta;
-        }
-        mostrarFecha();
-    </script>
     <!--========================================SCRIPT PARA EL CRUD========================================-->
     <script type="text/javascript">
         //Mostrar prestamos
@@ -197,8 +186,48 @@ if (empty($_SESSION["id"])) {
                     //"aTargets": [9] //Es la columna de opciones
                 }, ]
             })
-        })
+        });
+        //==========Asignar equipo==========
+        $(document).on('submit', '#asignarEquipoForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
+            event.preventDefault();
+            //Se obtienen los valores de los campos
+            var id_colaborador = $('#inputColaborador').val();
+            var id_equipo = $('#inputEquipo').val();
+            var identifEquipo_prestamo = $('#inputIdentificador').val();
+            var fechaEntrega_prestamo = $('#inputFecha').val();
+            var id_usuario = $('#inputEntrega').val();
+            var observaciones_prestamo = $('#inputObservaciones').val();
+
+            console.log(fechaEntrega_prestamo);
+            //Verifica que todos los campos esten llenos
+            if (id_colaborador != '' && id_equipo != '' && identifEquipo_prestamo != '' && fechaEntrega_prestamo!= '' && id_usuario != '' && observaciones_prestamo != '') {
+                $.ajax({ //Petición ajax para agregar
+                    url: "../../database/crud-prestamo/asignar-prestamo.php",
+                    data: {
+                        id_colaborador: id_colaborador,
+                        id_equipo: id_equipo,
+                        identifEquipo_prestamo: identifEquipo_prestamo,
+                        fechaEntrega_prestamo: fechaEntrega_prestamo,
+                        id_usuario: id_usuario,
+                        observaciones_prestamo: observaciones_prestamo
+                    },
+                    type: 'post',
+                    success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
+                        var json = JSON.parse(data);
+                        status = json.status;
+                        if (status == 'success') {
+                            table = $('#tablaPrestamos').DataTable();
+                            table.draw();
+                            $('#modal_asignar').modal('hide');
+                        }
+                    }
+                })
+            } else {
+                alert("Favor de llenar todos los campos")
+            }
+        });
     </script>
+
 </body>
 
 </html>
