@@ -40,37 +40,23 @@ if (empty($_SESSION["id"])) {
         <div class="d-flex justify-content-between text-light">
             <h2>Hacer préstamo</h2>
         </div>
-        <section id="log">
-            <form class="formularioPedir mt-2" action="">
-                <div class="row mt-2 ms-2 me-2">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <label for="" class="fw-semibold">Asunto</label>
-                                <input type="text" style="height: 30px;" class="form-control" aria-label="asunto" id="asunto" name="asunto">
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">De</label>
-                                <p><?php echo $_SESSION["correo"]; ?></p>
-                            </div>
-                            <div class="col">
-                                <label for="" class="fw-semibold">Para</label>
-                                <p>spprtsicei@gmail.com</p>
-                            </div>
-                        </div>
-                        <label for="" class="fw-semibold">Especificaciones</label>
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px; max-height: 100px;"></textarea>
-                        </div>
+        <form id="" class="mt-2" action="">
+            <div class="card mt-3" style="max-height: 500px;">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese su correo electrónico">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Especificaciones</label>
+                        <textarea style="max-height: 150px;" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="d-flex flex-row-reverse">
+                        <a href="#" class="btn btn-primary">Enviar</a>
                     </div>
                 </div>
-                <div class="row mt-2 ms-2 me-2 text-end">
-                    <div class="col">
-                        <button type="button" class="btn btn-light text-primary fw-semibold">Aceptar</button>
-                    </div>
-                </div>
-            </form>
-        </section>
+            </div>
+        </form>
     </div>
     <!--PIE DE PÁGINA-->
     <footer class="">
