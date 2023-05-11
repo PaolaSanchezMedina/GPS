@@ -81,19 +81,29 @@ if (empty($_SESSION["id"])) {
         <div class="d-flex justify-content-between text-light">
             <h2>Hacer préstamo</h2>
         </div>
-        <form id="" class="mt-2" action="">
+        <form id="" class="mt-2" method="post" action="../../database/enviar-correo-s.php">
             <div class="card mt-3" style="max-height: 500px;">
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ingrese su correo electrónico">
+                    <div class="row mb-3">
+                        <div class="col-lg-2">
+                            <label for="asunto" class="form-label">Asunto</label>
+                            <input type="text" class="form-control" id="asunto" name="asunto" placeholder="Ingrese el asunto" required>
+                        </div>
+                        <div class="col">
+                            <label for="correo" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre completo" required>
+                        </div>
+                        <div class="col">
+                            <label for="correo" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" name="correo" placeholder="Ingrese su correo electrónico" required>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Especificaciones</label>
-                        <textarea style="max-height: 150px;" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label for="especificaciones" class="form-label">Especificaciones</label>
+                        <textarea style="max-height: 150px;" class="form-control" id="especificaciones" name="especificaciones" rows="3"></textarea>
                     </div>
                     <div class="d-flex flex-row-reverse">
-                       <a href="#" class="btn btn-primary">Enviar</a> 
+                        <input name="enviar" id="enviar" class="btn bg-primary text-light fw-semibold" type="submit" value="Enviar"></input>
                     </div>
                 </div>
             </div>
@@ -106,33 +116,6 @@ if (empty($_SESSION["id"])) {
             <p>&copy; SiCEI 2023</p>
         </div>
     </footer>
-    <!--========================================SCRIPT PARA EL CRUD========================================-->
-    <script type="text/javascript">
-        //Mostrar los prestamos del colaborador
-        $(document).ready(function() {
-            $('#tablaMisPrestamos').DataTable({
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-MX.json',
-                },
-                //Esta función se llama cada que se va a crear una fila nueva con datatables
-                "fnCreatedRow": function(nRow, aData, iDataIndex) {
-                    $(nRow).attr('id_prestamo', aData[0]);
-                },
-                'serverSide': 'true', //Los datos se procesan del lado del servidor
-                'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
-                'paging': 'true', //Habilita la paginación en la tabla.
-                'order': [], //No ordena inicialmente los datos de la tabla.
-                'ajax': { //Especifica la URL de la petición AJAX para recuperar los datos de la tabla
-                    'url': '../../database/supervisor-usuario/mis-prestamos.php',
-                    'type': 'post',
-                },
-                "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
-                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
-                    //"aTargets": [9] //Es la columna de opciones
-                }, ]
-            })
-        })
-    </script>
 </body>
 
 </html>
