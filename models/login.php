@@ -21,7 +21,7 @@
       <a class="navbar-brand text-light fs-2 fw-semibold ms-3" href="../models/login.php">
         <img src="../assets/img/sicei-logo.png" alt="Logo" width="130" height="50" class="d-inline-block align-text-bottom">
       </a>
-      <form class="d-flex" action="../models/index.php">
+      <form class="d-flex" action="../models/index.html">
         <button class="btn text-light rounded-4 fs-5 fw-semibold me-3 mt-2" type="submit">Volver</button>
       </form>
     </div>
