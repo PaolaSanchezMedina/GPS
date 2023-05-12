@@ -76,12 +76,21 @@ if (empty($_SESSION["id"])) {
             <a class="btn border-white text-light rounded-4 fw-semibold me-3 mt-2" href="../../database/controlador-cerrar-sesion.php">Cerrar sesión</a>
         </div>
     </nav>
+    <?php
+    if (isset($_GET['envio'])) {
+        if ($_GET['envio'] === 'exitoso') {
+            echo '<script>alert("El correo se envió exitosamente.");</script>';
+        } elseif ($_GET['envio'] === 'fallo') {
+            echo '<script>alert("No se pudo enviar el correo. Por favor, inténtelo de nuevo más tarde.");</script>';
+        }
+    }
+    ?>
     <!--CUERPO DE PÁGINA-->
     <div class="container mt-5">
         <div class="d-flex justify-content-between text-light">
             <h2>Hacer préstamo</h2>
         </div>
-        <form id="" class="mt-2" method="post" action="../../database/enviar-correo-s.php">
+        <form id="formulario" class="mt-2" method="post" action="../../database/enviar-correo-s.php">
             <div class="card mt-3" style="max-height: 500px;">
                 <div class="card-body">
                     <div class="row mb-3">

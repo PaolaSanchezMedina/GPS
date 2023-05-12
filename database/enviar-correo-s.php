@@ -35,10 +35,12 @@
         // Enviar el correo electrónico
         $mail->send();
 
-        header('Location: ../models/super/prestamos-supervisor.php');
+        header('Location: ../models/super/prestamos-supervisor.php?envio=exitoso');
+        exit; // Detener la ejecución del script
 
     } catch (Exception $e) {
         // Mostrar un mensaje de error si no se pudo enviar el correo electrónico
-        echo "El correo electrónico no se pudo enviar. Error: {$mail->ErrorInfo}";
+        header('Location: ../models/super/prestamos-supervisor.php?envio=fallo');
+        exit; // Detener la ejecución del script
     }
 ?>
