@@ -118,7 +118,7 @@ if (empty($_SESSION["id"])) {
             </div>
         </form>
     </div>
-    <!--PIE DE PÁGINA-->
+    <!--PIE DE PÁGINA-->   
     <footer class="">
         <div class="d-flex justify-content-between mt-2">
             <p id="fecha-hora" class="ms-5"></p>
