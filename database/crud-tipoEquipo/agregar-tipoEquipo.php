@@ -3,7 +3,7 @@
 $nom_tipoEquipo = $_POST['nom_tipoEquipo'];
 $id_clasiEquipo = $_POST['id_clasiEquipo'];
 
-$sql = "INSERT INTO `tipoequipo` (`nom_tipoEquipo`,`id_clasiEquipo`) values ('$nom_tipoEquipo', '$id_clasiEquipo')";
+$sql = "INSERT INTO `tipo_equipo` (`nom_tipoEquipo`,`id_clasiEquipo`) values ('$nom_tipoEquipo', '$id_clasiEquipo')";
 $query= mysqli_query($con,$sql);
 if($query==true)
 {

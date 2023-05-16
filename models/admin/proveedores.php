@@ -259,7 +259,7 @@ if (empty($_SESSION["id"])) {
             event.preventDefault();
             //Se obtienen los valores de los campos
             var nom_proveedor = $('#inputNombre').val();
-            var noProvSAP_proveedor = $('#inputSAP').val();
+            var noProvSAP= $('#inputSAP').val();
             var RFC_proveedor = $('#inputRFC').val();
             var contacto_proveedor = $('#inputContacto').val();
             var calle_proveedor = $('#inputCalle').val();
@@ -267,12 +267,12 @@ if (empty($_SESSION["id"])) {
             var codigoPostal_proveedor = $('#inputCP').val();
             var correo_proveedor = $('#inputCorreo').val();
             //Verifica que todos los campos esten llenos
-            if (nom_proveedor != '' && noProvSAP_proveedor != '' && RFC_proveedor != '' && contacto_proveedor != '' && calle_proveedor != '' && colonia_proveedor != '' && codigoPostal_proveedor != '' && correo_proveedor != '') {
+            if (nom_proveedor != '' && noProvSAP != '' && RFC_proveedor != '' && contacto_proveedor != '' && calle_proveedor != '' && colonia_proveedor != '' && codigoPostal_proveedor != '' && correo_proveedor != '') {
                 $.ajax({ //Petición ajax para agregar
                     url: "../../database/crud-proovedor/agregar-proovedor.php",
                     data: {
                         nom_proveedor: nom_proveedor,
-                        noProvSAP_proveedor: noProvSAP_proveedor,
+                        noProvSAP: noProvSAP,
                         RFC_proveedor: RFC_proveedor,
                         contacto_proveedor: contacto_proveedor,
                         calle_proveedor: calle_proveedor,
@@ -302,7 +302,7 @@ if (empty($_SESSION["id"])) {
             e.preventDefault();
             //Se obtienen los valores de los campos
             var nom_proveedor = $('#editarNombre').val();
-            var noProvSAP_proveedor = $('#editarSAP').val();
+            var noProvSAP = $('#editarSAP').val();
             var RFC_proveedor = $('#editarRFC').val();
             var contacto_proveedor = $('#editarContacto').val();
             var calle_proveedor = $('#editarCalle').val();
@@ -312,13 +312,13 @@ if (empty($_SESSION["id"])) {
             var trid = $('#id_proveedor').val();
             var id_proveedor = $('#id_proveedor').val();
             //Verifica que todos los campos esten llenos
-            if (nom_proveedor != '' && noProvSAP_proveedor != '' && RFC_proveedor != '' && contacto_proveedor != '' && calle_proveedor != '' && colonia_proveedor != '' && codigoPostal_proveedor!= '' && correo_proveedor != '') {
+            if (nom_proveedor != '' && noProvSAP != '' && RFC_proveedor != '' && contacto_proveedor != '' && calle_proveedor != '' && colonia_proveedor != '' && codigoPostal_proveedor!= '' && correo_proveedor != '') {
                 $.ajax({ //Petición ajax para actualizar
                     url: "../../database/crud-proovedor/actualizar-proovedor.php",
                     type: "post",
                     data: {
                         nom_proveedor: nom_proveedor,
-                        noProvSAP_proveedor: noProvSAP_proveedor,
+                        noProvSAP: noProvSAP,
                         RFC_proveedor: RFC_proveedor,
                         contacto_proveedor: contacto_proveedor,
                         calle_proveedor: calle_proveedor,
@@ -336,7 +336,7 @@ if (empty($_SESSION["id"])) {
                             $('#modal_editar_proveedores').modal('hide');
                             var button = '<td><a href="javascript:void();" data-id_proveedor="' + id_proveedor + '" class="btn editbtn"><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();"  data-id_proveedor="' + id_proveedor + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-trash-can text-danger"></i></a></td>';
                             var row = table.row("[id_proveedor='" + trid + "']");
-                            row.row("[id_proveedor='" + trid + "']").data([id_proveedor, nom_proveedor, noProvSAP_proveedor, RFC_proveedor, contacto_proveedor, calle_proveedor, colonia_proveedor, codigoPostal_proveedor, correo_proveedor, button]);
+                            row.row("[id_proveedor='" + trid + "']").data([id_proveedor, nom_proveedor, noProvSAP, RFC_proveedor, contacto_proveedor, calle_proveedor, colonia_proveedor, codigoPostal_proveedor, correo_proveedor, button]);
                         } else {
                             alert('Failed');
                         }
@@ -362,7 +362,7 @@ if (empty($_SESSION["id"])) {
                 success: function(data) {
                     var json = JSON.parse(data);
                     $('#editarNombre').val(json.nom_proveedor);
-                    $('#editarSAP').val(json.noProvSAP_proveedor);
+                    $('#editarSAP').val(json.noProvSAP);
                     $('#editarRFC').val(json.RFC_proveedor);
                     $('#editarContacto').val(json.contacto_proveedor);
                     $('#editarCalle').val(json.calle_proveedor);

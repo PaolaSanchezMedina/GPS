@@ -1,7 +1,7 @@
 <?php include('../conexion.php');
 
 $output= array();
-$sql = "SELECT * FROM provedor ";
+$sql = "SELECT * FROM proveedor ";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
@@ -9,7 +9,7 @@ $total_all_rows = mysqli_num_rows($totalQuery);
 $columns = array(
 	0 => 'id_proveedor',
 	1 => 'nom_proveedor',
-	2 => 'noProvSAP_proveedor',
+	2 => 'noProvSAP',
 	3 => 'RFC_proveedor',
 	4 => 'contacto_proveedor',
     5 => 'calle_proveedor',
@@ -22,7 +22,7 @@ if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
 	$sql .= " WHERE nom_proveedor like '%".$search_value."%'";
-	$sql .= " OR noProvSAP_proveedor like '%".$search_value."%'";
+	$sql .= " OR noProvSAP like '%".$search_value."%'";
 	$sql .= " OR RFC_proveedor like '%".$search_value."%'";
 	$sql .= " OR contacto_proveedor like '%".$search_value."%'";
     $sql .= " OR calle_proveedor like '%".$search_value."%'";
@@ -57,7 +57,7 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array = array();
 	$sub_array[] = $row['id_proveedor'];
 	$sub_array[] = $row['nom_proveedor'];
-	$sub_array[] = $row['noProvSAP_proveedor'];
+	$sub_array[] = $row['noProvSAP'];
 	$sub_array[] = $row['RFC_proveedor'];
 	$sub_array[] = $row['contacto_proveedor'];
     $sub_array[] = $row['calle_proveedor'];

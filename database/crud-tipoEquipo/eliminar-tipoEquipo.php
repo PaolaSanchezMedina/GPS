@@ -2,7 +2,7 @@
 include('../conexion.php');
 
 $id_tipoEquipo = $_POST['id_tipoEquipo'];
-$sql = "DELETE FROM tipoequipo WHERE id_tipoEquipo='$id_tipoEquipo'";
+$sql = "DELETE FROM tipo_equipo WHERE id_tipoEquipo='$id_tipoEquipo'";
 $delQuery =mysqli_query($con,$sql);
 if($delQuery==true)
 {

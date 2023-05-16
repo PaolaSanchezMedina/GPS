@@ -2,7 +2,7 @@
 
 $output= array();
 $sql = "SELECT t.id_tipoEquipo, t.nom_tipoEquipo, c.nom_clasiEquipo
-FROM tipoequipo t
+FROM tipo_equipo t
 JOIN clasificacionequipo c ON t.id_clasiEquipo = c.id_clasiEquipo";
 
 $totalQuery = mysqli_query($con,$sql);
