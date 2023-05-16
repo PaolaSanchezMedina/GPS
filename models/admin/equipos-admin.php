@@ -87,12 +87,11 @@ if (empty($_SESSION["id"])) {
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Equipo</th>
-                                <th scope="col">Modelo</th>
-                                <th scope="col">No. serie</th>
                                 <th scope="col">Marca</th>
                                 <th scope="col">Tipo</th>
+                                <th scope="col">No. serie</th>
                                 <th scope="col">Descripción</th>
+                                <th scope="col">Modelo</th>
                                 <th scope="col">Proveedor</th>
                                 <th scope="col">Opciones</th>
                             </tr>
