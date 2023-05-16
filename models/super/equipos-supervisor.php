@@ -280,6 +280,8 @@ if (empty($_SESSION["id"])) {
                             table = $('#tablaEquipos').DataTable();
                             table.draw();
                             $('#modal_equipos').modal('hide');
+                            // Restablecer los campos del formulario
+                            $('#nuevoEquipoForm')[0].reset();
                         }
                     }
                 })

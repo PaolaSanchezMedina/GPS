@@ -214,6 +214,8 @@ if (empty($_SESSION["id"])) {
                             table = $('#tablaTiposEquipo').DataTable();
                             table.draw();
                             $('#modal_tipo_equipos').modal('hide');
+                            // Restablecer los campos del formulario
+                            $('#nuevoTipoEquipoForm')[0].reset();
                         }
                     }
                 })

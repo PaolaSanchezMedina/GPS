@@ -288,6 +288,8 @@ if (empty($_SESSION["id"])) {
                             table = $('#tablaProveedores').DataTable();
                             table.draw();
                             $('#modal_proveedores').modal('hide');
+                            // Restablecer los campos del formulario
+                            $('#nuevoProveedorForm')[0].reset();
                         }
                     }
                 })

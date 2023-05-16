@@ -3,9 +3,9 @@
 $nom_usuario = $_POST['nom_usuario'];
 $contrasena_usuario = $_POST['contrasena_usuario'];
 $id_tipoUsuario = $_POST['id_tipoUsuario'];
-$id_colaborador = $_POST['id_colaborador'];
+$numNomina_colaborador = $_POST['numNomina_colaborador'];
 
-$sql = "INSERT INTO `usuario` (`nom_usuario`,`contrasena_usuario`,`id_tipoUsuario`,`id_colaborador`) values ('$nom_usuario', '$contrasena_usuario', '$id_tipoUsuario', '$id_colaborador' )";
+$sql = "INSERT INTO `usuario` (`nom_usuario`,`contrasena_usuario`,`id_tipoUsuario`,`numNomina_colaborador`) values ('$nom_usuario', '$contrasena_usuario', '$id_tipoUsuario', '$numNomina_colaborador' )";
 $query= mysqli_query($con,$sql);
 if($query==true)
 {

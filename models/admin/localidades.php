@@ -88,7 +88,7 @@ if (empty($_SESSION["id"])) {
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Localidad</th>
-                                <th scope="col">Municipio</th>
+                                <th scope="col">Estado</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -115,8 +115,8 @@ if (empty($_SESSION["id"])) {
                                 <input type="text" class="form-control" aria-label="localidad" id="inputLocalidad" name="inputLocalidad">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Municipio</label>
-                                <input type="text" class="form-control" aria-label="municipio" id="inputMunicipio" name="inputMunicipio">
+                                <label for="" class="fw-semibold">Estado</label>
+                                <input type="text" class="form-control" aria-label="estado" id="inputEstado" name="inputEstado">
                             </div>
                         </div>
                     </div>
@@ -146,8 +146,8 @@ if (empty($_SESSION["id"])) {
                                 <input type="text" class="form-control" aria-label="localidad" id="editarLocalidad" name="editarLocalidad">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Municipio</label>
-                                <input type="text" class="form-control" aria-label="municipio" id="editarMunicipio" name="editarMunicipio">
+                                <label for="" class="fw-semibold">Estado</label>
+                                <input type="text" class="form-control" aria-label="estado" id="editarEstado" name="editarEstado">
                             </div>
                         </div>
                     </div>
@@ -198,14 +198,14 @@ if (empty($_SESSION["id"])) {
             
             //Se obtienen los valores de los campos
             var nom_localidad = $('#inputLocalidad').val();
-            var id_municipio = $('#inputMunicipio').val();
+            var id_estado = $('#inputEstado').val();
             //Verifica que todos los campos esten llenos
-            if (nom_localidad != '' && id_municipio != '') {
+            if (nom_localidad != '' && id_estado != '') {
                 $.ajax({ //Petición ajax para agregar
                     url: "../../database/crud-localidad/agregar-localidad.php",
                     data: {
                         nom_localidad: nom_localidad,
-                        id_municipio: id_municipio
+                        id_estado: id_estado
                     },
                     type: 'post',
                     success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
@@ -215,6 +215,8 @@ if (empty($_SESSION["id"])) {
                             table = $('#tablaLocalidades').DataTable();
                             table.draw();
                             $('#modal_localidades').modal('hide');
+                            // Restablecer los campos del formulario
+                            $('#nuevaLocalidadForm')[0].reset();
                         }
                     }
                 })
@@ -227,17 +229,17 @@ if (empty($_SESSION["id"])) {
             e.preventDefault();
             //Se obtienen los valores de los campos
             var nom_localidad = $('#editarLocalidad').val();
-            var id_municipio = $('#editarMunicipio').val();
+            var id_estado = $('#editarEstado').val();
             var trid = $('#trid_localidad').val();
             var id_localidad = $('#id_localidad').val();
             //Verifica que todos los campos esten llenos
-            if (nom_localidad != '' && id_municipio != '') {
+            if (nom_localidad != '' && id_estado != '') {
                 $.ajax({ //Petición ajax para actualizar
                     url: "../../database/crud-localidad/actualizar-localidad.php",
                     type: "post",
                     data: {
                         nom_localidad: nom_localidad,
-                        id_municipio: id_municipio,
+                        id_estado: id_estado,
                         id_localidad: id_localidad
                     },
                     success: function(data) { //Vuelve a dibujar la tabla y oculta el modal
@@ -249,7 +251,7 @@ if (empty($_SESSION["id"])) {
                             $('#modal_editar_localidades').modal('hide');
                             var button = '<td><a href="javascript:void();" data-id_localidad="' + id_localidad + '" class="btn editbtn"><i role="button" class="fa-solid fa-pen-to-square text-primary"></i></a><a href="javascript:void();"  data-id_localidad="' + id_localidad + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-trash-can text-danger"></i></a></td>';
                             var row = table.row("[id_localidad='" + trid + "']");
-                            row.row("[id_localidad='" + trid + "']").data([id_localidad, nom_localidad, id_municipio, button]);
+                            row.row("[id_localidad='" + trid + "']").data([id_localidad, nom_localidad, id_estado, button]);
                         } else {
                             alert('Failed');
                         }
@@ -275,7 +277,7 @@ if (empty($_SESSION["id"])) {
                 success: function(data) {
                     var json = JSON.parse(data);
                     $('#editarLocalidad').val(json.nom_localidad);
-                    $('#editarMunicipio').val(json.id_municipio);
+                    $('#editarEstado').val(json.id_estado);
                     $('#id_localidad').val(id_localidad);
                     $('#trid_localidad').val(trid);
                 }

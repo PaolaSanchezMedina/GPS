@@ -90,7 +90,7 @@ if (empty($_SESSION["id"])) {
                                 <th scope="col">Usuario</th>
                                 <th scope="col">Contraseña</th>
                                 <th scope="col">Tipo</th>
-                                <th scope="col">Colaborador</th>
+                                <th scope="col">No. Nomina</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -131,8 +131,8 @@ if (empty($_SESSION["id"])) {
                                 </select>
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Colaborador</label>
-                                <input type="text" class="form-control" aria-label="contra" id="inputColaborador" name="inputColaborador">
+                                <label for="" class="fw-semibold">Número de nomina</label>
+                                <input type="text" class="form-control" aria-label="nomina" id="inputNomina" name="inputNomina">
                             </div>
                         </div>
                     </div>
@@ -177,8 +177,8 @@ if (empty($_SESSION["id"])) {
                                     </select>
                                 </div>
                                 <div class="col">
-                                    <label for="" class="fw-semibold">Colaborador</label>
-                                    <input type="text" class="form-control" aria-label="contra" id="editarColaborador" name="editarTipo">
+                                    <label for="" class="fw-semibold">Número de nomina</label>
+                                    <input type="text" class="form-control" aria-label="contra" id="editarNomina" name="editarNomina">
                                 </div>
                             </div>
                         </div>
@@ -232,16 +232,16 @@ if (empty($_SESSION["id"])) {
             var nom_usuario = $('#inputUsuario').val();
             var contrasena_usuario = $('#inputContrasena').val();
             var id_tipoUsuario = $('#inputTipo').val();
-            var id_colaborador = $('#inputColaborador').val();
+            var numNomina_colaborador = $('#inputNomina').val();
             //Verifica que todos los campos esten llenos
-            if (nom_usuario != '' && contrasena_usuario != '' && id_tipoUsuario != '' && id_colaborador != '') {
+            if (nom_usuario != '' && contrasena_usuario != '' && id_tipoUsuario != '' && numNomina_colaborador != '') {
                 $.ajax({ //Petición ajax para agregar
                     url: "../../database/crud-usuario/agregar-usuario.php",
                     data: {
                         nom_usuario: nom_usuario,
                         contrasena_usuario: contrasena_usuario,
                         id_tipoUsuario: id_tipoUsuario,
-                        id_colaborador: id_colaborador
+                        numNomina_colaborador: numNomina_colaborador
                     },
                     type: 'post',
                     success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
@@ -251,6 +251,8 @@ if (empty($_SESSION["id"])) {
                             table = $('#tablaUsuarios').DataTable();
                             table.draw();
                             $('#modal_usuarios').modal('hide');
+                            // Restablecer los campos del formulario
+                            $('#nuevoUsuarioForm')[0].reset();
                         }
                     }
                 })
@@ -265,11 +267,11 @@ if (empty($_SESSION["id"])) {
             var nom_usuario = $('#editarUsuario').val();
             var contrasena_usuario = $('#editarContrasena').val();
             var id_tipoUsuario = $('#editarTipo').val();
-            var id_colaborador = $('#editarColaborador').val();
+            var numNomina_colaborador = $('#editarNomina').val();
             var trid = $('#trid_usuario').val();
             var id_usuario = $('#id_usuario').val();
             //Verifica que todos los campos esten llenos
-            if (nom_usuario != '' && contrasena_usuario != '' && id_tipoUsuario != '' && id_colaborador != '') {
+            if (nom_usuario != '' && contrasena_usuario != '' && id_tipoUsuario != '' && numNomina_colaborador != '') {
                 $.ajax({ //Petición ajax para actualizar
                     url: "../../database/crud-usuario/actualizar-usuario.php",
                     type: "post",
@@ -277,7 +279,7 @@ if (empty($_SESSION["id"])) {
                         nom_usuario: nom_usuario,
                         contrasena_usuario: contrasena_usuario,
                         id_tipoUsuario: id_tipoUsuario,
-                        id_colaborador: id_colaborador,
+                        numNomina_colaborador: numNomina_colaborador,
                         id_usuario: id_usuario
                     },
                     success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
@@ -289,7 +291,7 @@ if (empty($_SESSION["id"])) {
                             $('#modal_editar_usuarios').modal('hide');
                             var button = '<td><a href="javascript:void();" data-id_usuario="' + id_usuario + '" class="btn editbtn"><i role="button" class="fa-solid fa-user-pen text-primary"></i></a><a href="javascript:void();"  data-id_usuario="' + id_usuario + '"  class="btn deleteBtn"><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a></td>';
                             var row = table.row("[id_usuario='" + trid + "']");
-                            row.row("[id_usuario='" + trid + "']").data([id_usuario, nom_usuario, contrasena_usuario, id_tipoUsuario, id_colaborador, button]);
+                            row.row("[id_usuario='" + trid + "']").data([id_usuario, nom_usuario, contrasena_usuario, id_tipoUsuario, numNomina_colaborador, button]);
                         } else {
                             alert('Failed');
                         }
@@ -316,7 +318,7 @@ if (empty($_SESSION["id"])) {
                     $('#editarUsuario').val(json.nom_usuario);
                     $('#editarContrasena').val(json.contrasena_usuario);
                     $('#editarTipo').val(json.id_tipoUsuario);
-                    $('#editarColaborador').val(json.id_colaborador);
+                    $('#editarNomina').val(json.numNomina_colaborador);
                     $('#id_usuario').val(id_usuario);
                     $('#trid_usuario').val(trid);
                 }

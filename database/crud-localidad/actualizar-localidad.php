@@ -2,10 +2,10 @@
 include('../conexion.php');
 
 $nom_localidad = $_POST['nom_localidad'];
-$id_municipio = $_POST['id_municipio'];
+$id_estado = $_POST['id_estado'];
 $id_localidad = $_POST['id_localidad'];
 
-$sql = "UPDATE `localidad` SET  `nom_localidad`='$nom_localidad',  `id_municipio`='$id_municipio' WHERE id_localidad='$id_localidad' ";
+$sql = "UPDATE `localidad` SET  `nom_localidad`='$nom_localidad',  `id_estado`='$id_estado' WHERE id_localidad='$id_localidad' ";
 $query= mysqli_query($con,$sql);
 $lastId = mysqli_insert_id($con);
 if($query ==true)

@@ -2,7 +2,7 @@
 $servername = 'localhost';
 $username = 'root';
 $password = '';
-$dbname = 'siceioficial';
+$dbname = 'proyectofinal';
 
 $con  = mysqli_connect($servername,$username,$password,$dbname);
 $con->set_charset("utf8");

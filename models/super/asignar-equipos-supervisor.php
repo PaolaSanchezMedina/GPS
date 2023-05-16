@@ -90,12 +90,15 @@ if (empty($_SESSION["id"])) {
                         <thead>
                             <tr>
                                 <th scope="col">Id préstamo</th>
-                                <th scope="col">Colaborador</th>
+                                <th scope="col">No. Nomina</th>
                                 <th scope="col">Equipo</th>
-                                <th scope="col">Identificador</th>
                                 <th scope="col">Fecha entrega</th>
-                                <th scope="col">Entrega</th>
                                 <th scope="col">Observaciones</th>
+                                <th scope="col">Entrega</th>
+                                <th scope="col">Identificador</th>
+                                <th scope="col">Dominio</th>
+                                <th scope="col">Portable</th>
+                                <th scope="col">Estatus</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -117,32 +120,54 @@ if (empty($_SESSION["id"])) {
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
-                                <label for="" class="fw-semibold">Id Colaborador</label>
-                                <input type="text" class="form-control" aria-label="usuario" id="inputColaborador" name="inputColaborador">
+                                <label for="" class="fw-semibold">Número de nomina</label>
+                                <input type="text" class="form-control" aria-label="nomina" id="inputNomina" name="inputNomina">
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Id equipo</label>
-                                <input type="text" class="form-control" aria-label="contra" id="inputEquipo" name="inputEquipo">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <label for="" class="fw-semibold">Identificador</label>
-                                <input type="text" class="form-control" aria-label="usuario" id="inputIdentificador" name="inputIdentificador">
+                                <input type="text" class="form-control" aria-label="equipo" id="inputEquipo" name="inputEquipo">
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Fecha entrega</label>
-                                <input type="date" class="form-control" aria-label="contra" id="inputFecha" name="inputFecha">
+                                <input type="date" class="form-control" aria-label="fecha" id="inputFecha" name="inputFecha">
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col">
-                                <label for="" class="fw-semibold">Usuario que entrega</label>
-                                <input type="text" class="form-control" aria-label="contra" name="inputEntrega" id="inputEntrega">
+                                <label for="" class="fw-semibold">Observaciones</label>
+                                <input type="text" class="form-control" aria-label="observaciones" id="inputObservaciones" name="inputObservaciones">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Observaciones</label>
-                                <input type="text" class="form-control" aria-label="contra" id="inputObservaciones" name="inputObservaciones">
+                                <label for="" class="fw-semibold">Usuario que entrega</label>
+                                <select class="form-select" aria-label="Default select example" name="inputEntrega" id="inputEntrega">
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Supervisor">Supervisor</option>
+                                </select>
+                              </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Identificador</label>
+                                <input type="text" class="form-control" aria-label="identificador" id="inputIdentificador" name="inputIdentificador">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label for="" class="fw-semibold">Dominio</label>
+                                <input type="text" class="form-control" aria-label="dominio" name="inputDominio" id="inputDominio">
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Portable</label>
+                                <select class="form-select" aria-label="Default select example" name="inputPortable" id="inputPortable">
+                                    <option value="Portable">Sí</option>
+                                    <option value="No portable">No</option>
+                                    <option value="No aplica">No aplica</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="" class="fw-semibold">Estatus</label>
+                                <select class="form-select" aria-label="Default select example" name="inputEstatus" id="inputEstatus">
+                                    <option value="Activo">Activo</option>
+                                    <option value="Terminado">Terminado</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -182,7 +207,7 @@ if (empty($_SESSION["id"])) {
                     'type': 'post',
                 },
                 "aoColumnDefs": [{ //Define opciones específicas para columnas individuales de la tabla
-                    "bSortable": false, //La columna 7 de la tabla no se puede ordenar
+                    "bSortable": false,
                     //"aTargets": [9] //Es la columna de opciones
                 }, ]
             })
@@ -191,25 +216,30 @@ if (empty($_SESSION["id"])) {
         $(document).on('submit', '#asignarEquipoForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
             event.preventDefault();
             //Se obtienen los valores de los campos
-            var id_colaborador = $('#inputColaborador').val();
+            var numNomina_colaborador = $('#inputNomina').val();
             var id_equipo = $('#inputEquipo').val();
-            var identifEquipo_prestamo = $('#inputIdentificador').val();
             var fechaEntrega_prestamo = $('#inputFecha').val();
-            var id_usuario = $('#inputEntrega').val();
             var observaciones_prestamo = $('#inputObservaciones').val();
-
-            console.log(fechaEntrega_prestamo);
+            console.log(observaciones_prestamo);
+            var usuarioEntrega_prestamo = $('#inputEntrega').val();
+            var nomEquipo_prestamo = $('#inputIdentificador').val();
+            var dominio_prestamo = $('#inputDominio').val();
+            var portable_prestamo = $('#inputPortable').val();
+            var status_prestamo	 = $('#inputEstatus').val();
             //Verifica que todos los campos esten llenos
-            if (id_colaborador != '' && id_equipo != '' && identifEquipo_prestamo != '' && fechaEntrega_prestamo!= '' && id_usuario != '' && observaciones_prestamo != '') {
+            if (numNomina_colaborador != '' && id_equipo != '' && fechaEntrega_prestamo != '' && observaciones_prestamo != '' && usuarioEntrega_prestamo  != '' && nomEquipo_prestamo != '' && dominio_prestamo != '' && portable_prestamo != '' && status_prestamo != '') {
                 $.ajax({ //Petición ajax para agregar
                     url: "../../database/crud-prestamo/asignar-prestamo.php",
                     data: {
-                        id_colaborador: id_colaborador,
+                        numNomina_colaborador: numNomina_colaborador,
                         id_equipo: id_equipo,
-                        identifEquipo_prestamo: identifEquipo_prestamo,
                         fechaEntrega_prestamo: fechaEntrega_prestamo,
-                        id_usuario: id_usuario,
-                        observaciones_prestamo: observaciones_prestamo
+                        observaciones_prestamo: observaciones_prestamo,
+                        usuarioEntrega_prestamo: usuarioEntrega_prestamo,
+                        nomEquipo_prestamo: nomEquipo_prestamo,
+                        dominio_prestamo: dominio_prestamo,
+                        portable_prestamo: portable_prestamo,
+                        status_prestamo: status_prestamo
                     },
                     type: 'post',
                     success: function(data) { //Vuelve a dibujar la tabla y ocultar el modal
@@ -219,6 +249,8 @@ if (empty($_SESSION["id"])) {
                             table = $('#tablaPrestamos').DataTable();
                             table.draw();
                             $('#modal_asignar').modal('hide');
+                            // Restablecer los campos del formulario
+                            $('#asignarEquipoForm')[0].reset();
                         }
                     }
                 })

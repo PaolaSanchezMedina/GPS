@@ -203,6 +203,8 @@ if (empty($_SESSION["id"])) {
                             table = $('#tablaMarcas').DataTable();
                             table.draw();
                             $('#modal_marcas').modal('hide');
+                            // Restablecer los campos del formulario
+                            $('#nuevaMarcaForm')[0].reset();
                         }
                     }
                 })

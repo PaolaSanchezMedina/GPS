@@ -1,34 +1,38 @@
 <?php include('../conexion.php');
 
 $output= array();
-$sql = "SELECT p.id_prestamo, CONCAT(c.nom_colaborador, ' ', c.aPaterno_colaborador, ' ', c.aMaterno_colaborador) as nombre_completo, e.nom_equipo, p.identifEquipo_prestamo, p.fechaEntrega_prestamo, u.nom_usuario, p.observaciones_prestamo
+$sql = "SELECT p.id_prestamo, p.numNomina_colaborador, e.descripcion_equipo, p.fechaEntrega_prestamo, p.observaciones_prestamo, p.usuarioEntrega_prestamo, p.nomEquipo_prestamo, p.dominio_prestamo, p.portable_prestamo, p.status_prestamo
 FROM prestamo p
-JOIN colaborador c ON p.id_colaborador = c.id_colaborador
-JOIN equipo e ON p.id_equipo = e.id_equipo
-JOIN usuario u ON p.id_usuario = u.id_usuario";
+JOIN equipo e ON p.id_equipo = e.id_equipo";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
 
 $columns = array( 
 	0 => 'id_prestamo', 
-	1 => 'nombre_completo',
-	2 => 'nom_equipo',
-	3 => 'identifEquipo_prestamo',
-	4 => 'fechaEntrega_prestamo',
-    5 => 'nom_usuario',
-    6 => 'observaciones_prestamo',
+	1 => 'numNomina_colaborador',
+	2 => 'descripcion_equipo',
+	3 => 'fechaEntrega_prestamo',
+	4 => 'observaciones_prestamo',
+    5 => 'usuarioEntrega_prestamo',
+    6 => 'nomEquipo_prestamo',
+	7 => 'dominio_prestamo',
+	8 => 'portable_prestamo',
+	9 => 'status_prestamo',
 );
 
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
-	$sql .= " WHERE CONCAT(c.nom_colaborador, ' ', c.aPaterno_colaborador, ' ', c.aMaterno_colaborador) like '%".$search_value."%'";
-	$sql .= " OR e.nom_equipo like '%".$search_value."%'";
-	$sql .= " OR identifEquipo_prestamo like '%".$search_value."%'";
+	$sql .= " WHERE numNomina_colaborador like '%".$search_value."%'";
+	$sql .= " OR e.descripcion_equipo like '%".$search_value."%'";
 	$sql .= " OR fechaEntrega_prestamo like '%".$search_value."%'";
-    $sql .= " OR u.nom_usuario like '%".$search_value."%'";
     $sql .= " OR observaciones_prestamo like '%".$search_value."%'";
+    $sql .= " OR usuarioEntrega_prestamo like '%".$search_value."%'";
+	$sql .= " OR nomEquipo_prestamo like '%".$search_value."%'";
+    $sql .= " OR dominio_prestamo like '%".$search_value."%'";
+    $sql .= " OR portable_prestamo like '%".$search_value."%'";
+	$sql .= " OR status_prestamo like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -56,12 +60,15 @@ while($row = mysqli_fetch_assoc($query))
 {
 	$sub_array = array();
 	$sub_array[] = $row['id_prestamo'];
-	$sub_array[] = $row['nombre_completo'];
-	$sub_array[] = $row['nom_equipo'];
-	$sub_array[] = $row['identifEquipo_prestamo'];
+	$sub_array[] = $row['numNomina_colaborador'];
+	$sub_array[] = $row['descripcion_equipo'];
 	$sub_array[] = $row['fechaEntrega_prestamo'];
-    $sub_array[] = $row['nom_usuario'];
 	$sub_array[] = $row['observaciones_prestamo'];
+    $sub_array[] = $row['usuarioEntrega_prestamo'];
+	$sub_array[] = $row['nomEquipo_prestamo'];
+	$sub_array[] = $row['dominio_prestamo'];
+	$sub_array[] = $row['portable_prestamo'];
+	$sub_array[] = $row['status_prestamo'];
     $sub_array[] = '<a href="javascript:void();" data-id_prestamo="'.$row['id_prestamo'].'"  class="btn editbtn" ><i role="button" class="fa-solid fa-user-pen text-primary"></i></a><a href="javascript:void();" data-id_prestamo="'.$row['id_prestamo'].'"  class="btn deleteBtn" ><i role="button" class="fa-solid fa-user-xmark text-danger"></i></a>';
 	$data[] = $sub_array;
 }
