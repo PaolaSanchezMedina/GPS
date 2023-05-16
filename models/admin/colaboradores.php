@@ -85,14 +85,14 @@ if (empty($_SESSION["id"])) {
                     <table id="tablaColaboradores" class="table table-striped dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
-                                <th scope="col">Id</th>
+                                <th scope="col">No. Nomina</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">1er Apellido</th>
                                 <th scope="col">2do Apellido</th>
                                 <th scope="col">Centro de costos</th>
-                                <th scope="col">Correo</th>
                                 <th scope="col">Localidad</th>
                                 <th scope="col">Jefatura</th>
+                                <th scope="col">Correo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,7 +119,7 @@ if (empty($_SESSION["id"])) {
                 },
                 //Esta función se llama cada que se va a crear una fila nueva con datatables
                 "fnCreatedRow": function(nRow, aData, iDataIndex) {
-                    $(nRow).attr('id_usuario', aData[0]);
+                    $(nRow).attr('numNomina_colaborador', aData[0]);
                 },
                 'serverSide': 'true', //Los datos se procesan del lado del servidor
                 'processing': 'true', //Muestra un indicador de carga mientras se procesan los datos
