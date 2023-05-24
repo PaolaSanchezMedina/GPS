@@ -31,7 +31,7 @@
     <div class="form-box mt-4">
       <div class="form-value">
         <form method="post" action="" class="text-center">
-          <img src="../assets/img/logo.png" class="rounded" alt="Logo" width="40" height="38">
+          <img src="../assets/img/logo-inicio.png" class="rounded" alt="Logo" width="80" height="80">
           <h4 class="mt-3" style="color: white; text-align: center;">Iniciar sesión</h4>
           <?php
           include "../database/conexion.php";
