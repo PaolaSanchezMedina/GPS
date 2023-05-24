@@ -124,10 +124,23 @@ if (empty($_SESSION["id"])) {
                         <div class="row mt-3">
                             <div class="col">
                                 <label for="" class="fw-semibold">Tipo de usuario</label>
-                                <select class="form-select" aria-label="Default select example" name="inputTipo" id="inputTipo">
-                                    <option value="1">Administrador</option>
-                                    <option value="2">Supervisor</option>
-                                    <option value="3">Usuario general</option>
+                                <select class="form-control" name="inputTipo" id="inputTipo">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM tipo_usuario";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_tipoUsuario = $row["id_tipoUsuario"];
+                                            $nom_tipoUsuario = $row["nom_tipoUsuario"];
+                                            echo "<option value=\"$id_tipoUsuario\">$nom_tipoUsuario</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
                                 </select>
                             </div>
                             <div class="col">
@@ -170,11 +183,24 @@ if (empty($_SESSION["id"])) {
                             <div class="row mt-3">
                                 <div class="col">
                                     <label for="" class="fw-semibold">Tipo de usuario</label>
-                                    <select class="form-select" aria-label="Default select example" name="editarTipo" id="editarTipo">
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Supervisor</option>
-                                        <option value="3">Usuario general</option>
-                                    </select>
+                                    <select class="form-control" name="editarTipo" id="editarTipo">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM tipo_usuario";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_tipoUsuario = $row["id_tipoUsuario"];
+                                            $nom_tipoUsuario = $row["nom_tipoUsuario"];
+                                            echo "<option value=\"$id_tipoUsuario\">$nom_tipoUsuario</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                                 </div>
                                 <div class="col">
                                     <label for="" class="fw-semibold">Número de nomina</label>

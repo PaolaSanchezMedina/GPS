@@ -116,7 +116,24 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Estado</label>
-                                <input type="text" class="form-control" aria-label="estado" id="inputEstado" name="inputEstado">
+                                <select class="form-control" id="inputEstado" name="inputEstado">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM estado";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_estado = $row["id_estado"];
+                                            $nom_estado = $row["nom_estado"];
+                                            echo "<option value=\"$id_estado\">$nom_estado</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -147,7 +164,24 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Estado</label>
-                                <input type="text" class="form-control" aria-label="estado" id="editarEstado" name="editarEstado">
+                                <select class="form-control" id="editarEstado" name="editarEstado">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM estado";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_estado = $row["id_estado"];
+                                            $nom_estado = $row["nom_estado"];
+                                            echo "<option value=\"$id_estado\">$nom_estado</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>

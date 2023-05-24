@@ -136,11 +136,45 @@ if (empty($_SESSION["id"])) {
                         <div class="row">
                             <div class="col">
                                 <label for="" class="fw-semibold">Tipo</label>
-                                <input type="text" class="form-control" id="inputTipo" name="inputTipo">
+                                <select class="form-control" id="inputTipo" name="inputTipo">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM tipo_equipo";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $idTipoEquipo = $row["id_tipoEquipo"];
+                                            $nom_tipoEquipo = $row["nom_tipoEquipo"];
+                                            echo "<option value=\"$idTipoEquipo\">$nom_tipoEquipo</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Marca</label>
-                                <input type="text" class="form-control" id="inputMarca" name="inputMarca">
+                                <select class="form-control" id="inputMarca" name="inputMarca">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM marca";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_marca = $row["id_marca"];
+                                            $nom_marca = $row["nom_marca"];
+                                            echo "<option value=\"$id_marca\">$nom_marca</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Número de serie</label>
@@ -212,7 +246,24 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Proveedor</label>
-                                <input type="text" class="form-control" id="inputProv" name="inputProv">
+                                <select class="form-control" id="inputProv" name="inputProv">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM proveedor";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_proveedor = $row["id_proveedor"];
+                                            $nom_proveedor = $row["nom_proveedor"];
+                                            echo "<option value=\"$id_proveedor\">$nom_proveedor</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Número de factura</label>
@@ -226,7 +277,24 @@ if (empty($_SESSION["id"])) {
                         <div class="row">
                             <div class="col-lg-3">
                                 <label for="" class="fw-semibold">Departamento</label>
-                                <input type="text" class="form-control" id="inputDept" name="inputDept">
+                                <select class="form-control" id="inputDept" name="inputDept">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM departamento";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_departamento = $row["id_departamento"];
+                                            $nom_departamento = $row["nom_departamento"];
+                                            echo "<option value=\"$id_departamento\">$nom_departamento</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                             <div class="col-lg-3">
                                 <label for="" class="fw-semibold">Comentarios</label>
@@ -234,7 +302,24 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col-lg-3">
                                 <label for="" class="fw-semibold">Tipo de propiedad</label>
-                                <input type="text" class="form-control" id="inputPropiedad" name="inputPropiedad">
+                                <select class="form-control" id="inputPropiedad" name="inputPropiedad">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM tipo_propiedad";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_tipoPropiedad = $row["id_tipoPropiedad"];
+                                            $nom_tipoPropiedad = $row["nom_tipoPropiedad"];
+                                            echo "<option value=\"$id_tipoPropiedad\">$nom_tipoPropiedad</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -261,11 +346,45 @@ if (empty($_SESSION["id"])) {
                         <div class="row">
                             <div class="col">
                                 <label for="" class="fw-semibold">Tipo</label>
-                                <input type="text" class="form-control" id="editTipo" name="editTipo">
+                                <select class="form-control" id="editTipo" name="editTipo">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM tipo_equipo";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $idTipoEquipo = $row["id_tipoEquipo"];
+                                            $nom_tipoEquipo = $row["nom_tipoEquipo"];
+                                            echo "<option value=\"$idTipoEquipo\">$nom_tipoEquipo</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Marca</label>
-                                <input type="text" class="form-control" id="editMarca" name="editMarca">
+                                <select class="form-control" id="editMarca" name="editMarca">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM marca";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_marca = $row["id_marca"];
+                                            $nom_marca = $row["nom_marca"];
+                                            echo "<option value=\"$id_marca\">$nom_marca</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Número de serie</label>
@@ -337,7 +456,24 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Proveedor</label>
-                                <input type="text" class="form-control" id="editProv" name="editProv">
+                                <select class="form-control" id="editProv" name="editProv">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM proveedor";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_proveedor = $row["id_proveedor"];
+                                            $nom_proveedor = $row["nom_proveedor"];
+                                            echo "<option value=\"$id_proveedor\">$nom_proveedor</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Número de factura</label>
@@ -351,7 +487,24 @@ if (empty($_SESSION["id"])) {
                         <div class="row">
                             <div class="col-lg-3">
                                 <label for="" class="fw-semibold">Departamento</label>
-                                <input type="text" class="form-control" id="editDept" name="editDept">
+                                <select class="form-control" id="editDept" name="editDept">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM departamento";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_departamento = $row["id_departamento"];
+                                            $nom_departamento = $row["nom_departamento"];
+                                            echo "<option value=\"$id_departamento\">$nom_departamento</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                             <div class="col-lg-3">
                                 <label for="" class="fw-semibold">Comentarios</label>
@@ -359,7 +512,24 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col-lg-3">
                                 <label for="" class="fw-semibold">Tipo de propiedad</label>
-                                <input type="text" class="form-control" id="editPropiedad" name="editPropiedad">
+                                <select class="form-control" id="editPropiedad" name="editPropiedad">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM tipo_propiedad";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_tipoPropiedad = $row["id_tipoPropiedad"];
+                                            $nom_tipoPropiedad = $row["nom_tipoPropiedad"];
+                                            echo "<option value=\"$id_tipoPropiedad\">$nom_tipoPropiedad</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>

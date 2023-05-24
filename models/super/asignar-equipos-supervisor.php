@@ -125,7 +125,24 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Id equipo</label>
-                                <input type="text" class="form-control" aria-label="equipo" id="inputEquipo" name="inputEquipo">
+                                <select class="form-control" aria-label="equipo" id="inputEquipo" name="inputEquipo">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM equipo";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $idEquipo = $row["id_equipo"];
+                                            $descripcionEquipo = $row["descripcion_equipo"];
+                                            echo "<option value=\"$idEquipo\">$descripcionEquipo</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Fecha entrega</label>

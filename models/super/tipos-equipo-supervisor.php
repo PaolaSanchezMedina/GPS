@@ -119,7 +119,24 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Clasificación</label>
-                                <input type="text" class="form-control" aria-label="clasificacion" id="inputClasificacion" name="inputClasificacion">
+                                <select class="form-control" id="inputClasificacion" name="inputClasificacion">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM clasificacionequipo";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_clasiEquipo = $row["id_clasiEquipo"];
+                                            $nom_clasiEquipo = $row["nom_clasiEquipo"];
+                                            echo "<option value=\"$id_clasiEquipo\">$nom_clasiEquipo</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -150,7 +167,24 @@ if (empty($_SESSION["id"])) {
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Clasificación</label>
-                                <input type="text" class="form-control" aria-label="Clasificacion" id="editarClasificacion" name="editarClasificacion">
+                                <select class="form-control" id="editarClasificacion" name="editarClasificacion">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM clasificacionequipo";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $id_clasiEquipo = $row["id_clasiEquipo"];
+                                            $nom_clasiEquipo = $row["nom_clasiEquipo"];
+                                            echo "<option value=\"$id_clasiEquipo\">$nom_clasiEquipo</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>

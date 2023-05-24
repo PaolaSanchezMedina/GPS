@@ -121,8 +121,25 @@ if (empty($_SESSION["id"])) {
                                 <input type="text" class="form-control" aria-label="nomina" id="inputNomina" name="inputNomina">
                             </div>
                             <div class="col">
-                                <label for="" class="fw-semibold">Id equipo</label>
-                                <input type="text" class="form-control" aria-label="equipo" id="inputEquipo" name="inputEquipo">
+                                <label for="" class="fw-semibold">Equipo</label>
+                                <select class="form-control" aria-label="equipo" id="inputEquipo" name="inputEquipo">
+                                    <?php
+                                    include('../../database/conexion.php');
+                                    $sql = "SELECT * FROM equipo";
+                                    $resultado = mysqli_query($con, $sql);
+                                    if (mysqli_num_rows($resultado) > 0) {
+                                        while ($row = mysqli_fetch_assoc($resultado)) {
+                                            $idEquipo = $row["id_equipo"];
+                                            $descripcionEquipo = $row["descripcion_equipo"];
+                                            echo "<option value=\"$idEquipo\">$descripcionEquipo</option>";
+                                        }
+                                    } else {
+                                        echo 'No se encontraron resultados.';
+                                    }
+                                    mysqli_free_result($resultado);
+                                    mysqli_close($con);
+                                    ?>
+                                </select>
                             </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Fecha entrega</label>
@@ -140,7 +157,7 @@ if (empty($_SESSION["id"])) {
                                     <option value="Administrador">Administrador</option>
                                     <option value="Supervisor">Supervisor</option>
                                 </select>
-                              </div>
+                            </div>
                             <div class="col">
                                 <label for="" class="fw-semibold">Identificador</label>
                                 <input type="text" class="form-control" aria-label="identificador" id="inputIdentificador" name="inputIdentificador">
@@ -209,6 +226,18 @@ if (empty($_SESSION["id"])) {
                 }, ]
             })
         });
+        $("#modal_asignar").on("show.bs.modal", function(event) {
+            // Restablecer los valores de los campos de entrada
+            $("#inputNomina").val("");
+            $("#inputEquipo").val("");
+            $("#inputFecha").val("");
+            $("#inputObservaciones").val("");
+            $("#inputEntrega").val("Administrador");
+            $("#inputIdentificador").val("");
+            $("#inputDominio").val("");
+            $("#inputPortable").val("Portable");
+            $("#inputEstatus").val("Activo");
+        });
         //==========Asignar equipo==========
         $(document).on('submit', '#asignarEquipoForm', function(event) { //Establece un controlador de eventos en el formulario para el evento submit
             event.preventDefault();
@@ -222,9 +251,9 @@ if (empty($_SESSION["id"])) {
             var nomEquipo_prestamo = $('#inputIdentificador').val();
             var dominio_prestamo = $('#inputDominio').val();
             var portable_prestamo = $('#inputPortable').val();
-            var status_prestamo	 = $('#inputEstatus').val();
+            var status_prestamo = $('#inputEstatus').val();
             //Verifica que todos los campos esten llenos
-            if (numNomina_colaborador != '' && id_equipo != '' && fechaEntrega_prestamo != '' && observaciones_prestamo != '' && usuarioEntrega_prestamo  != '' && nomEquipo_prestamo != '' && dominio_prestamo != '' && portable_prestamo != '' && status_prestamo != '') {
+            if (numNomina_colaborador != '' && id_equipo != '' && fechaEntrega_prestamo != '' && observaciones_prestamo != '' && usuarioEntrega_prestamo != '' && nomEquipo_prestamo != '' && dominio_prestamo != '' && portable_prestamo != '' && status_prestamo != '') {
                 $.ajax({ //Petición ajax para agregar
                     url: "../../database/crud-prestamo/asignar-prestamo.php",
                     data: {
@@ -246,8 +275,6 @@ if (empty($_SESSION["id"])) {
                             table = $('#tablaPrestamos').DataTable();
                             table.draw();
                             $('#modal_asignar').modal('hide');
-                            // Restablecer los campos del formulario
-                            $('#asignarEquipoForm')[0].reset();
                         }
                     }
                 })
