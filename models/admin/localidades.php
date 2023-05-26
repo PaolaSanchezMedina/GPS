@@ -48,17 +48,24 @@ if (empty($_SESSION["id"])) {
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>Usuarios</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/usuarios.php>
+                        <img src="../../assets/img/usuarios.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-bottom">
+                        Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/equipos-admin.php>Equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/equipos-admin.php>
+                        <img src="../../assets/img/computer.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-bottom">
+                        Equipos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>Asignar equipos</a>
+                        <a class="nav-link text-light" aria-current="page" href=../admin/asignar-equipo.php>
+                        <img src="../../assets/img/reports.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-bottom">
+                        Asignar equipos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Catálogos
+                        <img src="../../assets/img/documents.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-bottom">    
+                        Catálogos
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="../admin/localidades.php">Localidades</a></li>
